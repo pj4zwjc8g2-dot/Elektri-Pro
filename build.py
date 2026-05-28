@@ -66,6 +66,8 @@ TRACK = """<script>
 window.dataLayer=window.dataLayer||[];
 document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
  a.addEventListener('click',function(){window.dataLayer.push({event:'phone_call_click',call_location:a.getAttribute('data-call')||'unknown'});});});
+var _obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});});
+document.querySelectorAll('.reveal').forEach(function(el){_obs.observe(el);});
 </script>"""
 
 def schema_localbusiness(area=None, page_url=None):
