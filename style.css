@@ -28,9 +28,9 @@ a{color:inherit;text-decoration:none}
   .mainnav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;padding:10px 22px 18px;border-bottom:1px solid rgba(255,255,255,.08);gap:2px}
   .mainnav.open{display:flex}
   .mainnav a{padding:12px 14px}
-  .burger{display:block;order:3;margin-left:4px}
+  .burger{display:block;margin-left:8px}
   .call-btn .txt{display:none}
-  .call-btn{padding:9px 13px}
+  .call-btn{padding:9px 13px;margin-left:auto}
   .topbar .wrap{position:relative}
 }
 
