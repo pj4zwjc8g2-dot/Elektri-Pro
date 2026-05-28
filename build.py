@@ -32,14 +32,14 @@ def head(title, desc, canonical, schema=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="{B['domain']}/style.css">
 {schema}
 </head>
 <body>"""
 
 def callbar():
     return f"""<header class="callbar"><div class="wrap">
-<a class="brand" href="/"><span class="spark">⚡</span> Elektri<span class="pro">Pro</span></a>
+<a class="brand" href="{B['domain']}/"><span class="spark">⚡</span> Elektri<span class="pro">Pro</span></a>
 <a class="call-btn" href="tel:{B['phone_link']}" data-call="header">
 <span class="ring">📞</span><span class="txt">Bel direct: {esc(B['phone_display'])}</span></a>
 </div></header>"""
@@ -53,7 +53,7 @@ def footer():
     # links naar alle dienst+stad-pagina's voor interne linking (goed voor SEO)
     links = ""
     for skey, s in SERVICES.items():
-        links += f'<a href="/{skey}/">{esc(s["label"])}</a>'
+        links += f'<a href="{B["domain"]}/{skey}/">{esc(s["label"])}</a>'
     return f"""<footer><div class="wrap">
 <div class="col"><h4><span style="color:var(--accent)">⚡</span> {esc(B['name'])}</h4>
 <p>{esc(B['tagline'])}.</p><p>Particulieren &amp; bedrijven.</p>{vat}</div>
@@ -132,7 +132,7 @@ def build_home():
     for skey, s in SERVICES.items():
         cls = "card urgent" if skey == "noodelektricien" else "card"
         extra = f'<a class="mini" href="tel:{B["phone_link"]}" data-call="card-{skey}">📞 Bel nu</a>' if skey=="noodelektricien" else ""
-        cards += f"""<a class="{cls}" href="/{skey}/"><div class="ic">{s['icon']}</div>
+        cards += f"""<a class="{cls}" href="{B['domain']}/{skey}/"><div class="ic">{s['icon']}</div>
 <h3>{esc(s['label'])}</h3><p>{esc(s['intro'])}</p>{extra}</a>"""
     inner = hero(
         'Uw elektricien, <em>snel ter plaatse</em> wanneer het nodig is.',
@@ -153,7 +153,7 @@ def build_service(skey, s):
     pts = "".join(f"<li>{esc(p)}</li>" for p in s["points"])
     body = "".join(f"<p>{esc(par)}</p>" for par in s["body"])
     citylinks = "".join(
-        f'<a class="citychip" href="/{skey}/{c["slug"]}/">{esc(s["kw"])} {esc(c["name"])}</a>'
+        f'<a class="citychip" href="{B["domain"]}/{skey}/{c["slug"]}/">{esc(s["kw"])} {esc(c["name"])}</a>'
         for c in CITIES)
     h1 = f"{esc(s['kw'])} in Vlaams-Brabant, Brussel &amp; Waals-Brabant"
     inner = hero(h1, s["intro"]) + trust() + f"""<section class="section" id="info"><div class="wrap">
@@ -196,8 +196,10 @@ def build_sitemap():
         f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{items}</urlset>')
     with open(f"{OUT}/robots.txt","w",encoding="utf-8") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {B['domain']}/sitemap.xml\n")
-    with open(f"{OUT}/CNAME","w",encoding="utf-8") as f:
-        f.write(B['domain'].replace("https://","").replace("http://","").strip("/"))
+    host = B['domain'].replace("https://","").replace("http://","").split("/")[0]
+    if "github.io" not in host:
+        with open(f"{OUT}/CNAME","w",encoding="utf-8") as f:
+            f.write(host)
 
 # ---------- run ----------
 if os.path.exists(OUT): shutil.rmtree(OUT)

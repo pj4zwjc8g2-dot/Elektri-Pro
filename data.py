@@ -9,7 +9,7 @@ BUSINESS = {
     "phone_display": "+32 498 06 03 77",
     "phone_link": "+32498060377",          # zonder spaties, voor tel:-links
     "email": "",                            # vul in, bv. "info@elektri-pro.be"
-    "domain": "https://elektri-pro.be",     # je definitieve domein (voor sitemap + canonical)
+    "domain": "https://pj4zwjc8g2-dot.github.io/Elektri-Pro",  # je definitieve domein (voor sitemap + canonical)
     "vat": "",                              # BTW-nummer voor de footer, bv. "BE 0123.456.789"
     "tagline": "Erkend elektricien voor noodinterventies en alle elektriciteitswerken",
 }
