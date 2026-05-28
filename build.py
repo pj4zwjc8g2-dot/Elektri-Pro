@@ -44,7 +44,7 @@ def topbar(current_path=""):
         active = ' class="active"' if m["url"] == current_path else ""
         nav += f'<a href="{D}{m["url"]}"{active}>{esc(m["label"])}</a>'
     return f"""<header class="topbar"><div class="wrap">
-<a class="brand" href="{D}/"><span class="spark">⚡</span> Elektri<span class="pro">Pro</span></a>
+<a class="brand" href="{D}/"><span class="spark">🔌</span> Elektri<span class="pro">Pro</span></a>
 <nav class="mainnav">{nav}</nav>
 <a class="call-btn" href="tel:{B['phone_link']}" data-call="header">
 <span class="ring">📞</span><span class="txt">{esc(B['phone_display'])}</span></a>
@@ -60,7 +60,7 @@ def footer():
     slinks = "".join(f'<a href="{D}/{k}/">{esc(s["label"])}</a>' for k, s in SERVICES.items())
     mlinks = "".join(f'<a href="{D}{m["url"]}">{esc(m["label"])}</a>' for m in MENU)
     return f"""<footer><div class="wrap">
-<div class="col"><h4><span style="color:var(--accent)">⚡</span> {esc(B['name'])}</h4>
+<div class="col"><h4><span style="color:var(--accent)">🔌</span> {esc(B['name'])}</h4>
 <p>{esc(B['tagline'])}.</p><p>Particulieren &amp; bedrijven.</p>{vat}</div>
 <div class="col"><h4>Diensten</h4>{slinks}</div>
 <div class="col"><h4>Navigatie</h4>{mlinks}</div>
