@@ -1,5 +1,5 @@
 # =====================================================================
-#  ELEKTRI PRO — CONTENT & DATA  (v2: uitgebreid)
+#  ELEKTRI PRO — CONTENT & DATA  (v3: 4 diensten)
 # =====================================================================
 
 BUSINESS = {
@@ -122,8 +122,59 @@ SERVICES = {
             "In orde brengen voor de keuring",
         ],
     },
+    "keuring": {
+        "label": "Keuring & conformiteit",
+        "kw": "Elektrische keuring",
+        "icon": "📋",
+        "intro": "Uw elektrische installatie klaarmaken voor de keuring, of de inbreuken uit een "
+                 "negatief keuringsverslag wegwerken.",
+        "body": [
+            "Een elektrische keuring is verplicht bij de verkoop van een woning, bij een nieuwe "
+            "installatie en periodiek voor oudere woningen. De keuring zelf wordt uitgevoerd door "
+            "een erkend organisme zoals Vinçotte, BTV of AIB-Vinçotte. Wij zorgen ervoor dat uw "
+            "installatie voldoet aan het AREI zodat ze door de keuring komt, of we werken de "
+            "inbreuken weg uit een negatief keuringsverslag.",
+            "Een veelvoorkomende situatie: u staat op het punt te verkopen en het keuringsverslag "
+            "vermeldt verschillende inbreuken die binnen achttien maanden moeten worden hersteld. "
+            "Wij overlopen het verslag met u, bespreken welke werken nodig zijn en aan welke prijs, "
+            "en voeren de herstellingen uit. Daarna kan een herkeuring volgen.",
+        ],
+        "points": [
+            "Installatie voorbereiden voor verplichte keuring (verkoop, nieuwe installatie)",
+            "Inbreuken uit een negatief keuringsverslag wegwerken",
+            "Aarding en equipotentiale verbinding in orde brengen",
+            "Verdeelbord aanpassen aan de huidige AREI-normen",
+            "Begeleiding bij het organiseren van de herkeuring",
+        ],
+    },
+    "installatie": {
+        "label": "Volledige elektrische installatie",
+        "kw": "Elektrische installatie",
+        "icon": "🏠",
+        "intro": "Een complete nieuwe of vernieuwde elektrische installatie voor nieuwbouw, "
+                 "grondige renovatie of verbouwing.",
+        "body": [
+            "Bij nieuwbouw of een grondige renovatie begint alles bij een goed doordachte "
+            "elektrische installatie. We bespreken eerst hoe u de woning gaat gebruiken — waar "
+            "komen de werkplekken, hoeveel stopcontacten per kamer, welke verlichtingspunten, "
+            "voorzieningen voor een laadpaal of zonnepanelen — en vertalen dat naar een installatie "
+            "die niet alleen vandaag klopt, maar ook over tien jaar nog voldoet.",
+            "We leggen de volledige bekabeling, plaatsen het verdeelbord, alle stopcontacten, "
+            "schakelaars en verlichtingspunten, en zorgen dat alles netjes en conform het AREI wordt "
+            "afgewerkt. Bij oplevering krijgt u een installatie die klaar is voor de keuring en een "
+            "schema waarin staat welke kring waar naartoe loopt.",
+        ],
+        "points": [
+            "Volledige nieuwe installatie bij nieuwbouw",
+            "Totale vernieuwing bij grondige renovatie",
+            "Uitbreiding bij aanbouw of dakopbouw",
+            "Aanleg conform het AREI, klaar voor de keuring",
+            "Voorbereiding op laadpaal, zonnepanelen en domotica",
+        ],
+    },
 }
 
+# 22 grote steden, elk met UNIEKE lokale context + omliggende gemeenten
 CITIES = [
     # --- Vlaams-Brabant (10) ---
     {"name": "Leuven", "slug": "leuven", "province": "Vlaams-Brabant",

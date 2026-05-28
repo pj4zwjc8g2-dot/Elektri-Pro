@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # =====================================================================
-#  build.py — Elektri Pro v2
+#  build.py — Elektri Pro v3
 #  Genereert: homepage, /diensten/, /faq/, /contact/, dienstpagina's,
-#  dienst×stad-landingspagina's, sitemap.xml, robots.txt, CNAME.
+#  dienst×stad-landingspagina's, sitemap.xml, robots.txt.
 # =====================================================================
 import os, shutil, html, datetime, json
 from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS
 
 OUT = "site"
 B = BUSINESS
-D = B["domain"]  # basis-URL voor alle interne links
+D = B["domain"]
 YEAR = datetime.date.today().year
 TODAY = datetime.date.today().isoformat()
 
@@ -125,8 +125,7 @@ def trust_grid():
 <div class="tp-grid reveal">{cards}</div></div></section>"""
 
 def reviews_section():
-    if not REVIEWS:
-        return ""
+    if not REVIEWS: return ""
     cards = ""
     for r in REVIEWS:
         sub = f" · {esc(r['city'])}" if r.get("city") else ""
@@ -190,9 +189,9 @@ def build_diensten_overview():
 
 def build_faq():
     items = ""
-    for i, f in enumerate(FAQ):
+    for i, fq in enumerate(FAQ):
         items += f"""<details class="faq-item"{' open' if i == 0 else ''}>
-<summary>{esc(f['q'])}</summary><p>{esc(f['a'])}</p></details>"""
+<summary>{esc(fq['q'])}</summary><p>{esc(fq['a'])}</p></details>"""
     inner = hero("Veelgestelde vragen",
                  "Antwoorden op de vragen die we het vaakst krijgen. Staat uw vraag er niet bij? "
                  "Bel gerust, we beantwoorden ze graag.",
@@ -297,7 +296,7 @@ def build_sitemap():
         f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{items}</urlset>')
     with open(f"{OUT}/robots.txt", "w", encoding="utf-8") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {D}/sitemap.xml\n")
-    host = D.replace("https://", "").replace("http://", "").split("/")[0]
+    host = D.replace("https://", "").replace("http://", "").strip("/")
     if "github.io" not in host:
         with open(f"{OUT}/CNAME", "w", encoding="utf-8") as f:
             f.write(host)
@@ -320,4 +319,4 @@ print(f"Klaar. {n} pagina's gegenereerd in ./{OUT}/")
 print(f"  - 4 hoofdpagina's (home, diensten, faq, contact)")
 print(f"  - {len(SERVICES)} dienstpagina's")
 print(f"  - {len(SERVICES) * len(CITIES)} dienst×stad landingspagina's")
-print(f"  - sitemap.xml, robots.txt, CNAME")
+print(f"  - sitemap.xml, robots.txt")
