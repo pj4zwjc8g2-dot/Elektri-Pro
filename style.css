@@ -28,11 +28,13 @@ a{color:inherit;text-decoration:none}
   .mainnav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;padding:10px 22px 18px;border-bottom:1px solid rgba(255,255,255,.08);gap:2px}
   .mainnav.open{display:flex}
   .mainnav a{padding:12px 14px}
-  .brand{flex:1}
+  .brand{margin-right:auto}
   .burger{display:block}
   .call-btn .txt{display:none}
   .call-btn{padding:9px 13px}
-  .topbar .wrap{position:relative;gap:12px}
+  .topbar .wrap{position:relative;gap:0}
+  .call-btn{margin-left:16px}
+  .burger{margin-left:8px}
 }
 
 /* ===== Hero ===== */
