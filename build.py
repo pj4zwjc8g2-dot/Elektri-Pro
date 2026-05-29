@@ -43,7 +43,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }})(window,document,'script','dataLayer','GTM-TGTKG654');</script>
 <!-- End Google Tag Manager -->
 </head>
-<body>"""
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGTKG654"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->"""
 
 def topbar(current_path=""):
     nav = ""
