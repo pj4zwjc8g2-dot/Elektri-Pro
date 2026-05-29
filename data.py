@@ -7,7 +7,7 @@ BUSINESS = {
     "phone_display": "+32 498 06 03 77",
     "phone_link": "+32498060377",
     "email": "",
-    "domain": "https://pj4zwjc8g2-dot.github.io/Elektri-Pro",
+    "domain": "https://elektripro.be",
     "vat": "",
     "tagline": "Erkend elektricien voor noodinterventies en alle elektriciteitswerken",
 }

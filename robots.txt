@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://pj4zwjc8g2-dot.github.io/Elektri-Pro/sitemap.xml
+Sitemap: https://elektripro.be/sitemap.xml
