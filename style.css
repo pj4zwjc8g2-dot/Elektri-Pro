@@ -34,6 +34,7 @@ a{color:inherit;text-decoration:none}
 .lang-drop a{display:block;padding:7px 12px;border-radius:7px;color:rgba(255,255,255,.72);font-weight:600;font-size:.85rem;text-align:center;transition:background .12s,color .12s}
 .lang-drop a:hover{background:rgba(255,255,255,.08);color:#fff}
 .lang-drop a.lang-active{color:var(--accent);background:rgba(255,106,19,.12)}
+.lang-mobile{display:none}
 @media(max-width:880px){
   .mainnav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;padding:10px 22px 18px;border-bottom:1px solid rgba(255,255,255,.08);gap:2px}
   .mainnav.open{display:flex}
@@ -45,6 +46,11 @@ a{color:inherit;text-decoration:none}
   .topbar .wrap{position:relative;gap:0}
   .call-btn{margin-left:16px}
   .burger{margin-left:8px}
+  .lang-sw{display:none}
+  .lang-mobile{display:flex;gap:6px;padding:10px 14px 4px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+  .lang-mob-item{padding:6px 18px;border-radius:8px;color:rgba(255,255,255,.72);font-weight:600;font-size:.9rem;background:rgba(255,255,255,.07);transition:background .12s,color .12s}
+  .lang-mob-item.lang-mob-active{color:var(--accent);background:rgba(255,106,19,.15)}
+  .lang-mob-item:hover{background:rgba(255,255,255,.12);color:#fff}
 }
 
 /* ===== Hero ===== */

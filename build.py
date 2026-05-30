@@ -63,16 +63,19 @@ def topbar(lang, canon_path):
         act  = ' class="active"' if m["url"] == canon_path else ""
         nav += f'<a href="{full}"{act}>{esc(m["label"])}</a>'
     drop = ""
+    lang_mobile = ""
     for l in LANGS:
         lp  = LANG_CONFIG[l]["prefix"]
         url = f"{D}{lp}{canon_path}"
-        act = ' class="lang-active"' if l == lang else ""
-        drop += f'<a href="{url}"{act}>{LANG_CONFIG[l]["label"]}</a>'
+        act_drop   = ' class="lang-active"' if l == lang else ""
+        act_mob    = " lang-mob-active" if l == lang else ""
+        drop       += f'<a href="{url}"{act_drop}>{LANG_CONFIG[l]["label"]}</a>'
+        lang_mobile += f'<a href="{url}" class="lang-mob-item{act_mob}">{LANG_CONFIG[l]["label"]}</a>'
     current_label = LANG_CONFIG[lang]["label"]
     lsw = f'<div class="lang-sw"><button class="lang-trigger" aria-haspopup="true">{current_label} <span class="lang-arrow">▾</span></button><div class="lang-drop">{drop}</div></div>'
     return f"""<header class="topbar"><div class="wrap">
 <a class="brand" href="{D}{pfx}/">🔌 Elektri<span class="pro">Pro</span></a>
-<nav class="mainnav">{nav}</nav>
+<nav class="mainnav">{nav}<div class="lang-mobile">{lang_mobile}</div></nav>
 {lsw}
 <a class="call-btn" href="tel:{B['phone_link']}" data-call="header">
 <span class="ring">📞</span><span class="txt">{esc(B['phone_display'])}</span></a>
