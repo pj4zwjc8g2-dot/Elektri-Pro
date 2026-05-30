@@ -62,16 +62,18 @@ def topbar(lang, canon_path):
         full = f"{D}{pfx}{m['url']}"
         act  = ' class="active"' if m["url"] == canon_path else ""
         nav += f'<a href="{full}"{act}>{esc(m["label"])}</a>'
-    lsw = ""
+    drop = ""
     for l in LANGS:
         lp  = LANG_CONFIG[l]["prefix"]
         url = f"{D}{lp}{canon_path}"
         act = ' class="lang-active"' if l == lang else ""
-        lsw += f'<a href="{url}"{act}>{LANG_CONFIG[l]["label"]}</a>'
+        drop += f'<a href="{url}"{act}>{LANG_CONFIG[l]["label"]}</a>'
+    current_label = LANG_CONFIG[lang]["label"]
+    lsw = f'<div class="lang-sw"><button class="lang-trigger" aria-haspopup="true">{current_label} <span class="lang-arrow">▾</span></button><div class="lang-drop">{drop}</div></div>'
     return f"""<header class="topbar"><div class="wrap">
 <a class="brand" href="{D}{pfx}/">🔌 Elektri<span class="pro">Pro</span></a>
 <nav class="mainnav">{nav}</nav>
-<div class="lang-sw">{lsw}</div>
+{lsw}
 <a class="call-btn" href="tel:{B['phone_link']}" data-call="header">
 <span class="ring">📞</span><span class="txt">{esc(B['phone_display'])}</span></a>
 <button class="burger" aria-label="Menu" onclick="document.querySelector('.mainnav').classList.toggle('open')">☰</button>
