@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
 # =====================================================================
-#  build.py — Elektri Pro v3
-#  Genereert: homepage, /diensten/, /faq/, /contact/, dienstpagina's,
-#  dienst×stad-landingspagina's, sitemap.xml, robots.txt.
+#  build.py — Elektri Pro v4 (NL / FR / EN)
 # =====================================================================
 import os, shutil, html, datetime, json
-from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS
+from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG
 
-OUT = "site"
-B = BUSINESS
-D = B["domain"]
-YEAR = datetime.date.today().year
+OUT   = "site"
+B     = BUSINESS
+D     = B["domain"]
+YEAR  = datetime.date.today().year
 TODAY = datetime.date.today().isoformat()
+LANGS = ["nl", "fr", "en"]
 
-def esc(s): return html.escape(s, quote=True)
+def esc(s): return html.escape(str(s), quote=True)
 
-# ========== gedeelde bouwstenen ==========
-def head(title, desc, canonical, schema=""):
+# ── head ──────────────────────────────────────────────────────────────
+def head(title, desc, canonical, schema, lang, canon_path):
+    cfg   = LANG_CONFIG[lang]
+    hrefl = ""
+    for l, c in LANG_CONFIG.items():
+        hrefl += f'<link rel="alternate" hreflang="{c["lang_attr"]}" href="{D}{c["prefix"]}{canon_path}">\n'
+    hrefl += f'<link rel="alternate" hreflang="x-default" href="{D}{canon_path}">\n'
     return f"""<!DOCTYPE html>
-<html lang="nl">
+<html lang="{cfg['lang_attr']}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,9 +32,9 @@ def head(title, desc, canonical, schema=""):
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="nl_BE">
+<meta property="og:locale" content="{cfg['locale']}">
 <meta property="og:url" content="{canonical}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+{hrefl}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{D}/style.css">
@@ -49,35 +53,63 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->"""
 
-def topbar(current_path=""):
+# ── topbar ────────────────────────────────────────────────────────────
+def topbar(lang, canon_path):
+    u   = UI[lang]
+    pfx = LANG_CONFIG[lang]["prefix"]
     nav = ""
-    for m in MENU:
-        active = ' class="active"' if m["url"] == current_path else ""
-        nav += f'<a href="{D}{m["url"]}"{active}>{esc(m["label"])}</a>'
+    for m in MENU[lang]:
+        full = f"{D}{pfx}{m['url']}"
+        act  = ' class="active"' if m["url"] == canon_path else ""
+        nav += f'<a href="{full}"{act}>{esc(m["label"])}</a>'
+    lsw = ""
+    for l in LANGS:
+        lp  = LANG_CONFIG[l]["prefix"]
+        url = f"{D}{lp}{canon_path}"
+        act = ' class="lang-active"' if l == lang else ""
+        lsw += f'<a href="{url}"{act}>{LANG_CONFIG[l]["label"]}</a>'
     return f"""<header class="topbar"><div class="wrap">
-<a class="brand" href="{D}/"><span class="spark">🔌</span> Elektri<span class="pro">Pro</span></a>
+<a class="brand" href="{D}{pfx}/">🔌 Elektri<span class="pro">Pro</span></a>
 <nav class="mainnav">{nav}</nav>
+<div class="lang-sw">{lsw}</div>
 <a class="call-btn" href="tel:{B['phone_link']}" data-call="header">
 <span class="ring">📞</span><span class="txt">{esc(B['phone_display'])}</span></a>
 <button class="burger" aria-label="Menu" onclick="document.querySelector('.mainnav').classList.toggle('open')">☰</button>
 </div></header>"""
 
-def mobile_call():
-    return f"""<a class="mobile-call" href="tel:{B['phone_link']}" data-call="mobile-sticky">📞 Bel direct — {esc(B['phone_display'])}</a>"""
+# ── footer / mobile call ──────────────────────────────────────────────
+def mobile_call(lang):
+    u = UI[lang]
+    return f'<a class="mobile-call" href="tel:{B["phone_link"]}" data-call="mobile-sticky">📞 {esc(u["mob_prefix"])} {esc(B["phone_display"])}</a>'
 
-def footer():
-    mail = f'<a href="mailto:{esc(B["email"])}">{esc(B["email"])}</a>' if B["email"] else ""
-    vat = f'<p>{esc(B["vat"])}</p>' if B["vat"] else ""
-    slinks = "".join(f'<a href="{D}/{k}/">{esc(s["label"])}</a>' for k, s in SERVICES.items())
-    mlinks = "".join(f'<a href="{D}{m["url"]}">{esc(m["label"])}</a>' for m in MENU)
+def footer(lang):
+    u     = UI[lang]
+    pfx   = LANG_CONFIG[lang]["prefix"]
+    slinks = "".join(f'<a href="{D}{pfx}/{k}/">{esc(s["label"])}</a>' for k, s in SERVICES[lang].items())
+    mlinks = "".join(f'<a href="{D}{pfx}{m["url"]}">{esc(m["label"])}</a>' for m in MENU[lang])
     return f"""<footer><div class="wrap">
 <div class="col"><h4><span style="color:var(--accent)">🔌</span> {esc(B['name'])}</h4>
-<p>{esc(B['tagline'])}.</p><p>Particulieren &amp; bedrijven.</p>{vat}</div>
-<div class="col"><h4>Diensten</h4>{slinks}</div>
-<div class="col"><h4>Navigatie</h4>{mlinks}</div>
-<div class="col"><h4>Contact</h4><a href="tel:{B['phone_link']}">📞 {esc(B['phone_display'])}</a>{mail}
-<p style="margin-top:8px">Werkgebied: Vlaams-Brabant, Brussel, Waals-Brabant</p></div>
-</div><div class="copy">© {YEAR} {esc(B['name'])} — Alle rechten voorbehouden.</div></footer>"""
+<p>{esc(B['tagline'][lang])}.</p><p>{esc(u['ft_both'])}</p></div>
+<div class="col"><h4>{esc(u['ft_srv'])}</h4>{slinks}</div>
+<div class="col"><h4>{esc(u['ft_nav'])}</h4>{mlinks}</div>
+<div class="col"><h4>{esc(u['ft_cnt'])}</h4><a href="tel:{B['phone_link']}">📞 {esc(B['phone_display'])}</a>
+<p style="margin-top:8px">{esc(u['ft_area'])}</p></div>
+</div><div class="copy">© {YEAR} {esc(B['name'])} — {esc(u['ft_rights'])}</div></footer>"""
+
+# ── schema ────────────────────────────────────────────────────────────
+def schema_localbusiness(lang, area=None, page_url=None):
+    areas  = [c["name"][lang] for c in CITIES] if not area else [area]
+    served = ",".join(f'"{a}"' for a in areas)
+    return f"""<script type="application/ld+json">
+{{"@context":"https://schema.org","@type":"Electrician","name":"{B['name']}",
+"telephone":"{B['phone_link']}","url":"{page_url or B['domain']}",
+"areaServed":[{served}],"slogan":"{B['tagline'][lang]}"}}</script>"""
+
+def schema_faq(items):
+    data = {"@context":"https://schema.org","@type":"FAQPage",
+            "mainEntity":[{"@type":"Question","name":q["q"],
+                           "acceptedAnswer":{"@type":"Answer","text":q["a"]}} for q in items]}
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
 
 TRACK = """<script>
 window.dataLayer=window.dataLayer||[];
@@ -85,223 +117,231 @@ document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
  a.addEventListener('click',function(){window.dataLayer.push({event:'phone_call_click',call_location:a.getAttribute('data-call')||'unknown'});});});
 </script>"""
 
-def schema_localbusiness(area=None, page_url=None):
-    areas = [c["name"] for c in CITIES] if not area else [area]
-    served = ",".join(f'"{a}"' for a in areas)
-    email = f'"email":"{B["email"]}",' if B["email"] else ""
-    return f"""<script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Electrician","name":"{B['name']}",
-"telephone":"{B['phone_link']}",{email}"url":"{page_url or B['domain']}",
-"areaServed":[{served}],"slogan":"{B['tagline']}"}}</script>"""
-
-def schema_faq(items):
-    data = {"@context": "https://schema.org", "@type": "FAQPage",
-            "mainEntity": [{"@type": "Question", "name": q["q"],
-                            "acceptedAnswer": {"@type": "Answer", "text": q["a"]}} for q in items]}
-    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
-
-def render(path, title, desc, canonical, schema, inner, current_path=""):
-    full = head(title, desc, canonical, schema) + topbar(current_path) + inner + footer() + mobile_call() + TRACK + "\n</body></html>"
+# ── render ────────────────────────────────────────────────────────────
+def render(path, title, desc, canonical, schema, inner, lang, canon_path):
+    full = (head(title, desc, canonical, schema, lang, canon_path)
+            + topbar(lang, canon_path)
+            + inner
+            + footer(lang)
+            + mobile_call(lang)
+            + TRACK + "\n</body></html>")
     os.makedirs(os.path.dirname(path) if os.path.dirname(path) else ".", exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(full)
 
-# ========== herbruikbare secties ==========
-def hero(h1, lead, badge="Beschikbaar voor noodinterventies"):
+# ── shared sections ───────────────────────────────────────────────────
+def hero(lang, h1, lead, badge=None):
+    u = UI[lang]
+    b = esc(badge) if badge else esc(u["avail_badge"])
+    regions = "".join(f'<span>📍 <b>{esc(r)}</b></span>' for r in u["regions"])
     return f"""<section class="hero"><div class="wrap">
-<span class="tag"><span class="dot"></span> {esc(badge)}</span>
+<span class="tag"><span class="dot"></span> {b}</span>
 <h1>{h1}</h1><p class="lead">{esc(lead)}</p>
 <div class="cta-row">
 <a class="btn-primary" href="tel:{B['phone_link']}" data-call="hero">📞 Bel {esc(B['phone_display'])}</a>
-<a class="btn-ghost" href="#info">Meer weten →</a></div>
-<div class="regions"><span>📍 <b>Vlaams-Brabant</b></span><span>📍 <b>Brussel</b></span><span>📍 <b>Waals-Brabant</b></span></div>
+<a class="btn-ghost" href="#info">→</a></div>
+<div class="regions">{regions}</div>
 </div></section>"""
 
-def trust_strip():
-    return """<section class="trust"><div class="wrap">
-<div class="item"><b>24/7</b><span>Bereikbaar voor nood</span></div>
-<div class="item"><b>Snel</b><span>Vlot ter plaatse</span></div>
-<div class="item"><b>Erkend</b><span>Vakkundig &amp; verzekerd</span></div>
-<div class="item"><b>Helder</b><span>Prijs vooraf besproken</span></div>
+def trust_strip(lang):
+    u = UI[lang]
+    return f"""<section class="trust"><div class="wrap">
+<div class="item"><b>{esc(u['t24'])}</b><span>{esc(u['t24s'])}</span></div>
+<div class="item"><b>{esc(u['tfast'])}</b><span>{esc(u['tfasts'])}</span></div>
+<div class="item"><b>{esc(u['tcert'])}</b><span>{esc(u['tcerts'])}</span></div>
+<div class="item"><b>{esc(u['tclear'])}</b><span>{esc(u['tclears'])}</span></div>
 </div></section>"""
 
-def trust_grid():
+def trust_grid(lang):
     cards = ""
-    for t in TRUST_POINTS:
-        cards += f"""<div class="tp-card"><div class="tp-ic">{t['icon']}</div>
-<h3>{esc(t['title'])}</h3><p>{esc(t['text'])}</p></div>"""
+    for t in TRUST_POINTS[lang]:
+        cards += f'<div class="tp-card"><div class="tp-ic">{t["icon"]}</div><h3>{esc(t["title"])}</h3><p>{esc(t["text"])}</p></div>'
+    u = UI[lang]
     return f"""<section class="section trust-section"><div class="wrap">
-<h2 class="reveal">Waarom Elektri Pro</h2>
-<p class="sub reveal">Zes redenen waarom klanten ons opnieuw bellen.</p>
+<h2 class="reveal">{esc(u['why_title'])}</h2>
+<p class="sub reveal">{esc(u['why_sub'])}</p>
 <div class="tp-grid reveal">{cards}</div></div></section>"""
 
-def reviews_section():
-    if not REVIEWS: return ""
+def reviews_section(lang):
+    u = UI[lang]
     cards = ""
     for r in REVIEWS:
-        sub = f" · {esc(r['city'])}" if r.get("city") else ""
-        initial = esc(r["name"][:1].upper())
         n = int(r.get("stars", 5))
-        stars = '<div class="stars" aria-label="' + str(n) + ' op 5 sterren">' + ("★" * n) + ("☆" * (5 - n)) + '</div>'
+        stars = f'<div class="stars" aria-label="{n}/5">{"★"*n}{"☆"*(5-n)}</div>'
+        init  = esc(r["name"][:1].upper())
         cards += f"""<figure class="review">{stars}
 <blockquote>{esc(r['text'])}</blockquote>
-<figcaption><span class="avatar">{initial}</span><span>{esc(r['name'])}{sub}</span></figcaption>
+<figcaption><span class="avatar">{init}</span><span>{esc(r['name'])}</span></figcaption>
 </figure>"""
     return f"""<section class="section reviews-sec"><div class="wrap">
-<h2 class="reveal">Wat klanten zeggen</h2>
-<p class="sub reveal">Echte reacties van mensen die we hebben geholpen.</p>
+<h2 class="reveal">{esc(u['rev_title'])}</h2>
+<p class="sub reveal">{esc(u['rev_sub'])}</p>
 <div class="reviewgrid reveal">{cards}</div></div></section>"""
 
-def band(title="Een elektricien nodig?", subtitle="Bel ons gerust — ook voor een vrijblijvende inschatting."):
-    return f"""<section class="band"><div class="wrap"><h2>{esc(title)}</h2>
-<p>{esc(subtitle)}</p>
+def band(lang, title=None, subtitle=None):
+    u = UI[lang]
+    t = esc(title)    if title    else esc(u["cta_title"])
+    s = esc(subtitle) if subtitle else esc(u["cta_sub"])
+    return f"""<section class="band"><div class="wrap"><h2>{t}</h2>
+<p>{s}</p>
 <a class="big-call" href="tel:{B['phone_link']}" data-call="band">📞 {esc(B['phone_display'])}</a></div></section>"""
 
-# ========== pagina-bouwers ==========
-def build_home():
+# ── page builders ─────────────────────────────────────────────────────
+def build_home(lang):
+    u   = UI[lang]
+    pfx = LANG_CONFIG[lang]["prefix"]
+    S   = SERVICES[lang]
     cards = ""
-    for skey, s in SERVICES.items():
-        cls = "card urgent" if skey == "noodelektricien" else "card"
-        extra = f'<a class="mini" href="tel:{B["phone_link"]}" data-call="card-{skey}">📞 Bel nu</a>' if skey == "noodelektricien" else ""
-        cards += f"""<a class="{cls}" href="{D}/{skey}/"><div class="ic">{s['icon']}</div>
-<h3>{esc(s['label'])}</h3><p>{esc(s['intro'])}</p>{extra}</a>"""
-    inner = hero(
-        'Uw elektricien, <em>snel ter plaatse</em> wanneer het nodig is.',
-        "Van een plotse stroompanne tot een complete zekeringkast — Elektri Pro staat klaar voor "
-        "particulieren en bedrijven in Vlaams-Brabant, Brussel en Waals-Brabant."
-    ) + trust_strip() + f"""<section class="section" id="info"><div class="wrap">
-<h2 class="reveal">Onze diensten</h2>
-<p class="sub reveal">Gespecialiseerd in waar het op aankomt.</p>
-<div class="grid">{cards}</div></div></section>""" + trust_grid() + reviews_section() + band()
-    render(f"{OUT}/index.html",
-           f"{B['name']} — Elektricien & Noodinterventies | Vlaams-Brabant, Brussel, Waals-Brabant",
-           f"{B['name']}: erkend elektricien voor noodinterventies en zekeringkasten in Vlaams-Brabant, "
-           f"Brussel en Waals-Brabant. Snel ter plaatse. Bel {B['phone_display']}.",
-           f"{D}/", schema_localbusiness(), inner, "/")
+    for skey, s in S.items():
+        cls   = "card urgent" if skey == "noodelektricien" else "card"
+        extra = f'<a class="mini" href="tel:{B["phone_link"]}" data-call="card-{skey}">📞 {esc(u["call_now"])}</a>' if skey == "noodelektricien" else ""
+        cards += f'<a class="{cls}" href="{D}{pfx}/{skey}/"><div class="ic">{s["icon"]}</div><h3>{esc(s["label"])}</h3><p>{esc(s["intro"])}</p>{extra}</a>'
+    inner = (hero(lang, u["hero_h1"], u["hero_lead"])
+             + trust_strip(lang)
+             + f"""<section class="section" id="info"><div class="wrap">
+<h2 class="reveal">{esc(u['our_services'])}</h2>
+<p class="sub reveal">{esc(u['specialized'])}</p>
+<div class="grid">{cards}</div></div></section>"""
+             + trust_grid(lang) + reviews_section(lang) + band(lang))
+    canon = "/"
+    render(f"{OUT}{pfx}/index.html",
+           u["home_title"], u["home_desc"],
+           f"{D}{pfx}/", schema_localbusiness(lang), inner, lang, canon)
 
-def build_diensten_overview():
+def build_diensten(lang):
+    u   = UI[lang]
+    pfx = LANG_CONFIG[lang]["prefix"]
+    S   = SERVICES[lang]
     cards = ""
-    for skey, s in SERVICES.items():
+    for skey, s in S.items():
         pts = "".join(f"<li>{esc(p)}</li>" for p in s["points"][:3])
         cards += f"""<div class="d-card"><div class="d-ic">{s['icon']}</div>
 <h3>{esc(s['label'])}</h3><p>{esc(s['intro'])}</p>
 <ul>{pts}</ul>
-<a class="d-link" href="{D}/{skey}/">Meer over {esc(s['label']).lower()} →</a></div>"""
-    inner = hero("Onze diensten",
-                 "Elektri Pro biedt vakkundige oplossingen voor noodinterventies en zekeringkasten "
-                 "in Vlaams-Brabant, Brussel en Waals-Brabant.") + f"""
-<section class="section"><div class="wrap">
-<div class="d-grid">{cards}</div></div></section>""" + trust_grid() + reviews_section() + band()
-    render(f"{OUT}/diensten/index.html",
-           f"Diensten | {B['name']}",
-           f"Ontdek de diensten van {B['name']}: noodinterventies en zekeringkasten in "
-           f"Vlaams-Brabant, Brussel en Waals-Brabant.",
-           f"{D}/diensten/", schema_localbusiness(), inner, "/diensten/")
+<a class="d-link" href="{D}{pfx}/{skey}/">{esc(u['more_on'])} {esc(s['label']).lower()} →</a></div>"""
+    inner = (hero(lang, u["srv_pg_title"].split("|")[0].strip(), u["srv_lead"])
+             + f'<section class="section"><div class="wrap"><div class="d-grid">{cards}</div></div></section>'
+             + trust_grid(lang) + reviews_section(lang) + band(lang))
+    canon = "/diensten/"
+    render(f"{OUT}{pfx}/diensten/index.html",
+           u["srv_pg_title"], u["srv_pg_desc"],
+           f"{D}{pfx}/diensten/", schema_localbusiness(lang), inner, lang, canon)
 
-def build_faq():
+def build_faq(lang):
+    u   = UI[lang]
+    pfx = LANG_CONFIG[lang]["prefix"]
     items = ""
-    for i, fq in enumerate(FAQ):
-        items += f"""<details class="faq-item"{' open' if i == 0 else ''}>
+    for i, fq in enumerate(FAQ[lang]):
+        items += f"""<details class="faq-item"{' open' if i==0 else ''}>
 <summary>{esc(fq['q'])}</summary><p>{esc(fq['a'])}</p></details>"""
-    inner = hero("Veelgestelde vragen",
-                 "Antwoorden op de vragen die we het vaakst krijgen. Staat uw vraag er niet bij? "
-                 "Bel gerust, we beantwoorden ze graag.",
-                 badge="Veelgestelde vragen") + f"""
-<section class="section"><div class="wrap">
-<div class="faq-list reveal">{items}</div></div></section>""" + band("Nog een vraag?", "Bel ons en we helpen u meteen verder.")
-    render(f"{OUT}/faq/index.html",
-           f"FAQ — Veelgestelde vragen | {B['name']}",
-           f"Veelgestelde vragen over noodinterventies, zekeringkasten, prijzen en werkgebied "
-           f"van {B['name']}. Bel {B['phone_display']} voor uw specifieke situatie.",
-           f"{D}/faq/",
-           schema_localbusiness() + schema_faq(FAQ),
-           inner, "/faq/")
+    inner = (hero(lang, u["faq_title"], u["faq_lead"], badge=u["faq_badge"])
+             + f'<section class="section"><div class="wrap"><div class="faq-list reveal">{items}</div></div></section>'
+             + band(lang, u["still_q"], u["call_help"]))
+    canon = "/faq/"
+    render(f"{OUT}{pfx}/faq/index.html",
+           u["faq_pg_title"], u["faq_pg_desc"],
+           f"{D}{pfx}/faq/",
+           schema_localbusiness(lang) + schema_faq(FAQ[lang]),
+           inner, lang, canon)
 
-def build_contact():
-    email_block = f'<p><strong>E-mail:</strong> <a href="mailto:{esc(B["email"])}">{esc(B["email"])}</a></p>' if B["email"] else ""
-    vat_block = f'<p><strong>BTW-nummer:</strong> {esc(B["vat"])}</p>' if B["vat"] else ""
-    inner = hero("Contact",
-                 "Bel ons rechtstreeks voor een afspraak, een dringende interventie of gewoon "
-                 "om uw situatie even toe te lichten.",
-                 badge="Direct bereikbaar") + f"""
-<section class="section"><div class="wrap">
+def build_contact(lang):
+    u   = UI[lang]
+    pfx = LANG_CONFIG[lang]["prefix"]
+    inner = (hero(lang, u["cnt_title"], u["cnt_lead"], badge=u["cnt_badge"])
+             + f"""<section class="section"><div class="wrap">
 <div class="contact-grid">
   <div class="contact-card">
-    <h2>Telefonisch</h2>
-    <p>De snelste manier om ons te bereiken — zeker bij een noodgeval.</p>
+    <h2>{esc(u['by_phone'])}</h2>
+    <p>{esc(u['phone_fast'])}</p>
     <a class="big-call" href="tel:{B['phone_link']}" data-call="contact-page">📞 {esc(B['phone_display'])}</a>
   </div>
   <div class="contact-card">
-    <h2>Gegevens</h2>
-    <p><strong>Bedrijf:</strong> {esc(B['name'])}</p>
-    {email_block}{vat_block}
-    <p><strong>Werkgebied:</strong> Vlaams-Brabant, Brussels Hoofdstedelijk Gewest, Waals-Brabant.</p>
+    <h2>{esc(u['details'])}</h2>
+    <p><strong>{esc(u['co_label'])}:</strong> {esc(B['name'])}</p>
+    <p><strong>{esc(u['area_label'])}:</strong> {esc(u['area_val'])}</p>
   </div>
-</div></div></section>""" + trust_grid() + band("Liever vandaag nog langskomen?")
-    render(f"{OUT}/contact/index.html",
-           f"Contact | {B['name']}",
-           f"Neem contact op met {B['name']}: bel {B['phone_display']} voor noodinterventies "
-           f"en elektriciteitswerken in Vlaams-Brabant, Brussel en Waals-Brabant.",
-           f"{D}/contact/", schema_localbusiness(), inner, "/contact/")
+</div></div></section>"""
+             + trust_grid(lang) + band(lang, u["prefer"]))
+    canon = "/contact/"
+    render(f"{OUT}{pfx}/contact/index.html",
+           u["cnt_pg_title"], u["cnt_pg_desc"],
+           f"{D}{pfx}/contact/", schema_localbusiness(lang), inner, lang, canon)
 
-def build_service(skey, s):
-    pts = "".join(f"<li>{esc(p)}</li>" for p in s["points"])
+def build_service(lang, skey, s):
+    u   = UI[lang]
+    pfx = LANG_CONFIG[lang]["prefix"]
+    pts  = "".join(f"<li>{esc(p)}</li>" for p in s["points"])
     body = "".join(f"<p>{esc(par)}</p>" for par in s["body"])
     by_prov = {}
     for c in CITIES:
-        by_prov.setdefault(c["province"], []).append(c)
-    province_blocks = ""
+        pname = c["province"][lang]
+        by_prov.setdefault(pname, []).append(c)
+    pblocks = ""
     for prov, cs in by_prov.items():
-        chips = "".join(f'<a class="citychip" href="{D}/{skey}/{c["slug"]}/">{esc(s["kw"])} {esc(c["name"])}</a>' for c in cs)
-        province_blocks += f'<div class="prov-block"><h3>{esc(prov)}</h3><div class="citygrid">{chips}</div></div>'
-    h1 = f"{esc(s['kw'])} in Vlaams-Brabant, Brussel &amp; Waals-Brabant"
-    inner = hero(h1, s["intro"]) + trust_strip() + f"""
-<section class="section" id="info"><div class="wrap">
+        chips = "".join(
+            f'<a class="citychip" href="{D}{pfx}/{skey}/{c["slug"]}/">{esc(s["kw"])} {esc(c["name"][lang])}</a>'
+            for c in cs)
+        pblocks += f'<div class="prov-block"><h3>{esc(prov)}</h3><div class="citygrid">{chips}</div></div>'
+    inner = (hero(lang, f'{esc(s["kw"])} — Brabant &amp; Brussel', s["intro"])
+             + trust_strip(lang)
+             + f"""<section class="section" id="info"><div class="wrap">
 <h2 class="reveal">{esc(s['label'])}</h2>
 <div class="prose reveal">{body}</div>
-<div class="checks reveal"><h3>Waarvoor u ons kunt bellen</h3><ul>{pts}</ul></div>
-<h2 class="reveal" style="margin-top:54px">{esc(s['kw'])} per stad</h2>
-<p class="sub reveal">Selecteer uw stad voor meer informatie over onze dienstverlening daar.</p>
-{province_blocks}
-</div></section>""" + trust_grid() + reviews_section() + band()
-    render(f"{OUT}/{skey}/index.html",
-           f"{s['kw']} | {B['name']} — Vlaams-Brabant, Brussel & Waals-Brabant",
-           f"{s['intro']} Bel {B['phone_display']}.",
-           f"{D}/{skey}/", schema_localbusiness(), inner)
+<div class="checks reveal"><h3>{esc(u['why_call'])} …</h3><ul>{pts}</ul></div>
+<h2 class="reveal" style="margin-top:54px">{esc(s['kw'])} {esc(u['per_city'])}</h2>
+<p class="sub reveal">{esc(u['sel_city'])}</p>
+{pblocks}
+</div></section>"""
+             + trust_grid(lang) + reviews_section(lang) + band(lang))
+    canon = f"/{skey}/"
+    render(f"{OUT}{pfx}/{skey}/index.html",
+           f"{s['kw']} | {B['name']}",
+           f"{s['intro']} {B['phone_display']}.",
+           f"{D}{pfx}/{skey}/", schema_localbusiness(lang), inner, lang, canon)
 
-def build_service_city(skey, s, c):
-    pts = "".join(f"<li>{esc(p)}</li>" for p in s["points"])
-    body = "".join(f"<p>{esc(par)}</p>" for par in s["body"])
+def build_service_city(lang, skey, s, c):
+    u     = UI[lang]
+    pfx   = LANG_CONFIG[lang]["prefix"]
+    cname = c["name"][lang]
+    pts   = "".join(f"<li>{esc(p)}</li>" for p in s["points"])
+    body  = "".join(f"<p>{esc(par)}</p>" for par in s["body"])
     nearby_chips = "".join(f'<span class="nb-chip">{esc(n)}</span>' for n in c.get("nearby", []))
     nearby_block = ""
     if nearby_chips:
         nearby_block = f"""<div class="nearby reveal">
-<h3>Ook actief in de omliggende gemeenten van {esc(c['name'])}</h3>
-<p>We bedienen niet alleen {esc(c['name'])} zelf, maar ook deze gemeenten errond:</p>
+<h3>{esc(u['also_active'])} {esc(cname)}</h3>
+<p>{esc(u['not_only1'])} {esc(cname)} {esc(u['not_only2'])}</p>
 <div class="nb-list">{nearby_chips}</div>
-<p class="nb-note">Niet zeker of we bij u langskomen? <a href="tel:{B['phone_link']}" data-call="nearby">Bel {esc(B['phone_display'])}</a> en we kijken het meteen na.</p>
+<p class="nb-note">{esc(u['not_sure'])} <a href="tel:{B['phone_link']}" data-call="nearby">{esc(u['call_ch'])} {esc(B['phone_display'])}</a> {esc(u['call_ch2'])}</p>
 </div>"""
-    h1 = f"{esc(s['kw'])} in {esc(c['name'])}"
-    lead = f"{s['intro']} Actief in {c['name']} en omliggende gemeenten ({c['province']})."
-    canonical = f"{D}/{skey}/{c['slug']}/"
-    inner = hero(h1, lead) + trust_strip() + f"""
-<section class="section" id="info"><div class="wrap">
-<h2 class="reveal">{esc(s['kw'])} in {esc(c['name'])}</h2>
-<div class="prose reveal"><p class="localnote">{esc(c['local'])}</p>{body}</div>
-<div class="checks reveal"><h3>Waarvoor u ons kunt bellen in {esc(c['name'])}</h3><ul>{pts}</ul></div>
+    lead   = f"{s['intro']} {c['province'][lang]}."
+    canon  = f"/{skey}/{c['slug']}/"
+    inner  = (hero(lang, f'{esc(s["kw"])} {esc(cname)}', lead)
+              + trust_strip(lang)
+              + f"""<section class="section" id="info"><div class="wrap">
+<h2 class="reveal">{esc(s['kw'])} {esc(cname)}</h2>
+<div class="prose reveal"><p class="localnote">{esc(c['local'][lang])}</p>{body}</div>
+<div class="checks reveal"><h3>{esc(u['why_call'])} {esc(cname)}</h3><ul>{pts}</ul></div>
 {nearby_block}
-</div></section>""" + trust_grid() + reviews_section() + band(f"{s['kw']} nodig in {c['name']}?")
-    render(f"{OUT}/{skey}/{c['slug']}/index.html",
-           f"{s['kw']} {c['name']} | {B['name']}",
-           f"{s['kw']} in {c['name']} en omliggende gemeenten ({c['province']})? {s['intro']} Bel {B['phone_display']}.",
-           canonical, schema_localbusiness(c['name'], canonical), inner)
+</div></section>"""
+              + trust_grid(lang) + reviews_section(lang) + band(lang, f"{s['kw']} — {cname}?"))
+    render(f"{OUT}{pfx}/{skey}/{c['slug']}/index.html",
+           f"{s['kw']} {cname} | {B['name']}",
+           f"{s['kw']} {cname} ({c['province'][lang]}). {s['intro']} {B['phone_display']}.",
+           f"{D}{pfx}{canon}",
+           schema_localbusiness(lang, cname, f"{D}{pfx}{canon}"),
+           inner, lang, canon)
 
 def build_sitemap():
-    urls = [f"{D}/", f"{D}/diensten/", f"{D}/faq/", f"{D}/contact/"]
-    for skey in SERVICES:
-        urls.append(f"{D}/{skey}/")
-        for c in CITIES:
-            urls.append(f"{D}/{skey}/{c['slug']}/")
+    urls = []
+    for lang, cfg in LANG_CONFIG.items():
+        pfx = cfg["prefix"]
+        for path in ["/", "/diensten/", "/faq/", "/contact/"]:
+            urls.append(f"{D}{pfx}{path}")
+        for skey in SERVICES[lang]:
+            urls.append(f"{D}{pfx}/{skey}/")
+            for c in CITIES:
+                urls.append(f"{D}{pfx}/{skey}/{c['slug']}/")
     items = "".join(f"<url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)
     with open(f"{OUT}/sitemap.xml", "w", encoding="utf-8") as f:
         f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{items}</urlset>')
@@ -312,22 +352,24 @@ def build_sitemap():
         with open(f"{OUT}/CNAME", "w", encoding="utf-8") as f:
             f.write(host)
 
-# ========== run ==========
+# ── run ───────────────────────────────────────────────────────────────
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(OUT)
 shutil.copy("style.css", f"{OUT}/style.css")
-build_home()
-build_diensten_overview()
-build_faq()
-build_contact()
-n = 4
-for skey, s in SERVICES.items():
-    build_service(skey, s); n += 1
-    for c in CITIES:
-        build_service_city(skey, s, c); n += 1
+
+total = 0
+for lang in LANGS:
+    pfx = LANG_CONFIG[lang]["prefix"]
+    if pfx:
+        os.makedirs(f"{OUT}{pfx}", exist_ok=True)
+    build_home(lang);     total += 1
+    build_diensten(lang); total += 1
+    build_faq(lang);      total += 1
+    build_contact(lang);  total += 1
+    for skey, s in SERVICES[lang].items():
+        build_service(lang, skey, s); total += 1
+        for c in CITIES:
+            build_service_city(lang, skey, s, c); total += 1
+
 build_sitemap()
-print(f"Klaar. {n} pagina's gegenereerd in ./{OUT}/")
-print(f"  - 4 hoofdpagina's (home, diensten, faq, contact)")
-print(f"  - {len(SERVICES)} dienstpagina's")
-print(f"  - {len(SERVICES) * len(CITIES)} dienst×stad landingspagina's")
-print(f"  - sitemap.xml, robots.txt")
+print(f"Klaar. {total} pagina's gegenereerd in ./{OUT}/ ({len(LANGS)} talen)")

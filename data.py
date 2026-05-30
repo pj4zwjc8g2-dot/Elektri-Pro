@@ -1,5 +1,5 @@
 # =====================================================================
-#  ELEKTRI PRO — CONTENT & DATA  (v3: 4 diensten)
+#  ELEKTRI PRO — CONTENT & DATA  (v4: NL / FR / EN)
 # =====================================================================
 
 BUSINESS = {
@@ -9,264 +9,613 @@ BUSINESS = {
     "email": "",
     "domain": "https://elektripro.be",
     "vat": "",
-    "tagline": "Erkend elektricien voor noodinterventies en alle elektriciteitswerken",
+    "tagline": {
+        "nl": "Erkend elektricien voor noodinterventies en alle elektriciteitswerken",
+        "fr": "Électricien agréé pour les interventions d'urgence et tous les travaux d'électricité",
+        "en": "Certified electrician for emergency interventions and all electrical work",
+    },
 }
 
-MENU = [
-    {"label": "Home", "url": "/"},
-    {"label": "Diensten", "url": "/diensten/"},
-    {"label": "FAQ", "url": "/faq/"},
-    {"label": "Contact", "url": "/contact/"},
-]
+LANG_CONFIG = {
+    "nl": {"label": "NL", "prefix": "",    "locale": "nl_BE", "lang_attr": "nl"},
+    "fr": {"label": "FR", "prefix": "/fr", "locale": "fr_BE", "lang_attr": "fr"},
+    "en": {"label": "EN", "prefix": "/en", "locale": "en_GB", "lang_attr": "en"},
+}
 
 REVIEWS = [
-    {"name": "Evans", "city": "", "stars": 5,
-     "text": "Uitstekende service! De elektricien kwam snel, zelfs op een feestdag, en loste "
-             "het probleem efficiënt op. Zeer professioneel en betrouwbaar — absoluut een aanrader!"},
-    {"name": "Kristine", "city": "", "stars": 5,
+    {"name": "Evans", "stars": 5,
+     "text": "Uitstekende service! De elektricien kwam snel, zelfs op een feestdag, en loste het probleem efficiënt op. Zeer professioneel en betrouwbaar — absoluut een aanrader!"},
+    {"name": "Kristine", "stars": 5,
      "text": "Sammy heeft ons heel goede en snelle service gegeven. Een zeer vriendelijke man."},
-    {"name": "Wilfried", "city": "", "stars": 5,
+    {"name": "Wilfried", "stars": 5,
      "text": "Toffe kerel, heeft zijn best gedaan en mij uit de nood geholpen."},
-    {"name": "Nicolas", "city": "", "stars": 5,
+    {"name": "Nicolas", "stars": 5,
      "text": "Sammy is heel correct geweest. Vlotte afhandeling, correct!"},
 ]
 
-TRUST_POINTS = [
-    {"icon": "⚡", "title": "Snel ter plaatse",
-     "text": "Bij noodinterventies komen we zo snel mogelijk langs — vaak binnen het uur in onze regio."},
-    {"icon": "✓", "title": "Erkend & verzekerd",
-     "text": "Vakkundig werk door een geregistreerd elektricien, met de juiste verzekeringen."},
-    {"icon": "€", "title": "Prijs vooraf besproken",
-     "text": "U weet wat het kost voordat we beginnen. Geen verrassingen achteraf."},
-    {"icon": "🛠", "title": "Oorzaak, niet symptoom",
-     "text": "We zoeken uit waarom een defect optrad, zodat het niet binnen een week terugkomt."},
-    {"icon": "📋", "title": "Conform de normen",
-     "text": "Alle werken volgens het AREI, klaar voor de keuring."},
-    {"icon": "🏠", "title": "Particulieren & bedrijven",
-     "text": "Van een appartement tot een handelszaak — we passen ons aan uw situatie aan."},
-]
+MENU = {
+    "nl": [
+        {"label": "Home",     "url": "/"},
+        {"label": "Diensten", "url": "/diensten/"},
+        {"label": "FAQ",      "url": "/faq/"},
+        {"label": "Contact",  "url": "/contact/"},
+    ],
+    "fr": [
+        {"label": "Accueil",  "url": "/"},
+        {"label": "Services", "url": "/diensten/"},
+        {"label": "FAQ",      "url": "/faq/"},
+        {"label": "Contact",  "url": "/contact/"},
+    ],
+    "en": [
+        {"label": "Home",     "url": "/"},
+        {"label": "Services", "url": "/diensten/"},
+        {"label": "FAQ",      "url": "/faq/"},
+        {"label": "Contact",  "url": "/contact/"},
+    ],
+}
 
-FAQ = [
-    {"q": "Komen jullie ook 's nachts of in het weekend?",
-     "a": "Ja, voor noodinterventies zijn we ook buiten de kantooruren bereikbaar. "
-          "Bel ons telefoonnummer en we bespreken meteen wat we kunnen doen."},
-    {"q": "Wat kost een noodinterventie ongeveer?",
-     "a": "De prijs hangt af van het probleem, de tijd en eventueel benodigde onderdelen. "
-          "We bespreken altijd vooraf wat het zal kosten, zodat u nooit voor verrassingen staat. "
-          "Vraag gerust een richtprijs aan de telefoon."},
-    {"q": "In welk gebied werken jullie?",
-     "a": "We zijn actief in Vlaams-Brabant, het Brussels Hoofdstedelijk Gewest en Waals-Brabant. "
-          "Niet zeker of uw gemeente erbij hoort? Bel ons even, we kijken het na."},
-    {"q": "Kunnen jullie een verouderde zekeringkast in orde brengen voor de keuring?",
-     "a": "Ja. We vernieuwen of breiden uw verdeelbord uit volgens het AREI, zodat de installatie "
-          "voldoet aan de huidige normen en klaar is voor de keuring."},
-    {"q": "Werken jullie ook voor bedrijven en handelszaken?",
-     "a": "Ja, naast particulieren bedienen we ook kantoren, winkels en kmo's. We werken in overleg "
-          "rond uw openingsuren om de impact op uw activiteit te beperken."},
-    {"q": "Geven jullie een garantie op het uitgevoerde werk?",
-     "a": "Ja, op alle uitgevoerde werken en geleverde materialen geldt de wettelijke garantie. "
-          "Voor specifieke installaties bespreken we de exacte voorwaarden bij de offerte."},
-    {"q": "Wat is het verschil tussen een differentieelschakelaar en een zekering?",
-     "a": "Een zekering of automaat beschermt tegen kortsluiting en overbelasting van het circuit. "
-          "Een differentieelschakelaar beschermt mensen: hij springt af bij een lekstroom — bijvoorbeeld "
-          "wanneer iemand een onder spanning staand toestel aanraakt. Beide horen in een moderne installatie."},
-    {"q": "Kunnen jullie een laadpaal voor mijn elektrische wagen plaatsen?",
-     "a": "Ja, we verzorgen de elektrische aansluiting van laadpalen, inclusief de aanpassing van uw "
-          "zekeringkast indien dat nodig is voor de extra belasting."},
-]
-
-SERVICES = {
-    "noodelektricien": {
-        "label": "Noodinterventies",
-        "kw": "Noodelektricien",
-        "icon": "🚨",
-        "intro": "Een plotse stroompanne, kortsluiting of een installatie die uitvalt? "
-                 "Elektri Pro komt snel ter plaatse en lost het op.",
-        "body": [
-            "Een elektrisch defect wacht niet op een geschikt moment. Een doorgeslagen "
-            "differentieel midden in de nacht, een kortsluiting die uw zekeringkast platlegt, "
-            "of een stopcontact dat plots verschroeit — het zijn situaties waarbij u snel een "
-            "vakman nodig hebt die weet wat hij doet.",
-            "Wij sporen de oorzaak op in plaats van enkel het symptoom weg te nemen. Zo voorkomt "
-            "u dat hetzelfde probleem zich enkele dagen later opnieuw voordoet. De prijs bespreken "
-            "we vooraf, ook bij een dringende interventie, zodat u nooit voor verrassingen staat.",
-        ],
-        "points": [
-            "Stroomuitval en volledige pannes",
-            "Kortsluiting en doorgeslagen zekeringen",
-            "Differentieel die blijft afspringen",
-            "Oververhitte of beschadigde stopcontacten",
-            "Defecte verdeelkast na onweer of overspanning",
-        ],
+UI = {
+    "nl": {
+        "hero_h1":        "Uw elektricien, <em>snel ter plaatse</em> wanneer het nodig is.",
+        "hero_lead":      "Van een plotse stroompanne tot een complete zekeringkast — Elektri Pro staat klaar voor particulieren en bedrijven in Vlaams-Brabant, Brussel en Waals-Brabant.",
+        "avail_badge":    "Beschikbaar voor noodinterventies",
+        "our_services":   "Onze diensten",
+        "specialized":    "Gespecialiseerd in waar het op aankomt.",
+        "why_title":      "Waarom Elektri Pro",
+        "why_sub":        "Zes redenen waarom klanten ons opnieuw bellen.",
+        "rev_title":      "Wat klanten zeggen",
+        "rev_sub":        "Echte reacties van mensen die we hebben geholpen.",
+        "cta_title":      "Een elektricien nodig?",
+        "cta_sub":        "Bel ons gerust — ook voor een vrijblijvende inschatting.",
+        "t24":            "24/7", "t24s": "Bereikbaar voor nood",
+        "tfast":          "Snel", "tfasts": "Vlot ter plaatse",
+        "tcert":          "Erkend", "tcerts": "Vakkundig & verzekerd",
+        "tclear":         "Helder", "tclears": "Prijs vooraf besproken",
+        "regions":        ["Vlaams-Brabant", "Brussel", "Waals-Brabant"],
+        "more_on":        "Meer over",
+        "per_city":       "per stad",
+        "sel_city":       "Selecteer uw stad voor meer informatie over onze dienstverlening daar.",
+        "also_active":    "Ook actief in de omliggende gemeenten van",
+        "not_only1":      "We bedienen niet alleen",
+        "not_only2":      "zelf, maar ook deze gemeenten errond:",
+        "not_sure":       "Niet zeker of we bij u langskomen?",
+        "call_ch":        "Bel",
+        "call_ch2":       "en we kijken het meteen na.",
+        "why_call":       "Waarvoor u ons kunt bellen in",
+        "faq_title":      "Veelgestelde vragen",
+        "faq_lead":       "Antwoorden op de vragen die we het vaakst krijgen. Staat uw vraag er niet bij? Bel gerust, we beantwoorden ze graag.",
+        "faq_badge":      "Veelgestelde vragen",
+        "still_q":        "Nog een vraag?",
+        "call_help":      "Bel ons en we helpen u meteen verder.",
+        "cnt_title":      "Contact",
+        "cnt_lead":       "Bel ons rechtstreeks voor een afspraak, een dringende interventie of gewoon om uw situatie even toe te lichten.",
+        "cnt_badge":      "Direct bereikbaar",
+        "by_phone":       "Telefonisch",
+        "phone_fast":     "De snelste manier om ons te bereiken — zeker bij een noodgeval.",
+        "details":        "Gegevens",
+        "co_label":       "Bedrijf",
+        "area_label":     "Werkgebied",
+        "area_val":       "Vlaams-Brabant, Brussels Hoofdstedelijk Gewest, Waals-Brabant.",
+        "prefer":         "Liever vandaag nog langskomen?",
+        "ft_both":        "Particulieren & bedrijven.",
+        "ft_srv":         "Diensten",
+        "ft_nav":         "Navigatie",
+        "ft_cnt":         "Contact",
+        "ft_area":        "Werkgebied: Vlaams-Brabant, Brussel, Waals-Brabant",
+        "ft_rights":      "Alle rechten voorbehouden.",
+        "mob_prefix":     "Bel direct —",
+        "srv_lead":       "Elektri Pro biedt vakkundige oplossingen voor noodinterventies en zekeringkasten in Vlaams-Brabant, Brussel en Waals-Brabant.",
+        "srv_pg_title":   "Diensten | Elektri Pro",
+        "srv_pg_desc":    "Ontdek de diensten van Elektri Pro: noodinterventies en zekeringkasten in Vlaams-Brabant, Brussel en Waals-Brabant.",
+        "home_title":     "Elektri Pro — Elektricien & Noodinterventies | Vlaams-Brabant, Brussel, Waals-Brabant",
+        "home_desc":      "Elektri Pro: erkend elektricien voor noodinterventies en zekeringkasten in Vlaams-Brabant, Brussel en Waals-Brabant. Snel ter plaatse. Bel +32 498 06 03 77.",
+        "faq_pg_title":   "FAQ — Veelgestelde vragen | Elektri Pro",
+        "faq_pg_desc":    "Veelgestelde vragen over noodinterventies, zekeringkasten, prijzen en werkgebied van Elektri Pro. Bel +32 498 06 03 77.",
+        "cnt_pg_title":   "Contact | Elektri Pro",
+        "cnt_pg_desc":    "Neem contact op met Elektri Pro: bel +32 498 06 03 77 voor noodinterventies en elektriciteitswerken in Vlaams-Brabant, Brussel en Waals-Brabant.",
+        "call_now":       "Bel nu",
     },
-    "zekeringkast": {
-        "label": "Zekeringkast & verdeelbord",
-        "kw": "Zekeringkast vervangen",
-        "icon": "⚙️",
-        "intro": "Een verouderde of overbelaste zekeringkast vervangen, uitbreiden of in orde "
-                 "brengen volgens de huidige normen.",
-        "body": [
-            "Het verdeelbord is het hart van uw elektrische installatie. Een verouderde kast met "
-            "smeltzekeringen, te weinig differentieels of geen ruimte voor uitbreiding is niet "
-            "alleen onpraktisch, maar ook een veiligheidsrisico. Bij een renovatie of zwaardere "
-            "verbruikers zoals een laadpaal is een aangepaste kast vaak noodzakelijk.",
-            "Wij vernieuwen of breiden uw zekeringkast uit met de juiste automaten en "
-            "differentieelschakelaars, netjes gelabeld en conform de regelgeving — klaar voor de "
-            "keuring. U krijgt een overzichtelijk bord waarvan u zelf begrijpt hoe het werkt.",
-        ],
-        "points": [
-            "Oude smeltzekeringen vervangen door automaten",
-            "Differentieelschakelaars plaatsen of bijplaatsen",
-            "Verdeelbord uitbreiden voor extra kringen",
-            "Voorbereiding voor laadpaal of zonnepanelen",
-            "In orde brengen voor de keuring",
-        ],
+    "fr": {
+        "hero_h1":        "Votre électricien, <em>rapidement sur place</em> quand vous en avez besoin.",
+        "hero_lead":      "D'une panne de courant soudaine à un tableau complet — Elektri Pro est disponible pour les particuliers et les entreprises dans le Brabant flamand, Bruxelles et le Brabant wallon.",
+        "avail_badge":    "Disponible pour les interventions d'urgence",
+        "our_services":   "Nos services",
+        "specialized":    "Spécialisé dans ce qui compte.",
+        "why_title":      "Pourquoi Elektri Pro",
+        "why_sub":        "Six raisons pour lesquelles les clients nous rappellent.",
+        "rev_title":      "Ce que disent les clients",
+        "rev_sub":        "Vraies réactions de personnes que nous avons aidées.",
+        "cta_title":      "Besoin d'un électricien ?",
+        "cta_sub":        "Appelez-nous — même pour une estimation sans engagement.",
+        "t24":            "24/7", "t24s": "Joignable pour les urgences",
+        "tfast":          "Rapide", "tfasts": "Intervention rapide",
+        "tcert":          "Agréé", "tcerts": "Qualifié & assuré",
+        "tclear":         "Clair", "tclears": "Prix discuté à l'avance",
+        "regions":        ["Brabant flamand", "Bruxelles", "Brabant wallon"],
+        "more_on":        "En savoir plus sur",
+        "per_city":       "par ville",
+        "sel_city":       "Sélectionnez votre ville pour plus d'informations sur nos services là-bas.",
+        "also_active":    "Également actif dans les communes environnantes de",
+        "not_only1":      "Nous ne desservons pas seulement",
+        "not_only2":      "lui-même, mais aussi ces communes alentour :",
+        "not_sure":       "Vous n'êtes pas sûr que nous passions chez vous ?",
+        "call_ch":        "Appelez",
+        "call_ch2":       "et nous vérifierons immédiatement.",
+        "why_call":       "Pourquoi vous pouvez nous appeler à",
+        "faq_title":      "Questions fréquentes",
+        "faq_lead":       "Réponses aux questions que nous recevons le plus souvent. Votre question n'est pas là ? Appelez-nous, nous y répondrons avec plaisir.",
+        "faq_badge":      "Questions fréquentes",
+        "still_q":        "Une autre question ?",
+        "call_help":      "Appelez-nous et nous vous aiderons immédiatement.",
+        "cnt_title":      "Contact",
+        "cnt_lead":       "Appelez-nous directement pour un rendez-vous, une intervention urgente ou simplement pour expliquer votre situation.",
+        "cnt_badge":      "Disponible directement",
+        "by_phone":       "Par téléphone",
+        "phone_fast":     "La façon la plus rapide de nous joindre — surtout en cas d'urgence.",
+        "details":        "Coordonnées",
+        "co_label":       "Entreprise",
+        "area_label":     "Zone de travail",
+        "area_val":       "Brabant flamand, Région de Bruxelles-Capitale, Brabant wallon.",
+        "prefer":         "Vous préférez venir aujourd'hui ?",
+        "ft_both":        "Particuliers & entreprises.",
+        "ft_srv":         "Services",
+        "ft_nav":         "Navigation",
+        "ft_cnt":         "Contact",
+        "ft_area":        "Zone : Brabant flamand, Bruxelles, Brabant wallon",
+        "ft_rights":      "Tous droits réservés.",
+        "mob_prefix":     "Appelez directement —",
+        "srv_lead":       "Elektri Pro propose des solutions professionnelles pour les interventions d'urgence et les tableaux électriques dans le Brabant flamand, Bruxelles et le Brabant wallon.",
+        "srv_pg_title":   "Services | Elektri Pro",
+        "srv_pg_desc":    "Découvrez les services d'Elektri Pro : interventions d'urgence et tableaux électriques dans le Brabant flamand, Bruxelles et le Brabant wallon.",
+        "home_title":     "Elektri Pro — Électricien & Urgences | Brabant flamand, Bruxelles, Brabant wallon",
+        "home_desc":      "Elektri Pro : électricien agréé pour les interventions d'urgence dans le Brabant flamand, Bruxelles et le Brabant wallon. Intervention rapide. Tél. +32 498 06 03 77.",
+        "faq_pg_title":   "FAQ — Questions fréquentes | Elektri Pro",
+        "faq_pg_desc":    "Questions fréquentes sur les interventions d'urgence, tableaux électriques, prix et zone de travail d'Elektri Pro. Tél. +32 498 06 03 77.",
+        "cnt_pg_title":   "Contact | Elektri Pro",
+        "cnt_pg_desc":    "Contactez Elektri Pro : appelez le +32 498 06 03 77 pour des interventions d'urgence et travaux d'électricité dans le Brabant flamand, Bruxelles et le Brabant wallon.",
+        "call_now":       "Appelez maintenant",
     },
-    "keuring": {
-        "label": "Keuring & conformiteit",
-        "kw": "Elektrische keuring",
-        "icon": "📋",
-        "intro": "Uw elektrische installatie klaarmaken voor de keuring, of de inbreuken uit een "
-                 "negatief keuringsverslag wegwerken.",
-        "body": [
-            "Een elektrische keuring is verplicht bij de verkoop van een woning, bij een nieuwe "
-            "installatie en periodiek voor oudere woningen. De keuring zelf wordt uitgevoerd door "
-            "een erkend organisme zoals Vinçotte, BTV of AIB-Vinçotte. Wij zorgen ervoor dat uw "
-            "installatie voldoet aan het AREI zodat ze door de keuring komt, of we werken de "
-            "inbreuken weg uit een negatief keuringsverslag.",
-            "Een veelvoorkomende situatie: u staat op het punt te verkopen en het keuringsverslag "
-            "vermeldt verschillende inbreuken die binnen achttien maanden moeten worden hersteld. "
-            "Wij overlopen het verslag met u, bespreken welke werken nodig zijn en aan welke prijs, "
-            "en voeren de herstellingen uit. Daarna kan een herkeuring volgen.",
-        ],
-        "points": [
-            "Installatie voorbereiden voor verplichte keuring (verkoop, nieuwe installatie)",
-            "Inbreuken uit een negatief keuringsverslag wegwerken",
-            "Aarding en equipotentiale verbinding in orde brengen",
-            "Verdeelbord aanpassen aan de huidige AREI-normen",
-            "Begeleiding bij het organiseren van de herkeuring",
-        ],
-    },
-    "installatie": {
-        "label": "Volledige elektrische installatie",
-        "kw": "Elektrische installatie",
-        "icon": "🏠",
-        "intro": "Een complete nieuwe of vernieuwde elektrische installatie voor nieuwbouw, "
-                 "grondige renovatie of verbouwing.",
-        "body": [
-            "Bij nieuwbouw of een grondige renovatie begint alles bij een goed doordachte "
-            "elektrische installatie. We bespreken eerst hoe u de woning gaat gebruiken — waar "
-            "komen de werkplekken, hoeveel stopcontacten per kamer, welke verlichtingspunten, "
-            "voorzieningen voor een laadpaal of zonnepanelen — en vertalen dat naar een installatie "
-            "die niet alleen vandaag klopt, maar ook over tien jaar nog voldoet.",
-            "We leggen de volledige bekabeling, plaatsen het verdeelbord, alle stopcontacten, "
-            "schakelaars en verlichtingspunten, en zorgen dat alles netjes en conform het AREI wordt "
-            "afgewerkt. Bij oplevering krijgt u een installatie die klaar is voor de keuring en een "
-            "schema waarin staat welke kring waar naartoe loopt.",
-        ],
-        "points": [
-            "Volledige nieuwe installatie bij nieuwbouw",
-            "Totale vernieuwing bij grondige renovatie",
-            "Uitbreiding bij aanbouw of dakopbouw",
-            "Aanleg conform het AREI, klaar voor de keuring",
-            "Voorbereiding op laadpaal, zonnepanelen en domotica",
-        ],
+    "en": {
+        "hero_h1":        "Your electrician, <em>on-site fast</em> when you need it most.",
+        "hero_lead":      "From a sudden power outage to a complete fuse box — Elektri Pro is ready for residential and commercial clients in Flemish Brabant, Brussels and Walloon Brabant.",
+        "avail_badge":    "Available for emergency interventions",
+        "our_services":   "Our services",
+        "specialized":    "Specialised in what matters.",
+        "why_title":      "Why Elektri Pro",
+        "why_sub":        "Six reasons why clients call us again.",
+        "rev_title":      "What clients say",
+        "rev_sub":        "Real responses from people we have helped.",
+        "cta_title":      "Need an electrician?",
+        "cta_sub":        "Call us — even for a no-obligation estimate.",
+        "t24":            "24/7", "t24s": "Available for emergencies",
+        "tfast":          "Fast",  "tfasts": "Quick response",
+        "tcert":          "Certified", "tcerts": "Skilled & insured",
+        "tclear":         "Transparent", "tclears": "Price agreed upfront",
+        "regions":        ["Flemish Brabant", "Brussels", "Walloon Brabant"],
+        "more_on":        "More about",
+        "per_city":       "by city",
+        "sel_city":       "Select your city for more information about our services there.",
+        "also_active":    "Also active in the surrounding municipalities of",
+        "not_only1":      "We don't only serve",
+        "not_only2":      "itself, but also these surrounding municipalities:",
+        "not_sure":       "Not sure if we cover your area?",
+        "call_ch":        "Call",
+        "call_ch2":       "and we'll check immediately.",
+        "why_call":       "What you can call us for in",
+        "faq_title":      "Frequently asked questions",
+        "faq_lead":       "Answers to the questions we receive most often. Don't see your question? Call us, we're happy to answer.",
+        "faq_badge":      "Frequently asked questions",
+        "still_q":        "Another question?",
+        "call_help":      "Call us and we'll help you right away.",
+        "cnt_title":      "Contact",
+        "cnt_lead":       "Call us directly for an appointment, an urgent intervention or simply to explain your situation.",
+        "cnt_badge":      "Directly available",
+        "by_phone":       "By phone",
+        "phone_fast":     "The fastest way to reach us — especially in an emergency.",
+        "details":        "Details",
+        "co_label":       "Company",
+        "area_label":     "Service area",
+        "area_val":       "Flemish Brabant, Brussels Capital Region, Walloon Brabant.",
+        "prefer":         "Prefer to have us over today?",
+        "ft_both":        "Residential & commercial.",
+        "ft_srv":         "Services",
+        "ft_nav":         "Navigation",
+        "ft_cnt":         "Contact",
+        "ft_area":        "Area: Flemish Brabant, Brussels, Walloon Brabant",
+        "ft_rights":      "All rights reserved.",
+        "mob_prefix":     "Call directly —",
+        "srv_lead":       "Elektri Pro offers professional solutions for emergency interventions and fuse boxes in Flemish Brabant, Brussels and Walloon Brabant.",
+        "srv_pg_title":   "Services | Elektri Pro",
+        "srv_pg_desc":    "Discover the services of Elektri Pro: emergency interventions and fuse boxes in Flemish Brabant, Brussels and Walloon Brabant.",
+        "home_title":     "Elektri Pro — Electrician & Emergency Interventions | Flemish Brabant, Brussels, Walloon Brabant",
+        "home_desc":      "Elektri Pro: certified electrician for emergency interventions in Flemish Brabant, Brussels and Walloon Brabant. Fast response. Call +32 498 06 03 77.",
+        "faq_pg_title":   "FAQ — Frequently Asked Questions | Elektri Pro",
+        "faq_pg_desc":    "Frequently asked questions about emergency interventions, fuse boxes, pricing and service area of Elektri Pro. Call +32 498 06 03 77.",
+        "cnt_pg_title":   "Contact | Elektri Pro",
+        "cnt_pg_desc":    "Contact Elektri Pro: call +32 498 06 03 77 for emergency interventions and electrical work in Flemish Brabant, Brussels and Walloon Brabant.",
+        "call_now":       "Call now",
     },
 }
 
-# 22 grote steden, elk met UNIEKE lokale context + omliggende gemeenten
+TRUST_POINTS = {
+    "nl": [
+        {"icon": "⚡", "title": "Snel ter plaatse",       "text": "Bij noodinterventies komen we zo snel mogelijk langs — vaak binnen het uur in onze regio."},
+        {"icon": "✓",  "title": "Erkend & verzekerd",     "text": "Vakkundig werk door een geregistreerd elektricien, met de juiste verzekeringen."},
+        {"icon": "€",  "title": "Prijs vooraf besproken", "text": "U weet wat het kost voordat we beginnen. Geen verrassingen achteraf."},
+        {"icon": "🛠", "title": "Oorzaak, niet symptoom", "text": "We zoeken uit waarom een defect optrad, zodat het niet binnen een week terugkomt."},
+        {"icon": "📋", "title": "Conform de normen",      "text": "Alle werken volgens het AREI, klaar voor de keuring."},
+        {"icon": "🏠", "title": "Particulieren & bedrijven", "text": "Van een appartement tot een handelszaak — we passen ons aan uw situatie aan."},
+    ],
+    "fr": [
+        {"icon": "⚡", "title": "Intervention rapide",      "text": "Pour les urgences, nous intervenons le plus rapidement possible — souvent dans l'heure dans notre région."},
+        {"icon": "✓",  "title": "Agréé & assuré",           "text": "Travail de qualité par un électricien enregistré, avec les assurances appropriées."},
+        {"icon": "€",  "title": "Prix discuté à l'avance",  "text": "Vous savez ce que cela coûte avant que nous commencions. Pas de mauvaises surprises."},
+        {"icon": "🛠", "title": "Cause, pas symptôme",      "text": "Nous recherchons pourquoi une panne s'est produite, pour éviter qu'elle ne revienne dans une semaine."},
+        {"icon": "📋", "title": "Conforme aux normes",      "text": "Tous les travaux selon le RGIE, prêts pour le contrôle."},
+        {"icon": "🏠", "title": "Particuliers & entreprises","text": "D'un appartement à un commerce — nous nous adaptons à votre situation."},
+    ],
+    "en": [
+        {"icon": "⚡", "title": "Fast response",        "text": "For emergency interventions, we arrive as quickly as possible — often within the hour in our area."},
+        {"icon": "✓",  "title": "Certified & insured",  "text": "Quality work by a registered electrician, with the right insurance coverage."},
+        {"icon": "€",  "title": "Price agreed upfront", "text": "You know the cost before we start. No surprises afterwards."},
+        {"icon": "🛠", "title": "Root cause, not symptom", "text": "We find out why a fault occurred, so it doesn't come back within a week."},
+        {"icon": "📋", "title": "Standards compliant",  "text": "All work according to AREI/RGIE, ready for inspection."},
+        {"icon": "🏠", "title": "Residential & commercial", "text": "From an apartment to a shop — we adapt to your situation."},
+    ],
+}
+
+SERVICES = {
+    "nl": {
+        "noodelektricien": {
+            "label": "Noodinterventies", "kw": "Noodelektricien", "icon": "🚨",
+            "intro": "Een plotse stroompanne, kortsluiting of een installatie die uitvalt? Elektri Pro komt snel ter plaatse en lost het op.",
+            "body": [
+                "Een elektrisch defect wacht niet op een geschikt moment. Een doorgeslagen differentieel midden in de nacht, een kortsluiting die uw zekeringkast platlegt, of een stopcontact dat plots verschroeit — het zijn situaties waarbij u snel een vakman nodig hebt die weet wat hij doet.",
+                "Wij sporen de oorzaak op in plaats van enkel het symptoom weg te nemen. Zo voorkomt u dat hetzelfde probleem zich enkele dagen later opnieuw voordoet. De prijs bespreken we vooraf, ook bij een dringende interventie, zodat u nooit voor verrassingen staat.",
+            ],
+            "points": ["Stroomuitval en volledige pannes","Kortsluiting en doorgeslagen zekeringen","Differentieel die blijft afspringen","Oververhitte of beschadigde stopcontacten","Defecte verdeelkast na onweer of overspanning"],
+        },
+        "zekeringkast": {
+            "label": "Zekeringkast & verdeelbord", "kw": "Zekeringkast vervangen", "icon": "⚙️",
+            "intro": "Een verouderde of overbelaste zekeringkast vervangen, uitbreiden of in orde brengen volgens de huidige normen.",
+            "body": [
+                "Het verdeelbord is het hart van uw elektrische installatie. Een verouderde kast met smeltzekeringen, te weinig differentieels of geen ruimte voor uitbreiding is niet alleen onpraktisch, maar ook een veiligheidsrisico. Bij een renovatie of zwaardere verbruikers zoals een laadpaal is een aangepaste kast vaak noodzakelijk.",
+                "Wij vernieuwen of breiden uw zekeringkast uit met de juiste automaten en differentieelschakelaars, netjes gelabeld en conform de regelgeving — klaar voor de keuring. U krijgt een overzichtelijk bord waarvan u zelf begrijpt hoe het werkt.",
+            ],
+            "points": ["Oude smeltzekeringen vervangen door automaten","Differentieelschakelaars plaatsen of bijplaatsen","Verdeelbord uitbreiden voor extra kringen","Voorbereiding voor laadpaal of zonnepanelen","In orde brengen voor de keuring"],
+        },
+        "keuring": {
+            "label": "Keuring & conformiteit", "kw": "Elektrische keuring", "icon": "📋",
+            "intro": "Uw elektrische installatie klaarmaken voor de keuring, of de inbreuken uit een negatief keuringsverslag wegwerken.",
+            "body": [
+                "Een elektrische keuring is verplicht bij de verkoop van een woning, bij een nieuwe installatie en periodiek voor oudere woningen. De keuring zelf wordt uitgevoerd door een erkend organisme zoals Vinçotte, BTV of AIB-Vinçotte. Wij zorgen ervoor dat uw installatie voldoet aan het AREI zodat ze door de keuring komt, of we werken de inbreuken weg uit een negatief keuringsverslag.",
+                "Een veelvoorkomende situatie: u staat op het punt te verkopen en het keuringsverslag vermeldt verschillende inbreuken die binnen achttien maanden moeten worden hersteld. Wij overlopen het verslag met u, bespreken welke werken nodig zijn en aan welke prijs, en voeren de herstellingen uit. Daarna kan een herkeuring volgen.",
+            ],
+            "points": ["Installatie voorbereiden voor verplichte keuring (verkoop, nieuwe installatie)","Inbreuken uit een negatief keuringsverslag wegwerken","Aarding en equipotentiale verbinding in orde brengen","Verdeelbord aanpassen aan de huidige AREI-normen","Begeleiding bij het organiseren van de herkeuring"],
+        },
+        "installatie": {
+            "label": "Volledige elektrische installatie", "kw": "Elektrische installatie", "icon": "🏠",
+            "intro": "Een complete nieuwe of vernieuwde elektrische installatie voor nieuwbouw, grondige renovatie of verbouwing.",
+            "body": [
+                "Bij nieuwbouw of een grondige renovatie begint alles bij een goed doordachte elektrische installatie. We bespreken eerst hoe u de woning gaat gebruiken — waar komen de werkplekken, hoeveel stopcontacten per kamer, welke verlichtingspunten, voorzieningen voor een laadpaal of zonnepanelen — en vertalen dat naar een installatie die niet alleen vandaag klopt, maar ook over tien jaar nog voldoet.",
+                "We leggen de volledige bekabeling, plaatsen het verdeelbord, alle stopcontacten, schakelaars en verlichtingspunten, en zorgen dat alles netjes en conform het AREI wordt afgewerkt. Bij oplevering krijgt u een installatie die klaar is voor de keuring en een schema waarin staat welke kring waar naartoe loopt.",
+            ],
+            "points": ["Volledige nieuwe installatie bij nieuwbouw","Totale vernieuwing bij grondige renovatie","Uitbreiding bij aanbouw of dakopbouw","Aanleg conform het AREI, klaar voor de keuring","Voorbereiding op laadpaal, zonnepanelen en domotica"],
+        },
+    },
+    "fr": {
+        "noodelektricien": {
+            "label": "Interventions d'urgence", "kw": "Électricien d'urgence", "icon": "🚨",
+            "intro": "Panne de courant soudaine, court-circuit ou installation qui tombe en panne ? Elektri Pro intervient rapidement et résout le problème.",
+            "body": [
+                "Une panne électrique n'attend pas le bon moment. Un différentiel qui saute au milieu de la nuit, un court-circuit qui met votre tableau hors service, ou une prise qui brûle soudainement — ce sont des situations où vous avez rapidement besoin d'un professionnel qui sait ce qu'il fait.",
+                "Nous recherchons la cause plutôt que de simplement supprimer le symptôme. Cela vous évite que le même problème se reproduise quelques jours plus tard. Le prix est discuté à l'avance, même lors d'une intervention urgente, afin que vous n'ayez jamais de mauvaises surprises.",
+            ],
+            "points": ["Panne de courant et pannes générales","Court-circuit et fusibles grillés","Différentiel qui saute continuellement","Prises surchauffées ou endommagées","Tableau défectueux suite à un orage ou surtension"],
+        },
+        "zekeringkast": {
+            "label": "Tableau électrique & panneau de distribution", "kw": "Remplacement tableau électrique", "icon": "⚙️",
+            "intro": "Remplacer, étendre ou mettre en conformité un tableau électrique vétuste ou surchargé selon les normes actuelles.",
+            "body": [
+                "Le tableau de distribution est le cœur de votre installation électrique. Un tableau vétuste avec des fusibles à cartouche, trop peu de différentiels ou sans place pour l'extension n'est pas seulement peu pratique, mais aussi un risque pour la sécurité. Lors d'une rénovation ou avec des consommateurs plus importants comme une borne de recharge, un tableau adapté est souvent nécessaire.",
+                "Nous renouvelons ou étendons votre tableau électrique avec les bons disjoncteurs et interrupteurs différentiels, bien étiquetés et conformes à la réglementation — prêt pour le contrôle. Vous obtenez un tableau clair que vous comprenez vous-même.",
+            ],
+            "points": ["Remplacement des anciens fusibles par des disjoncteurs automatiques","Placement ou ajout d'interrupteurs différentiels","Extension du tableau pour des circuits supplémentaires","Préparation pour borne de recharge ou panneaux solaires","Mise en conformité pour le contrôle électrique"],
+        },
+        "keuring": {
+            "label": "Contrôle & conformité électrique", "kw": "Contrôle électrique", "icon": "📋",
+            "intro": "Préparer votre installation électrique pour le contrôle, ou rectifier les infractions d'un rapport de contrôle négatif.",
+            "body": [
+                "Un contrôle électrique est obligatoire lors de la vente d'un logement, pour une nouvelle installation et périodiquement pour les logements anciens. Le contrôle lui-même est effectué par un organisme agréé comme Vinçotte, BTV ou AIB-Vinçotte. Nous veillons à ce que votre installation soit conforme au RGIE pour qu'elle réussisse le contrôle, ou nous rectifions les infractions d'un rapport négatif.",
+                "Une situation courante : vous êtes sur le point de vendre et le rapport de contrôle mentionne plusieurs infractions à corriger dans les dix-huit mois. Nous passons en revue le rapport avec vous, discutons des travaux nécessaires et de leur coût, puis les réalisons. Une contre-visite peut ensuite avoir lieu.",
+            ],
+            "points": ["Préparer l'installation pour le contrôle obligatoire (vente, nouvelle installation)","Rectifier les infractions d'un rapport de contrôle négatif","Mise en conformité de la mise à la terre et liaisons équipotentielles","Adapter le tableau aux normes RGIE actuelles","Accompagnement pour l'organisation de la contre-visite"],
+        },
+        "installatie": {
+            "label": "Installation électrique complète", "kw": "Installation électrique", "icon": "🏠",
+            "intro": "Une installation électrique neuve ou rénovée complète pour une construction neuve, rénovation profonde ou transformation.",
+            "body": [
+                "Pour une construction neuve ou une rénovation profonde, tout commence par une installation électrique bien pensée. Nous discutons d'abord de la façon dont vous allez utiliser le logement — où se trouvent les espaces de travail, combien de prises par pièce, quels points d'éclairage, des provisions pour une borne de recharge ou des panneaux solaires — et nous traduisons cela en une installation qui est correcte aujourd'hui mais aussi dans dix ans.",
+                "Nous posons le câblage complet, plaçons le tableau, toutes les prises, interrupteurs et points d'éclairage, et veillons à ce que tout soit fini proprement et conformément au RGIE. À la livraison, vous recevez une installation prête pour le contrôle et un schéma indiquant où va chaque circuit.",
+            ],
+            "points": ["Installation neuve complète pour construction neuve","Rénovation totale lors d'une rénovation profonde","Extension lors d'une annexe ou surélévation","Réalisation conforme au RGIE, prête pour le contrôle","Préparation pour borne de recharge, panneaux solaires et domotique"],
+        },
+    },
+    "en": {
+        "noodelektricien": {
+            "label": "Emergency Interventions", "kw": "Emergency Electrician", "icon": "🚨",
+            "intro": "Sudden power outage, short circuit or installation failure? Elektri Pro arrives quickly and fixes the problem.",
+            "body": [
+                "An electrical fault doesn't wait for a convenient moment. A tripped RCD in the middle of the night, a short circuit that shuts down your fuse box, or a socket that suddenly burns out — these are situations where you quickly need a professional who knows what they're doing.",
+                "We identify the root cause rather than just removing the symptom. This prevents the same problem from recurring a few days later. We discuss the price upfront, even for urgent interventions, so you're never faced with surprises.",
+            ],
+            "points": ["Power outages and complete failures","Short circuits and blown fuses","RCD that keeps tripping","Overheated or damaged sockets","Faulty fuse box after lightning or power surge"],
+        },
+        "zekeringkast": {
+            "label": "Fuse Box & Distribution Panel", "kw": "Fuse Box Replacement", "icon": "⚙️",
+            "intro": "Replacing, expanding or bringing an outdated or overloaded fuse box up to current standards.",
+            "body": [
+                "The distribution panel is the heart of your electrical installation. An outdated board with cartridge fuses, too few RCDs or no room for expansion is not only impractical but also a safety risk. During a renovation or with heavier loads such as a charging point, an adapted panel is often necessary.",
+                "We renew or expand your fuse box with the right circuit breakers and RCDs, neatly labelled and compliant with regulations — ready for inspection. You get a clear panel that you understand yourself.",
+            ],
+            "points": ["Replacing old cartridge fuses with circuit breakers","Installing or adding RCDs","Expanding the panel for additional circuits","Preparation for EV charger or solar panels","Bringing up to standard for electrical inspection"],
+        },
+        "keuring": {
+            "label": "Electrical Inspection & Compliance", "kw": "Electrical Inspection", "icon": "📋",
+            "intro": "Preparing your electrical installation for inspection, or rectifying violations from a negative inspection report.",
+            "body": [
+                "An electrical inspection is mandatory when selling a property, for a new installation and periodically for older homes. The inspection itself is carried out by an accredited body such as Vinçotte, BTV or AIB-Vinçotte. We ensure your installation complies with the AREI/RGIE so it passes inspection, or we correct the violations from a negative report.",
+                "A common situation: you're about to sell and the inspection report lists several violations to be corrected within eighteen months. We review the report with you, discuss what work is needed and at what cost, then carry out the repairs. A re-inspection can then take place.",
+            ],
+            "points": ["Preparing installation for mandatory inspection (sale, new installation)","Rectifying violations from a negative inspection report","Bringing earthing and equipotential bonding up to standard","Adapting the panel to current AREI/RGIE standards","Guidance on arranging the re-inspection"],
+        },
+        "installatie": {
+            "label": "Full Electrical Installation", "kw": "Electrical Installation", "icon": "🏠",
+            "intro": "A complete new or renewed electrical installation for new builds, major renovations or conversions.",
+            "body": [
+                "For a new build or major renovation, everything starts with a well thought-out electrical installation. We first discuss how you'll use the property — where the workspaces are, how many sockets per room, which lighting points, provisions for an EV charger or solar panels — and translate that into an installation that works today and for the next ten years.",
+                "We lay the complete wiring, install the distribution panel, all sockets, switches and lighting points, and ensure everything is neatly finished and compliant with the AREI/RGIE. At handover, you receive an installation ready for inspection and a diagram showing where each circuit runs.",
+            ],
+            "points": ["Complete new installation for new builds","Full renewal during major renovations","Extension for annexes or loft conversions","Installation compliant with AREI/RGIE, ready for inspection","Preparation for EV charger, solar panels and home automation"],
+        },
+    },
+}
+
+FAQ = {
+    "nl": [
+        {"q": "Komen jullie ook 's nachts of in het weekend?",
+         "a": "Ja, voor noodinterventies zijn we ook buiten de kantooruren bereikbaar. Bel ons telefoonnummer en we bespreken meteen wat we kunnen doen."},
+        {"q": "Wat kost een noodinterventie ongeveer?",
+         "a": "De prijs hangt af van het probleem, de tijd en eventueel benodigde onderdelen. We bespreken altijd vooraf wat het zal kosten, zodat u nooit voor verrassingen staat. Vraag gerust een richtprijs aan de telefoon."},
+        {"q": "In welk gebied werken jullie?",
+         "a": "We zijn actief in Vlaams-Brabant, het Brussels Hoofdstedelijk Gewest en Waals-Brabant. Niet zeker of uw gemeente erbij hoort? Bel ons even, we kijken het na."},
+        {"q": "Kunnen jullie een verouderde zekeringkast in orde brengen voor de keuring?",
+         "a": "Ja. We vernieuwen of breiden uw verdeelbord uit volgens het AREI, zodat de installatie voldoet aan de huidige normen en klaar is voor de keuring."},
+        {"q": "Werken jullie ook voor bedrijven en handelszaken?",
+         "a": "Ja, naast particulieren bedienen we ook kantoren, winkels en kmo's. We werken in overleg rond uw openingsuren om de impact op uw activiteit te beperken."},
+        {"q": "Geven jullie een garantie op het uitgevoerde werk?",
+         "a": "Ja, op alle uitgevoerde werken en geleverde materialen geldt de wettelijke garantie. Voor specifieke installaties bespreken we de exacte voorwaarden bij de offerte."},
+        {"q": "Wat is het verschil tussen een differentieelschakelaar en een zekering?",
+         "a": "Een zekering of automaat beschermt tegen kortsluiting en overbelasting van het circuit. Een differentieelschakelaar beschermt mensen: hij springt af bij een lekstroom. Beide horen in een moderne installatie."},
+        {"q": "Kunnen jullie een laadpaal voor mijn elektrische wagen plaatsen?",
+         "a": "Ja, we verzorgen de elektrische aansluiting van laadpalen, inclusief de aanpassing van uw zekeringkast indien dat nodig is voor de extra belasting."},
+    ],
+    "fr": [
+        {"q": "Intervenez-vous aussi la nuit ou le week-end ?",
+         "a": "Oui, pour les interventions d'urgence, nous sommes joignables en dehors des heures de bureau. Appelez notre numéro et nous discutons immédiatement de ce que nous pouvons faire."},
+        {"q": "Combien coûte une intervention d'urgence environ ?",
+         "a": "Le prix dépend du problème, du temps et des pièces éventuellement nécessaires. Nous discutons toujours du coût à l'avance, afin que vous n'ayez jamais de mauvaises surprises. N'hésitez pas à demander une estimation par téléphone."},
+        {"q": "Dans quelle zone travaillez-vous ?",
+         "a": "Nous sommes actifs dans le Brabant flamand, la Région de Bruxelles-Capitale et le Brabant wallon. Vous n'êtes pas sûr que votre commune soit concernée ? Appelez-nous, nous vérifierons."},
+        {"q": "Pouvez-vous mettre un tableau électrique vétuste en conformité pour le contrôle ?",
+         "a": "Oui. Nous renouvelons ou étendons votre tableau selon le RGIE, afin que l'installation soit conforme aux normes actuelles et prête pour le contrôle."},
+        {"q": "Travaillez-vous aussi pour les entreprises et commerces ?",
+         "a": "Oui, en plus des particuliers, nous desservons également les bureaux, commerces et PME. Nous travaillons en concertation avec vos horaires d'ouverture pour limiter l'impact sur votre activité."},
+        {"q": "Donnez-vous une garantie sur les travaux effectués ?",
+         "a": "Oui, tous les travaux effectués et les matériaux fournis bénéficient de la garantie légale. Pour les installations spécifiques, nous discutons des conditions exactes lors du devis."},
+        {"q": "Quelle est la différence entre un interrupteur différentiel et un disjoncteur ?",
+         "a": "Un disjoncteur protège contre les courts-circuits et les surcharges. Un interrupteur différentiel protège les personnes : il se déclenche en cas de courant de fuite. Les deux sont nécessaires dans une installation moderne."},
+        {"q": "Pouvez-vous installer une borne de recharge pour ma voiture électrique ?",
+         "a": "Oui, nous nous occupons du raccordement électrique des bornes de recharge, y compris l'adaptation de votre tableau si nécessaire pour la charge supplémentaire."},
+    ],
+    "en": [
+        {"q": "Do you also work at night or on weekends?",
+         "a": "Yes, for emergency interventions we are also available outside office hours. Call our number and we'll immediately discuss what we can do."},
+        {"q": "How much does an emergency intervention cost approximately?",
+         "a": "The price depends on the problem, the time and any parts required. We always discuss the cost upfront, so you're never faced with surprises. Feel free to ask for an estimate over the phone."},
+        {"q": "In which area do you work?",
+         "a": "We are active in Flemish Brabant, the Brussels Capital Region and Walloon Brabant. Not sure if your municipality is included? Give us a call and we'll check."},
+        {"q": "Can you bring an outdated fuse box up to standard for inspection?",
+         "a": "Yes. We renew or expand your distribution panel according to the AREI/RGIE, so the installation meets current standards and is ready for inspection."},
+        {"q": "Do you also work for businesses and commercial premises?",
+         "a": "Yes, in addition to private clients we also serve offices, shops and SMEs. We work around your opening hours to minimise the impact on your business."},
+        {"q": "Do you provide a guarantee on completed work?",
+         "a": "Yes, all completed work and supplied materials are covered by the legal guarantee. For specific installations, we discuss the exact conditions during the quote."},
+        {"q": "What is the difference between an RCD and a circuit breaker?",
+         "a": "A circuit breaker protects against short circuits and circuit overloads. An RCD protects people: it trips in the event of a leakage current. Both are essential in a modern installation."},
+        {"q": "Can you install an EV charging point for my electric car?",
+         "a": "Yes, we handle the electrical connection of charging points, including adapting your fuse box if necessary for the additional load."},
+    ],
+}
+
 CITIES = [
     # --- Vlaams-Brabant (10) ---
-    {"name": "Leuven", "slug": "leuven", "province": "Vlaams-Brabant",
-     "local": "Van het centrum binnen de ring tot Heverlee, Kessel-Lo en Wilsele — in en rond "
-              "Leuven zijn we vlot ter plaatse voor zowel studentenkoten als gezinswoningen.",
-     "nearby": ["Heverlee", "Kessel-Lo", "Wilsele", "Wijgmaal", "Bertem", "Oud-Heverlee", "Herent", "Holsbeek"]},
-    {"name": "Halle", "slug": "halle", "province": "Vlaams-Brabant",
-     "local": "Halle is een belangrijk knooppunt in de Zennevallei. We bedienen het centrum en "
-              "de gehuchten errond, en zijn snel ter plaatse via de E429 en N6.",
-     "nearby": ["Beersel", "Sint-Pieters-Leeuw", "Lembeek", "Buizingen", "Pepingen", "Herne", "Dworp"]},
-    {"name": "Vilvoorde", "slug": "vilvoorde", "province": "Vlaams-Brabant",
-     "local": "Vilvoorde en de Brusselse rand: een regio met veel oudere installaties uit de "
-              "industriële periode die nu vaak toe zijn aan vernieuwing.",
-     "nearby": ["Machelen", "Diegem", "Grimbergen", "Steenokkerzeel", "Zemst", "Kampenhout", "Meise"]},
-    {"name": "Tienen", "slug": "tienen", "province": "Vlaams-Brabant",
-     "local": "In het Hageland, met Tienen als regionaal centrum, bedienen we zowel de "
-              "stadskern als de landelijkere omgeving rond de suikerregio.",
-     "nearby": ["Hoegaarden", "Boutersem", "Glabbeek", "Linter", "Geetbets", "Zoutleeuw", "Landen"]},
-    {"name": "Aarschot", "slug": "aarschot", "province": "Vlaams-Brabant",
-     "local": "Aarschot ligt op de grens van Hageland en Demerstreek. We werken er aan zowel "
-              "oudere kernwoningen als nieuwere verkavelingen in de buitengebieden.",
-     "nearby": ["Begijnendijk", "Tremelo", "Rotselaar", "Holsbeek", "Scherpenheuvel-Zichem", "Langdorp"]},
-    {"name": "Diest", "slug": "diest", "province": "Vlaams-Brabant",
-     "local": "Diest met zijn historische kern en de omliggende deelgemeenten: een gebied met "
-              "veel beschermde panden waar we voorzichtig en op maat werken.",
-     "nearby": ["Kaggevinne", "Schaffen", "Webbekom", "Deurne", "Bekkevoort", "Halen", "Scherpenheuvel"]},
-    {"name": "Asse", "slug": "asse", "province": "Vlaams-Brabant",
-     "local": "Asse en de gemeenten richting Brussel: een gebied waar we regelmatig "
-              "zekeringkasten vernieuwen in woningen uit de jaren '70 en '80.",
-     "nearby": ["Zellik", "Relegem", "Mollem", "Kobbegem", "Merchtem", "Opwijk", "Wemmel", "Ternat"]},
-    {"name": "Zaventem", "slug": "zaventem", "province": "Vlaams-Brabant",
-     "local": "Rond de luchthaven en in de bedrijvenzones rond Zaventem combineren we werk voor "
-              "kantoren en logistieke sites met klassieke residentiële installaties.",
-     "nearby": ["Sterrebeek", "Nossegem", "Sint-Stevens-Woluwe", "Kraainem", "Wezembeek-Oppem", "Machelen"]},
-    {"name": "Tervuren", "slug": "tervuren", "province": "Vlaams-Brabant",
-     "local": "Tervuren en omgeving kennen veel ruimere woningen en villa's, vaak met uitgebreide "
-              "installaties — domotica, verlichting in de tuin, laadpalen.",
-     "nearby": ["Vossem", "Duisburg", "Moorsel", "Overijse", "Hoeilaart", "Wezembeek-Oppem"]},
-    {"name": "Grimbergen", "slug": "grimbergen", "province": "Vlaams-Brabant",
-     "local": "Grimbergen ligt vlak boven Brussel en is sterk verstedelijkt rond de N211. "
-              "We bedienen er evengoed appartementen als de meer landelijke deelgemeenten.",
-     "nearby": ["Strombeek-Bever", "Humbeek", "Beigem", "Meise", "Wemmel", "Vilvoorde", "Zemst"]},
-
+    {"name": {"nl":"Leuven","fr":"Louvain","en":"Leuven"}, "slug":"leuven",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Van het centrum binnen de ring tot Heverlee, Kessel-Lo en Wilsele — in en rond Leuven zijn we vlot ter plaatse voor zowel studentenkoten als gezinswoningen.",
+         "fr":"Du centre dans le ring jusqu'à Heverlee, Kessel-Lo et Wilsele — dans et autour de Louvain, nous intervenons rapidement pour les kots d'étudiants comme pour les habitations familiales.",
+         "en":"From the city centre within the ring road to Heverlee, Kessel-Lo and Wilsele — in and around Leuven, we respond quickly for student accommodation and family homes alike.",
+     },
+     "nearby":["Heverlee","Kessel-Lo","Wilsele","Wijgmaal","Bertem","Oud-Heverlee","Herent","Holsbeek"]},
+    {"name": {"nl":"Halle","fr":"Hal","en":"Halle"}, "slug":"halle",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Halle is een belangrijk knooppunt in de Zennevallei. We bedienen het centrum en de gehuchten errond, en zijn snel ter plaatse via de E429 en N6.",
+         "fr":"Hal est un nœud important dans la vallée de la Senne. Nous desservons le centre et les hameaux environnants, et intervenons rapidement via la E429 et la N6.",
+         "en":"Halle is an important hub in the Senne Valley. We serve the centre and surrounding hamlets, and reach clients quickly via the E429 and N6.",
+     },
+     "nearby":["Beersel","Sint-Pieters-Leeuw","Lembeek","Buizingen","Pepingen","Herne","Dworp"]},
+    {"name": {"nl":"Vilvoorde","fr":"Vilvorde","en":"Vilvoorde"}, "slug":"vilvoorde",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Vilvoorde en de Brusselse rand: een regio met veel oudere installaties uit de industriële periode die nu vaak toe zijn aan vernieuwing.",
+         "fr":"Vilvorde et la périphérie bruxelloise : une région avec de nombreuses installations vétustes de la période industrielle qui nécessitent souvent une rénovation.",
+         "en":"Vilvoorde and the Brussels periphery: a region with many older installations from the industrial period that are now often in need of renewal.",
+     },
+     "nearby":["Machelen","Diegem","Grimbergen","Steenokkerzeel","Zemst","Kampenhout","Meise"]},
+    {"name": {"nl":"Tienen","fr":"Tirlemont","en":"Tienen"}, "slug":"tienen",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"In het Hageland, met Tienen als regionaal centrum, bedienen we zowel de stadskern als de landelijkere omgeving rond de suikerregio.",
+         "fr":"Dans le Hageland, avec Tirlemont comme centre régional, nous desservons aussi bien le centre-ville que l'environnement plus rural autour de la région sucrière.",
+         "en":"In the Hageland, with Tienen as the regional centre, we serve both the town centre and the more rural surroundings of the sugar region.",
+     },
+     "nearby":["Hoegaarden","Boutersem","Glabbeek","Linter","Geetbets","Zoutleeuw","Landen"]},
+    {"name": {"nl":"Aarschot","fr":"Aerschot","en":"Aarschot"}, "slug":"aarschot",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Aarschot ligt op de grens van Hageland en Demerstreek. We werken er aan zowel oudere kernwoningen als nieuwere verkavelingen in de buitengebieden.",
+         "fr":"Aerschot se situe à la frontière du Hageland et du pays de la Demer. Nous y travaillons aussi bien dans des maisons de village anciennes que dans des lotissements plus récents.",
+         "en":"Aarschot is located on the border of the Hageland and Demer region. We work there on both older village homes and newer residential developments.",
+     },
+     "nearby":["Begijnendijk","Tremelo","Rotselaar","Holsbeek","Scherpenheuvel-Zichem","Langdorp"]},
+    {"name": {"nl":"Diest","fr":"Diest","en":"Diest"}, "slug":"diest",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Diest met zijn historische kern en de omliggende deelgemeenten: een gebied met veel beschermde panden waar we voorzichtig en op maat werken.",
+         "fr":"Diest avec son centre historique et les communes environnantes : une zone avec de nombreux bâtiments classés où nous travaillons avec soin et sur mesure.",
+         "en":"Diest with its historic centre and surrounding municipalities: an area with many protected buildings where we work carefully and to measure.",
+     },
+     "nearby":["Kaggevinne","Schaffen","Webbekom","Deurne","Bekkevoort","Halen","Scherpenheuvel"]},
+    {"name": {"nl":"Asse","fr":"Asse","en":"Asse"}, "slug":"asse",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Asse en de gemeenten richting Brussel: een gebied waar we regelmatig zekeringkasten vernieuwen in woningen uit de jaren '70 en '80.",
+         "fr":"Asse et les communes en direction de Bruxelles : une zone où nous renouvelons régulièrement des tableaux électriques dans des maisons des années 70 et 80.",
+         "en":"Asse and the municipalities towards Brussels: an area where we regularly renew fuse boxes in homes from the 1970s and 80s.",
+     },
+     "nearby":["Zellik","Relegem","Mollem","Kobbegem","Merchtem","Opwijk","Wemmel","Ternat"]},
+    {"name": {"nl":"Zaventem","fr":"Zaventem","en":"Zaventem"}, "slug":"zaventem",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Rond de luchthaven en in de bedrijvenzones rond Zaventem combineren we werk voor kantoren en logistieke sites met klassieke residentiële installaties.",
+         "fr":"Autour de l'aéroport et dans les zones d'entreprises autour de Zaventem, nous combinons le travail pour les bureaux et sites logistiques avec les installations résidentielles classiques.",
+         "en":"Around the airport and in the business zones around Zaventem, we combine work for offices and logistics sites with classic residential installations.",
+     },
+     "nearby":["Sterrebeek","Nossegem","Sint-Stevens-Woluwe","Kraainem","Wezembeek-Oppem","Machelen"]},
+    {"name": {"nl":"Tervuren","fr":"Tervueren","en":"Tervuren"}, "slug":"tervuren",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Tervuren en omgeving kennen veel ruimere woningen en villa's, vaak met uitgebreide installaties — domotica, verlichting in de tuin, laadpalen.",
+         "fr":"Tervueren et ses environs comptent de nombreuses maisons spacieuses et villas, souvent avec des installations étendues — domotique, éclairage de jardin, bornes de recharge.",
+         "en":"Tervuren and surroundings feature many spacious homes and villas, often with extensive installations — home automation, garden lighting, EV chargers.",
+     },
+     "nearby":["Vossem","Duisburg","Moorsel","Overijse","Hoeilaart","Wezembeek-Oppem"]},
+    {"name": {"nl":"Grimbergen","fr":"Grimbergen","en":"Grimbergen"}, "slug":"grimbergen",
+     "province": {"nl":"Vlaams-Brabant","fr":"Brabant flamand","en":"Flemish Brabant"},
+     "local": {
+         "nl":"Grimbergen ligt vlak boven Brussel en is sterk verstedelijkt rond de N211. We bedienen er evengoed appartementen als de meer landelijke deelgemeenten.",
+         "fr":"Grimbergen se trouve juste au-dessus de Bruxelles et est fortement urbanisé autour de la N211. Nous desservons aussi bien les appartements que les communes plus rurales.",
+         "en":"Grimbergen is located just north of Brussels and is heavily urbanised around the N211. We serve both apartments and the more rural municipalities.",
+     },
+     "nearby":["Strombeek-Bever","Humbeek","Beigem","Meise","Wemmel","Vilvoorde","Zemst"]},
     # --- Brussel (6) ---
-    {"name": "Brussel", "slug": "brussel", "province": "Brussel",
-     "local": "In het Brussels Hoofdstedelijk Gewest werken we voor appartementen, handelszaken "
-              "en kantoren, vaak met de uitdagingen van oudere stadsbebouwing en complexe verdelers.",
-     "nearby": ["Laken", "Haren", "Neder-Over-Heembeek", "Sint-Joost-ten-Node", "Sint-Gillis"]},
-    {"name": "Schaarbeek", "slug": "schaarbeek", "province": "Brussel",
-     "local": "Schaarbeek is een van de dichtstbevolkte gemeenten van België, met veel "
-              "herenhuizen en appartementsgebouwen waarin oude installaties typisch zijn.",
-     "nearby": ["Evere", "Sint-Joost-ten-Node", "Brussel-stad", "Sint-Lambrechts-Woluwe", "Haren"]},
-    {"name": "Anderlecht", "slug": "anderlecht", "province": "Brussel",
-     "local": "Anderlecht combineert een dichtbebouwd centrum met meer landelijke delen rond "
-              "Neerpede. We bedienen het hele grondgebied, residentieel én commercieel.",
-     "nearby": ["Sint-Gillis", "Vorst", "Sint-Jans-Molenbeek", "Sint-Pieters-Leeuw", "Drogenbos"]},
-    {"name": "Molenbeek", "slug": "molenbeek", "province": "Brussel",
-     "local": "Sint-Jans-Molenbeek heeft een mix van oude industriële panden en woonblokken. "
-              "Veel installaties dateren nog uit de vorige eeuw en zijn aan vernieuwing toe.",
-     "nearby": ["Koekelberg", "Sint-Agatha-Berchem", "Anderlecht", "Jette", "Brussel-stad"]},
-    {"name": "Elsene", "slug": "elsene", "province": "Brussel",
-     "local": "Elsene (Ixelles) staat vol herenhuizen en moderne appartementen rond Flagey en "
-              "het Châtelain. Werk in dit type woningen vraagt fijn afgewerkt vakmanschap.",
-     "nearby": ["Sint-Gillis", "Etterbeek", "Brussel-stad", "Ukkel", "Watermaal-Bosvoorde"]},
-    {"name": "Ukkel", "slug": "ukkel", "province": "Brussel",
-     "local": "Ukkel is een van de groenste en uitgestrekte gemeenten van Brussel, met veel "
-              "vrijstaande woningen waar uitgebreidere installaties standaard zijn.",
-     "nearby": ["Vorst", "Sint-Gillis", "Watermaal-Bosvoorde", "Drogenbos", "Linkebeek", "Sint-Genesius-Rode"]},
-
+    {"name": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"}, "slug":"brussel",
+     "province": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"},
+     "local": {
+         "nl":"In het Brussels Hoofdstedelijk Gewest werken we voor appartementen, handelszaken en kantoren, vaak met de uitdagingen van oudere stadsbebouwing en complexe verdelers.",
+         "fr":"Dans la Région de Bruxelles-Capitale, nous travaillons pour des appartements, commerces et bureaux, souvent avec les défis de l'ancien bâti urbain et des tableaux complexes.",
+         "en":"In the Brussels Capital Region, we work for apartments, commercial premises and offices, often facing the challenges of older urban buildings and complex distribution boards.",
+     },
+     "nearby":["Laken","Haren","Neder-Over-Heembeek","Sint-Joost-ten-Node","Sint-Gillis"]},
+    {"name": {"nl":"Schaarbeek","fr":"Schaerbeek","en":"Schaerbeek"}, "slug":"schaarbeek",
+     "province": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"},
+     "local": {
+         "nl":"Schaarbeek is een van de dichtstbevolkte gemeenten van België, met veel herenhuizen en appartementsgebouwen waarin oude installaties typisch zijn.",
+         "fr":"Schaerbeek est l'une des communes les plus densément peuplées de Belgique, avec de nombreuses maisons de maître et immeubles à appartements où les vieilles installations sont typiques.",
+         "en":"Schaerbeek is one of the most densely populated municipalities in Belgium, with many townhouses and apartment buildings where old electrical installations are the norm.",
+     },
+     "nearby":["Evere","Sint-Joost-ten-Node","Brussel-stad","Sint-Lambrechts-Woluwe","Haren"]},
+    {"name": {"nl":"Anderlecht","fr":"Anderlecht","en":"Anderlecht"}, "slug":"anderlecht",
+     "province": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"},
+     "local": {
+         "nl":"Anderlecht combineert een dichtbebouwd centrum met meer landelijke delen rond Neerpede. We bedienen het hele grondgebied, residentieel én commercieel.",
+         "fr":"Anderlecht combine un centre densément construit avec des parties plus rurales autour de Neerpede. Nous desservons tout le territoire, résidentiel et commercial.",
+         "en":"Anderlecht combines a densely built-up centre with more rural areas around Neerpede. We serve the entire territory, both residential and commercial.",
+     },
+     "nearby":["Sint-Gillis","Vorst","Sint-Jans-Molenbeek","Sint-Pieters-Leeuw","Drogenbos"]},
+    {"name": {"nl":"Molenbeek","fr":"Molenbeek","en":"Molenbeek"}, "slug":"molenbeek",
+     "province": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"},
+     "local": {
+         "nl":"Sint-Jans-Molenbeek heeft een mix van oude industriële panden en woonblokken. Veel installaties dateren nog uit de vorige eeuw en zijn aan vernieuwing toe.",
+         "fr":"Saint-Josse-Molenbeek présente un mélange d'anciens bâtiments industriels et d'immeubles résidentiels. Beaucoup d'installations datent encore du siècle dernier et nécessitent une rénovation.",
+         "en":"Sint-Jans-Molenbeek has a mix of old industrial buildings and residential blocks. Many installations still date from the last century and are in need of renewal.",
+     },
+     "nearby":["Koekelberg","Sint-Agatha-Berchem","Anderlecht","Jette","Brussel-stad"]},
+    {"name": {"nl":"Elsene","fr":"Ixelles","en":"Ixelles"}, "slug":"elsene",
+     "province": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"},
+     "local": {
+         "nl":"Elsene (Ixelles) staat vol herenhuizen en moderne appartementen rond Flagey en het Châtelain. Werk in dit type woningen vraagt fijn afgewerkt vakmanschap.",
+         "fr":"Ixelles est pleine de maisons de maître et d'appartements modernes autour de Flagey et du Châtelain. Le travail dans ce type de logements requiert un savoir-faire soigné.",
+         "en":"Ixelles is full of townhouses and modern apartments around Flagey and Châtelain. Work in this type of property requires fine craftsmanship.",
+     },
+     "nearby":["Sint-Gillis","Etterbeek","Brussel-stad","Ukkel","Watermaal-Bosvoorde"]},
+    {"name": {"nl":"Ukkel","fr":"Uccle","en":"Uccle"}, "slug":"ukkel",
+     "province": {"nl":"Brussel","fr":"Bruxelles","en":"Brussels"},
+     "local": {
+         "nl":"Ukkel is een van de groenste en uitgestrekte gemeenten van Brussel, met veel vrijstaande woningen waar uitgebreidere installaties standaard zijn.",
+         "fr":"Uccle est l'une des communes les plus verdoyantes et étendues de Bruxelles, avec de nombreuses maisons individuelles où des installations plus étendues sont courantes.",
+         "en":"Uccle is one of the greenest and most extensive municipalities in Brussels, with many detached homes where more extensive electrical installations are standard.",
+     },
+     "nearby":["Vorst","Sint-Gillis","Watermaal-Bosvoorde","Drogenbos","Linkebeek","Sint-Genesius-Rode"]},
     # --- Waals-Brabant (6) ---
-    {"name": "Waver", "slug": "waver", "province": "Waals-Brabant",
-     "local": "In Waver (Wavre) en omgeving zijn we tweetalig ter plaatse voor zowel "
-              "particulieren als bedrijven in Waals-Brabant.",
-     "nearby": ["Limal", "Bierges", "Ottignies", "Rixensart", "Chaumont-Gistoux", "Grez-Doiceau"]},
-    {"name": "Nijvel", "slug": "nijvel", "province": "Waals-Brabant",
-     "local": "Nijvel (Nivelles) is een belangrijke stad in het zuiden van Waals-Brabant, met "
-              "een mix van historische woningen en moderne bedrijvenzones.",
-     "nearby": ["Genappe", "Seneffe", "Eigenbrakel", "Itter", "Bornival", "Thines"]},
-    {"name": "Eigenbrakel", "slug": "eigenbrakel", "province": "Waals-Brabant",
-     "local": "Eigenbrakel (Braine-l'Alleud) is een van de grootste gemeenten van Waals-Brabant, "
-              "met veel residentiële wijken en handelszaken in het centrum.",
-     "nearby": ["Waterloo", "Lasne", "Nijvel", "Sint-Genesius-Rode", "Lillois", "Ophain"]},
-    {"name": "Waterloo", "slug": "waterloo", "province": "Waals-Brabant",
-     "local": "Waterloo telt veel ruimere woningen en internationale bewoners. We werken er "
-              "vaak aan installaties die voldoen aan zowel Belgische als Europese normen.",
-     "nearby": ["Eigenbrakel", "Lasne", "Sint-Genesius-Rode", "La Hulpe", "Rhode-Saint-Genèse"]},
-    {"name": "Ottignies-Louvain-la-Neuve", "slug": "ottignies-lln", "province": "Waals-Brabant",
-     "local": "Met de universiteitsstad Louvain-la-Neuve combineren we werk voor studentenhuisvesting, "
-              "kantoren en de meer residentiële kernen van Ottignies.",
-     "nearby": ["Mont-Saint-Guibert", "Court-Saint-Étienne", "Chaumont-Gistoux", "Waver", "Rixensart"]},
-    {"name": "Tubeke", "slug": "tubeke", "province": "Waals-Brabant",
-     "local": "Tubeke (Tubize) ligt aan de grens van Henegouwen en Waals-Brabant. We bedienen "
-              "er zowel particulieren als de bedrijvenzones rond de E429.",
-     "nearby": ["Itter", "Rebecq", "Halle", "Eigenbrakel", "Saintes", "Clabecq"]},
+    {"name": {"nl":"Waver","fr":"Wavre","en":"Wavre"}, "slug":"waver",
+     "province": {"nl":"Waals-Brabant","fr":"Brabant wallon","en":"Walloon Brabant"},
+     "local": {
+         "nl":"In Waver (Wavre) en omgeving zijn we tweetalig ter plaatse voor zowel particulieren als bedrijven in Waals-Brabant.",
+         "fr":"À Wavre et dans les environs, nous intervenons de manière bilingue pour les particuliers comme pour les entreprises du Brabant wallon.",
+         "en":"In Wavre and the surrounding area, we provide bilingual service for both private clients and businesses in Walloon Brabant.",
+     },
+     "nearby":["Limal","Bierges","Ottignies","Rixensart","Chaumont-Gistoux","Grez-Doiceau"]},
+    {"name": {"nl":"Nijvel","fr":"Nivelles","en":"Nivelles"}, "slug":"nijvel",
+     "province": {"nl":"Waals-Brabant","fr":"Brabant wallon","en":"Walloon Brabant"},
+     "local": {
+         "nl":"Nijvel (Nivelles) is een belangrijke stad in het zuiden van Waals-Brabant, met een mix van historische woningen en moderne bedrijvenzones.",
+         "fr":"Nivelles est une ville importante dans le sud du Brabant wallon, avec un mélange de maisons historiques et de zones d'entreprises modernes.",
+         "en":"Nivelles is an important town in the south of Walloon Brabant, with a mix of historic homes and modern business zones.",
+     },
+     "nearby":["Genappe","Seneffe","Eigenbrakel","Itter","Bornival","Thines"]},
+    {"name": {"nl":"Eigenbrakel","fr":"Braine-l'Alleud","en":"Braine-l'Alleud"}, "slug":"eigenbrakel",
+     "province": {"nl":"Waals-Brabant","fr":"Brabant wallon","en":"Walloon Brabant"},
+     "local": {
+         "nl":"Eigenbrakel (Braine-l'Alleud) is een van de grootste gemeenten van Waals-Brabant, met veel residentiële wijken en handelszaken in het centrum.",
+         "fr":"Braine-l'Alleud est l'une des plus grandes communes du Brabant wallon, avec de nombreux quartiers résidentiels et commerces dans le centre.",
+         "en":"Braine-l'Alleud is one of the largest municipalities in Walloon Brabant, with many residential neighbourhoods and businesses in the centre.",
+     },
+     "nearby":["Waterloo","Lasne","Nijvel","Sint-Genesius-Rode","Lillois","Ophain"]},
+    {"name": {"nl":"Waterloo","fr":"Waterloo","en":"Waterloo"}, "slug":"waterloo",
+     "province": {"nl":"Waals-Brabant","fr":"Brabant wallon","en":"Walloon Brabant"},
+     "local": {
+         "nl":"Waterloo telt veel ruimere woningen en internationale bewoners. We werken er vaak aan installaties die voldoen aan zowel Belgische als Europese normen.",
+         "fr":"Waterloo compte de nombreuses maisons spacieuses et des habitants internationaux. Nous y travaillons souvent sur des installations conformes aux normes belges et européennes.",
+         "en":"Waterloo has many spacious homes and international residents. We often work on installations that comply with both Belgian and European standards.",
+     },
+     "nearby":["Eigenbrakel","Lasne","Sint-Genesius-Rode","La Hulpe","Rhode-Saint-Genèse"]},
+    {"name": {"nl":"Ottignies-Louvain-la-Neuve","fr":"Ottignies-Louvain-la-Neuve","en":"Ottignies-Louvain-la-Neuve"}, "slug":"ottignies-lln",
+     "province": {"nl":"Waals-Brabant","fr":"Brabant wallon","en":"Walloon Brabant"},
+     "local": {
+         "nl":"Met de universiteitsstad Louvain-la-Neuve combineren we werk voor studentenhuisvesting, kantoren en de meer residentiële kernen van Ottignies.",
+         "fr":"Avec la ville universitaire de Louvain-la-Neuve, nous combinons le travail pour les logements étudiants, les bureaux et les noyaux résidentiels plus classiques d'Ottignies.",
+         "en":"With the university city of Louvain-la-Neuve, we combine work for student accommodation, offices and the more residential areas of Ottignies.",
+     },
+     "nearby":["Mont-Saint-Guibert","Court-Saint-Étienne","Chaumont-Gistoux","Waver","Rixensart"]},
+    {"name": {"nl":"Tubeke","fr":"Tubize","en":"Tubize"}, "slug":"tubeke",
+     "province": {"nl":"Waals-Brabant","fr":"Brabant wallon","en":"Walloon Brabant"},
+     "local": {
+         "nl":"Tubeke (Tubize) ligt aan de grens van Henegouwen en Waals-Brabant. We bedienen er zowel particulieren als de bedrijvenzones rond de E429.",
+         "fr":"Tubize se situe à la frontière du Hainaut et du Brabant wallon. Nous y desservons aussi bien les particuliers que les zones d'entreprises autour de la E429.",
+         "en":"Tubize is located on the border of Hainaut and Walloon Brabant. We serve both private clients and the business zones around the E429.",
+     },
+     "nearby":["Itter","Rebecq","Halle","Eigenbrakel","Saintes","Clabecq"]},
 ]
