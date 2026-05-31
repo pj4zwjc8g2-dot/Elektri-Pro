@@ -26,6 +26,9 @@ def head(title, desc, canonical, schema, lang, canon_path):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{canonical}">
@@ -103,12 +106,17 @@ def footer(lang):
 
 # ── schema ────────────────────────────────────────────────────────────
 def schema_localbusiness(lang, area=None, page_url=None):
-    areas  = [c["name"][lang] for c in CITIES] if not area else [area]
-    served = ",".join(f'"{a}"' for a in areas)
-    return f"""<script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Electrician","name":"{B['name']}",
-"telephone":"{B['phone_link']}","url":"{page_url or B['domain']}",
-"areaServed":[{served}],"slogan":"{B['tagline'][lang]}"}}</script>"""
+    areas = [c["name"][lang] for c in CITIES] if not area else [area]
+    data  = {
+        "@context": "https://schema.org",
+        "@type":    "Electrician",
+        "name":      B["name"],
+        "telephone": B["phone_link"],
+        "url":       page_url or B["domain"],
+        "areaServed": areas,
+        "slogan":    B["tagline"][lang],
+    }
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
 
 def schema_faq(items):
     data = {"@context":"https://schema.org","@type":"FAQPage",
