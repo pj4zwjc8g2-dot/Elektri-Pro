@@ -1,0 +1,110 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t, localePath } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const w = tr.why;
+const p = tr.promises;
+---
+
+<section class="approach" id="aanpak">
+  <div class="wrap">
+    <div class="approach__intro reveal">
+      <span class="tag"><span class="dot"></span>{w.tag}</span>
+      <h2>{w.h2}</h2>
+      <p>{w.body}</p>
+      <a class="btn-ghost" href="#contact">{w.cta}</a>
+    </div>
+
+    <div class="promises" id="promises">
+      <div class="promises__header reveal">
+        <span class="tag"><span class="dot"></span>{p.tag}</span>
+        <h2>{p.h2}</h2>
+      </div>
+      <div class="promises__grid">
+        {p.items.map((item, i) => (
+          <div class="promise reveal" style={`transition-delay:${i * 0.08}s`}>
+            <span class="promise__n">{item.n}</span>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.approach {
+  padding: var(--space-2xl) 0;
+}
+
+.approach__intro {
+  max-width: var(--max-w-text);
+  margin-bottom: var(--space-2xl);
+}
+.approach__intro h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin: var(--space-s) 0 var(--space-m);
+}
+.approach__intro p {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-m);
+}
+
+.promises__header {
+  margin-bottom: var(--space-l);
+}
+.promises__header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin-top: var(--space-s);
+}
+
+.promises__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-s);
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-l);
+}
+
+.promise {
+  padding: var(--space-m) 0;
+  border-right: 1px solid var(--line);
+  padding-right: var(--space-m);
+}
+.promise:last-child { border-right: none; }
+
+.promise__n {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  margin-bottom: var(--space-s);
+}
+.promise h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: var(--space-xs);
+}
+.promise p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .promises__grid { grid-template-columns: repeat(2, 1fr); }
+  .promise { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: var(--space-m); }
+  .promise:last-child { border-bottom: none; }
+}
+@media (max-width: 560px) {
+  .promises__grid { grid-template-columns: 1fr; }
+}
+</style>

@@ -1,0 +1,97 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const g = tr.gallery;
+
+// TODO: replace with real project photos once delivered by Renov Pro
+const placeholders = [
+  { label: 'Dakrenovatie', color: '#2C3A30' },
+  { label: 'Gevelisolatie', color: '#3A4A3E' },
+  { label: 'Interieur', color: '#A9824F' },
+  { label: 'Uitbreiding', color: '#4A3A28' },
+  { label: 'Badkamer', color: '#354038' },
+];
+---
+
+<section class="gallery" id="realisaties">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="tag"><span class="dot"></span>{g.tag}</span>
+      <h2>{g.h2}</h2>
+      <p class="section-lead">{g.intro}</p>
+    </div>
+
+    <div class="gallery__grid">
+      {placeholders.map((p, i) => (
+        <figure
+          class={`gallery__item ${i === 0 ? 'gallery__item--wide' : ''} reveal`}
+          style={`transition-delay:${i * 0.07}s`}
+          aria-label={p.label}
+        >
+          <div class="gallery__placeholder" style={`background:${p.color}`}>
+            <span>{p.label}</span>
+            {/* TODO: replace with <Image src={...} alt={p.label} widths={[400,800]} /> */}
+          </div>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.gallery {
+  padding: var(--space-2xl) 0;
+}
+.section-header {
+  max-width: var(--max-w-text);
+  margin-bottom: var(--space-xl);
+}
+.section-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin: var(--space-s) 0 var(--space-s);
+}
+.section-lead { color: var(--muted); }
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 260px 260px;
+  gap: var(--space-s);
+}
+
+.gallery__item { margin: 0; border-radius: var(--radius); overflow: hidden; }
+.gallery__item--wide { grid-column: span 2; }
+
+.gallery__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-m);
+  opacity: 0.85;
+}
+.gallery__placeholder span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+  .gallery__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .gallery__item--wide { grid-column: span 2; }
+  .gallery__placeholder { height: 200px; }
+}
+@media (max-width: 480px) {
+  .gallery__grid { grid-template-columns: 1fr; }
+  .gallery__item--wide { grid-column: span 1; }
+}
+</style>

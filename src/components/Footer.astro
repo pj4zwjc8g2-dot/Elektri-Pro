@@ -1,0 +1,129 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t, localePath } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const f = tr.footer;
+const s = tr.services;
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <a class="logo" href={localePath(locale)} aria-label="Renov Pro">
+        <span class="logo__renov">Renov</span>
+        <span class="logo__pro">Pro</span>
+      </a>
+      <p>{f.tagline}</p>
+    </div>
+
+    <div class="footer__col">
+      <span class="footer__heading">{f.diensten}</span>
+      <ul>
+        <li><a href={`${localePath(locale)}#diensten`}>{s.dak.title}</a></li>
+        <li><a href={`${localePath(locale)}#diensten`}>{s.gevel.title}</a></li>
+        <li><a href={`${localePath(locale)}#diensten`}>{s.interieur.title}</a></li>
+        <li><a href={`${localePath(locale)}#diensten`}>{s.uitbreiding.title}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <span class="footer__heading">{f.contact}</span>
+      <ul>
+        <li><a href={`tel:${tr.contact.phone.replace(/\s/g,'')}`}>{tr.contact.phone}</a></li>
+        <li><a href={`mailto:${tr.contact.email}`}>{tr.contact.email}</a></li>
+        <li><a class="btn-ghost btn-ghost--sm" href={localePath(locale, 'studio')}>{f.offerte} →</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__legal">
+    <div class="wrap">
+      <p>{f.legal}</p>
+      <p>{f.legalSub}</p>
+      <p class="footer__disclaimer">{f.disclaimer}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--forest-deep);
+  color: rgba(251,250,246,0.7);
+  margin-top: var(--space-2xl);
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-xl);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.footer__brand .logo { display: inline-block; margin-bottom: var(--space-s); }
+.footer__brand .logo__renov { color: rgba(251,250,246,0.9); }
+.footer__brand .logo__pro   { color: var(--brass-2); }
+.footer__brand p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: 28ch;
+}
+
+.footer__heading {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-2);
+  margin-bottom: var(--space-s);
+}
+
+.footer__col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.footer__col a {
+  font-size: 0.875rem;
+  color: rgba(251,250,246,0.65);
+  transition: color 0.15s;
+}
+.footer__col a:hover { color: rgba(251,250,246,0.95); }
+
+.btn-ghost--sm {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.8rem;
+  border-color: rgba(251,250,246,0.2);
+  color: rgba(251,250,246,0.8);
+  margin-top: var(--space-xs);
+}
+
+.footer__legal {
+  border-top: 1px solid rgba(251,250,246,0.08);
+  padding: var(--space-m) 0;
+}
+.footer__legal p {
+  font-size: 0.75rem;
+  color: rgba(251,250,246,0.4);
+  margin-bottom: 2px;
+}
+.footer__disclaimer {
+  color: rgba(251,250,246,0.55) !important;
+  margin-top: var(--space-xs);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: span 2; }
+}
+@media (max-width: 480px) {
+  .footer__inner { grid-template-columns: 1fr; }
+  .footer__brand { grid-column: span 1; }
+}
+</style>

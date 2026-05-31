@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "siteUrl": "https://renovpro.be",
+    "siteName": "Renov Pro",
+    "homeTitle": "Renov Pro — Totaalrenovatie in Vlaams-Brabant, Brussel & Waals-Brabant",
+    "homeDesc": "Van dak en gevel tot interieur en uitbreiding — één team dat uw volledige renovatieproject ontwerpt, coördineert en oplevert in Brabant en Brussel.",
+    "studioTitle": "Projectstudio — Bereken uw renovatiebudget | Renov Pro",
+    "studioDesc": "Stel uw renovatieproject samen en ontvang direct een indicatieve prijsrange, doorlooptijd en vrijblijvende offerte op maat."
+  },
+  "nav": {
+    "diensten": "Diensten",
+    "aanpak": "Aanpak",
+    "werkwijze": "Werkwijze",
+    "realisaties": "Realisaties",
+    "contact": "Contact",
+    "offerte": "Offerte aanvragen"
+  },
+  "hero": {
+    "tag": "Totaalrenovatie · Brabant & Brussel",
+    "h1a": "Renovatie van A tot Z,",
+    "h1b": "in vakkundige handen.",
+    "lead": "Van dak en gevel tot interieur en uitbreiding — één team dat uw volledige project ontwerpt, coördineert en oplevert.",
+    "cta1": "Vraag uw offerte",
+    "cta2": "Bekijk realisaties",
+    "stat1n": "A→Z",
+    "stat1l": "Eén aanspreekpunt",
+    "stat2n": "3",
+    "stat2l": "Regio's actief",
+    "stat3n": "100%",
+    "stat3l": "Vaste prijsafspraak"
+  },
+  "regions": {
+    "label": "Actief in",
+    "since": "Sinds dag één",
+    "tagline": "Werf onder controle",
+    "vlb": "Vlaams-Brabant",
+    "bru": "Brussel / Bruxelles",
+    "wab": "Waals-Brabant / Brabant wallon"
+  },
+  "services": {
+    "tag": "Onze diensten",
+    "h2": "Alles onder één dak — letterlijk.",
+    "intro": "Of het nu om één discipline gaat of een volledige metamorfose: u werkt met één partner die elk vak beheerst en op elkaar afstemt.",
+    "dak": {
+      "n": "01",
+      "title": "Dak & waterdichting",
+      "desc": "Renovatie, isolatie en herstel van hellende en platte daken, met aandacht voor afwatering en duurzaamheid.",
+      "chips": ["Isolatie", "Dakgoten", "Platte daken"]
+    },
+    "gevel": {
+      "n": "02",
+      "title": "Gevel & buitenschil",
+      "desc": "Gevelbekleding, isolatie langs buiten, voegwerk en schrijnwerk dat uw woning beschermt én verfraait.",
+      "chips": ["Gevelisolatie", "Voegwerk", "Ramen"]
+    },
+    "interieur": {
+      "n": "03",
+      "title": "Interieur & afwerking",
+      "desc": "Volledige binnenrenovatie: indeling, vloeren, pleisterwerk, keuken en badkamer, tot in de laatste detailafwerking.",
+      "chips": ["Badkamer", "Vloeren", "Pleisterwerk"]
+    },
+    "uitbreiding": {
+      "n": "04",
+      "title": "Uitbreiding & ruwbouw",
+      "desc": "Aanbouw, ophoging of een nieuwe leefruimte — structureel doordacht en in samenwerking met architect en studiebureau.",
+      "chips": ["Aanbouw", "Ruwbouw", "Architectuur"]
+    }
+  },
+  "why": {
+    "tag": "Waarom Renov Pro",
+    "h2": "Kwaliteit begint bij regie.",
+    "body": "Veel renovaties lopen niet mis door slecht vakwerk, maar door slechte afstemming. Wij houden de hele werf in eigen hand, vangen problemen op vóór ze geld of tijd kosten, en houden u op elk moment op de hoogte.",
+    "cta": "Plan een kennismaking"
+  },
+  "promises": {
+    "tag": "Onze belofte",
+    "h2": "Vier zekerheden.",
+    "items": [
+      { "n": "01", "title": "Eén aanspreekpunt", "desc": "Geen versnipperde aannemers. Eén partner die alles coördineert van eerste plan tot oplevering." },
+      { "n": "02", "title": "Transparante prijs", "desc": "Een heldere, gedetailleerde offerte vooraf. Geen verrassingen achteraf." },
+      { "n": "03", "title": "Vakmanschap & materialen", "desc": "Ervaren vaklui en kwaliteitsmaterialen die jaren meegaan — afgewerkt tot in het detail." },
+      { "n": "04", "title": "Werf onder controle", "desc": "Vaste werfleiding, strakke planning en duidelijke communicatie gedurende het hele traject." }
+    ]
+  },
+  "process": {
+    "tag": "Werkwijze",
+    "h2": "Vier stappen, nul verrassingen.",
+    "steps": [
+      { "n": "01", "title": "Kennismaking & advies", "desc": "We bezoeken uw woning, luisteren naar uw wensen en denken mee over de mogelijkheden." },
+      { "n": "02", "title": "Ontwerp & offerte", "desc": "U ontvangt een uitgewerkt voorstel met een heldere, gedetailleerde prijs en planning." },
+      { "n": "03", "title": "Uitvoering", "desc": "Een vaste werfleider stuurt alle vaklui aan en houdt u doorlopend op de hoogte." },
+      { "n": "04", "title": "Oplevering & nazorg", "desc": "We leveren netjes op, lopen alles samen na en blijven bereikbaar voor de toekomst." }
+    ]
+  },
+  "gallery": {
+    "tag": "Realisaties",
+    "h2": "Werk dat voor zich spreekt.",
+    "intro": "Een selectie uit onze projecten."
+  },
+  "testimonial": {
+    "quote": "Van het eerste plan tot de oplevering hadden we één aanspreekpunt die alles in goede banen leidde.",
+    "author": "Tevreden klant, [plaats]"
+  },
+  "contact": {
+    "tag": "Contact",
+    "h2": "Klaar voor uw project?",
+    "intro": "Vertel ons kort wat u in gedachten heeft. We nemen snel contact op voor een vrijblijvend gesprek.",
+    "phone": "+32 (0)0 000 00 00",
+    "email": "info@renovpro.be",
+    "region": "Vlaams-Brabant · Brussel · Waals-Brabant",
+    "labelName": "Naam",
+    "labelPhone": "Telefoon",
+    "labelEmail": "E-mail",
+    "labelProject": "Type project",
+    "labelMessage": "Uw bericht",
+    "submit": "Verstuur aanvraag",
+    "projectTypes": ["Dak & waterdichting", "Gevel & buitenschil", "Interieur & afwerking", "Uitbreiding & ruwbouw", "Totaalrenovatie"],
+    "successTitle": "Aanvraag ontvangen",
+    "successMsg": "We nemen binnen 48u contact met u op.",
+    "errorMsg": "Er liep iets fout. Probeer het opnieuw of stuur een e-mail."
+  },
+  "footer": {
+    "tagline": "Totaalrenovatie van dak en gevel tot interieur en uitbreiding. Eén partner, van A tot Z.",
+    "diensten": "Diensten",
+    "contact": "Contact",
+    "offerte": "Offerte aanvragen",
+    "legal": "© Renov Pro · [BTW BE 0000.000.000]",
+    "legalSub": "Ondernemingsnummer & erkenningen toe te voegen",
+    "disclaimer": "Indicatieve ramingen op basis van Belgische marktprijzen 2025, incl. btw. Definitieve prijs na plaatsbezoek."
+  },
+  "consent": {
+    "text": "We gebruiken Google Analytics om het gebruik van deze site te verbeteren. Geen gegevens worden gedeeld met derden.",
+    "accept": "Accepteren",
+    "decline": "Weigeren"
+  },
+  "studio": {
+    "pageTag": "Indicatieve raming — geen bindende offerte",
+    "heroTag": "Renov Pro Projectstudio",
+    "heroTitle": "Ontwerp je renovatie in 90 seconden.",
+    "heroLead": "Stel je project samen en zie meteen je prijsrange, timing en impact. Daarna ontvang je een gedetailleerde offerte op maat — vrijblijvend.",
+    "heroF1": "Direct prijsinzicht",
+    "heroF2": "Eén aanspreekpunt",
+    "heroF3": "Geen verplichting",
+    "step1tag": "Stap 1 — Wat",
+    "step1h": "Wat wil je renoveren?",
+    "step1lead": "Kies één of meer onderdelen, of ga voor de volledige metamorfose.",
+    "modules": {
+      "totaal": { "label": "Totaalrenovatie", "desc": "Dak, gevel én interieur in één doorgedreven aanpak." },
+      "dak": { "label": "Dak", "desc": "Isolatie, bedekking & waterdichting" },
+      "gevel": { "label": "Gevel", "desc": "Isolatie langs buiten & afwerking" },
+      "interieur": { "label": "Interieur", "desc": "Indeling, afwerking, keuken & bad" },
+      "uitbreiding": { "label": "Uitbreiding", "desc": "Aanbouw of extra leefruimte" }
+    },
+    "step2tag": "Stap 2 — Omvang",
+    "step2h": "Hoe groot is het?",
+    "step2lead": "Een richtwaarde volstaat — je hoeft niets exact op te meten.",
+    "woonoppLabel": "Bewoonbare oppervlakte",
+    "woonoppNote": "We leiden dak- en geveloppervlakte hier automatisch uit af.",
+    "uitbreidingoppLabel": "Oppervlakte uitbreiding",
+    "step3tag": "Stap 3 — Niveau",
+    "step3h": "Welk afwerkingsniveau?",
+    "step3lead": "Van degelijk en duurzaam tot volledig op maat.",
+    "levels": {
+      "essentieel": { "n": "Niveau 01", "label": "Essentieel", "desc": "Degelijke materialen, strak en functioneel afgewerkt." },
+      "comfort": { "n": "Niveau 02", "label": "Comfort", "desc": "Hoogwaardige materialen, oog voor detail en comfort." },
+      "exclusief": { "n": "Niveau 03", "label": "Exclusief", "desc": "Maatwerk, premium materialen en uitgesproken afwerking." }
+    },
+    "step4tag": "Stap 4 — Regio",
+    "step4h": "Waar staat de woning?",
+    "step4lead": "We zijn actief in jouw regio en kennen de lokale context.",
+    "regions": {
+      "vlb": "Vlaams-Brabant",
+      "bru": "Brussel / Bruxelles",
+      "wab": "Waals-Brabant / Brabant wallon"
+    },
+    "step5tag": "Stap 5 — Timing",
+    "step5h": "Wanneer wil je starten?",
+    "step5lead": "Zo stemmen we onze planning meteen op de jouwe af.",
+    "timing": {
+      "asap": "Zo snel mogelijk",
+      "3m": "Binnen 3 maanden",
+      "6m": "Over 3–6 maanden",
+      "later": "Ik oriënteer me nog"
+    },
+    "step6tag": "Jouw renovatieplan",
+    "step6h": "Dit is wat je krijgt.",
+    "dockInvestering": "Geraamde investering",
+    "dockDoorlooptijd": "Doorlooptijd",
+    "dockNiveau": "Afwerking",
+    "dockRegio": "Regio",
+    "dockEmpty": "—",
+    "formTitle": "Ontvang je gedetailleerde offerte",
+    "formLead": "We bekijken je plan en bezorgen je binnen 48u een offerte op maat.",
+    "formName": "Naam",
+    "formPhone": "Telefoon",
+    "formEmail": "E-mail",
+    "formAddress": "Adres of gemeente (optioneel)",
+    "formSubmit": "Offerte ontvangen",
+    "formFeatures": ["Vrijblijvend", "Antwoord binnen 48u", "Eén vast aanspreekpunt"],
+    "successTitle": "Aanvraag verstuurd!",
+    "successMsg": "We analyseren je renovatieplan en bezorgen je binnen 48u een offerte op maat.",
+    "errorMsg": "Er liep iets fout. Probeer het opnieuw.",
+    "disclaimer": "Indicatieve raming op basis van Belgische marktprijzen 2025, incl. btw. Definitieve prijs na plaatsbezoek.",
+    "prevBtn": "Vorige",
+    "nextBtn": "Volgende",
+    "startBtn": "Start",
+    "backBtn": "Stel je project samen",
+    "weeks": "weken",
+    "weekRange": "{low}–{high} weken"
+  }
+}

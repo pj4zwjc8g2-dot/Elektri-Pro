@@ -1,0 +1,111 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const s = tr.services;
+const items = [s.dak, s.gevel, s.interieur, s.uitbreiding];
+---
+
+<section class="services" id="diensten">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="tag"><span class="dot"></span>{s.tag}</span>
+      <h2>{s.h2}</h2>
+      <p class="section-lead">{s.intro}</p>
+    </div>
+
+    <div class="services__grid">
+      {items.map((item, i) => (
+        <article class="service-card reveal" style={`transition-delay:${i * 0.08}s`}>
+          <span class="service-card__n">{item.n}</span>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <ul class="chips">
+            {item.chips.map(c => <li>{c}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.services {
+  padding: var(--space-2xl) 0;
+  background: var(--bg-2);
+}
+
+.section-header {
+  max-width: var(--max-w-text);
+  margin-bottom: var(--space-xl);
+}
+.section-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin: var(--space-s) 0 var(--space-s);
+}
+.section-lead {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-s);
+}
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+.service-card__n {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+}
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.service-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+.chips li {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  background: var(--bg-2);
+  border-radius: 100px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .services__grid { grid-template-columns: 1fr; }
+}
+</style>

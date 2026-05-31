@@ -1,0 +1,61 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const test = tr.testimonial;
+---
+
+<section class="testimonial">
+  <div class="wrap">
+    <figure class="testimonial__card reveal">
+      <div class="stars" aria-label="5 sterren">★★★★★</div>
+      <blockquote>
+        <p>"{test.quote}"</p>
+      </blockquote>
+      <figcaption>— {test.author}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+.testimonial {
+  padding: var(--space-xl) 0;
+  background: var(--bg-2);
+}
+
+.testimonial__card {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-xl) var(--space-l);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.stars {
+  color: var(--brass);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-m);
+}
+
+blockquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: var(--space-m);
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+</style>

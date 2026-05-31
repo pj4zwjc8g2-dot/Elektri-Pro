@@ -1,0 +1,46 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import Approach from '../../components/Approach.astro';
+import Process from '../../components/Process.astro';
+import Gallery from '../../components/Gallery.astro';
+import Testimonial from '../../components/Testimonial.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import ConsentBanner from '../../components/ConsentBanner.astro';
+import { t } from '../../lib/i18n';
+
+const locale = 'nl' as const;
+const tr = t(locale);
+const leadEndpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT || '/api/lead';
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <BaseHead
+      locale={locale}
+      title={tr.meta.homeTitle}
+      description={tr.meta.homeDesc}
+    />
+  </head>
+  <body>
+    <Header locale={locale} />
+    <main>
+      <Hero locale={locale} />
+      <Services locale={locale} />
+      <Approach locale={locale} />
+      <Process locale={locale} />
+      <Gallery locale={locale} />
+      <Testimonial locale={locale} />
+      <Contact locale={locale} />
+    </main>
+    <Footer locale={locale} />
+    <ConsentBanner locale={locale} />
+    <script define:vars={{ leadEndpoint }}>
+      window.__LEAD_ENDPOINT__ = leadEndpoint;
+    </script>
+  </body>
+</html>

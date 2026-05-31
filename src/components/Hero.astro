@@ -1,0 +1,160 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t, localePath } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const h = tr.hero;
+const r = tr.regions;
+---
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__content reveal">
+      <span class="tag"><span class="dot"></span>{h.tag}</span>
+      <h1>{h.h1a}<br /><em>{h.h1b}</em></h1>
+      <p class="hero__lead">{h.lead}</p>
+      <div class="hero__cta">
+        <a class="btn-primary" href={localePath(locale, 'studio')}>{h.cta1} →</a>
+        <a class="btn-ghost" href="#realisaties">{h.cta2}</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__n">{h.stat1n}</span>
+          <span class="stat__l">{h.stat1l}</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__n">{h.stat2n}</span>
+          <span class="stat__l">{h.stat2l}</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__n">{h.stat3n}</span>
+          <span class="stat__l">{h.stat3l}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual reveal" style="transition-delay:0.15s">
+      <div class="hero__card">
+        <span class="tag"><span class="dot"></span>{r.since}</span>
+        <p class="hero__card__tagline">{r.tagline}</p>
+        <p class="hero__card__label">{r.label}</p>
+        <ul class="hero__regions">
+          <li>{r.vlb}</li>
+          <li>{r.bru}</li>
+          <li>{r.wab}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero {
+  padding: var(--space-2xl) 0 var(--space-xl);
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-m);
+}
+h1 em {
+  font-style: italic;
+  color: var(--forest);
+}
+
+.hero__lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 48ch;
+  margin-bottom: var(--space-m);
+  line-height: 1.7;
+}
+
+.hero__cta {
+  display: flex;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-l);
+}
+
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line);
+}
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat__n {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--forest);
+}
+.stat__l {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.stat__divider {
+  width: 1px;
+  height: 32px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.hero__card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-l);
+  box-shadow: 0 4px 24px rgba(26,31,27,0.06);
+}
+.hero__card__tagline {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: var(--space-s) 0 var(--space-m);
+}
+.hero__card__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-s);
+}
+.hero__regions {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.hero__regions li {
+  padding: 0.6rem var(--space-s);
+  background: var(--bg-2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__visual { order: -1; }
+  .hero { padding: var(--space-xl) 0 var(--space-l); }
+}
+</style>

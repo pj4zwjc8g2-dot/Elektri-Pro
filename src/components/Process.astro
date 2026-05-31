@@ -1,0 +1,104 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const p = tr.process;
+---
+
+<section class="process" id="werkwijze">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="tag"><span class="dot"></span>{p.tag}</span>
+      <h2>{p.h2}</h2>
+    </div>
+
+    <ol class="process__steps">
+      {p.steps.map((step, i) => (
+        <li class="process__step reveal" style={`transition-delay:${i * 0.1}s`}>
+          <span class="process__step__n">{step.n}</span>
+          <div class="process__step__body">
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+.process {
+  padding: var(--space-2xl) 0;
+  background: var(--bg-2);
+}
+
+.section-header {
+  max-width: var(--max-w-text);
+  margin-bottom: var(--space-xl);
+}
+.section-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin-top: var(--space-s);
+}
+
+.process__steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-s);
+  counter-reset: none;
+}
+
+.process__step {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-l);
+  position: relative;
+}
+
+.process__step__n {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  margin-bottom: var(--space-m);
+}
+
+.process__step h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: var(--space-xs);
+}
+
+.process__step p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* Connector line between steps */
+.process__step::after {
+  content: '';
+  position: absolute;
+  right: calc(-1 * var(--space-s) / 2 - 0.5px);
+  top: var(--space-l);
+  width: var(--space-s);
+  height: 1px;
+  background: var(--line);
+}
+.process__step:last-child::after { display: none; }
+
+@media (max-width: 900px) {
+  .process__steps { grid-template-columns: repeat(2, 1fr); }
+  .process__step::after { display: none; }
+}
+@media (max-width: 560px) {
+  .process__steps { grid-template-columns: 1fr; }
+}
+</style>

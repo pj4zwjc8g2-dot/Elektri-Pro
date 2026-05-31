@@ -1,0 +1,236 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t, localePath } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const c = tr.contact;
+---
+
+<section class="contact" id="contact">
+  <div class="wrap contact__inner">
+    <div class="contact__info reveal">
+      <span class="tag"><span class="dot"></span>{c.tag}</span>
+      <h2>{c.h2}</h2>
+      <p>{c.intro}</p>
+
+      <ul class="contact__details">
+        <li>
+          <span class="contact__detail__label">Telefoon</span>
+          <a href={`tel:${c.phone.replace(/\s/g, '')}`}>{c.phone}</a>
+        </li>
+        <li>
+          <span class="contact__detail__label">E-mail</span>
+          <a href={`mailto:${c.email}`}>{c.email}</a>
+        </li>
+        <li>
+          <span class="contact__detail__label">Werkgebied</span>
+          <span>{c.region}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact__form-wrap reveal" style="transition-delay:0.12s">
+      <form class="contact__form" id="contact-form" novalidate>
+        <input type="text" name="honeypot" class="honeypot" tabindex="-1" autocomplete="off" />
+
+        <div class="field">
+          <label for="cf-name">{c.labelName}</label>
+          <input type="text" id="cf-name" name="name" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="cf-phone">{c.labelPhone}</label>
+          <input type="tel" id="cf-phone" name="phone" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="cf-email">{c.labelEmail}</label>
+          <input type="email" id="cf-email" name="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="cf-project">{c.labelProject}</label>
+          <select id="cf-project" name="project">
+            <option value=""></option>
+            {c.projectTypes.map(pt => <option value={pt}>{pt}</option>)}
+          </select>
+        </div>
+        <div class="field field--full">
+          <label for="cf-message">{c.labelMessage}</label>
+          <textarea id="cf-message" name="message" rows="4"></textarea>
+        </div>
+
+        <input type="hidden" name="locale" value={locale} />
+
+        <button type="submit" class="btn-primary">
+          {c.submit} →
+        </button>
+
+        <p class="form-success" hidden id="cf-success">{c.successTitle} — {c.successMsg}</p>
+        <p class="form-error" hidden id="cf-error">{c.errorMsg}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+.contact {
+  padding: var(--space-2xl) 0;
+}
+
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.contact__info h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin: var(--space-s) 0 var(--space-m);
+}
+.contact__info > p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-l);
+}
+
+.contact__details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+.contact__details li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.contact__detail__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.contact__details a, .contact__details span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.contact__details a:hover { color: var(--forest); }
+
+.contact__form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-l);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-s);
+}
+
+.honeypot { display: none !important; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field--full { grid-column: span 2; }
+
+label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  transition: border-color 0.15s;
+  outline: none;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--forest);
+}
+textarea { resize: vertical; min-height: 100px; }
+
+.contact__form button {
+  grid-column: span 2;
+  justify-self: start;
+}
+
+.form-success {
+  grid-column: span 2;
+  color: var(--forest);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: var(--space-s);
+  background: rgba(44,58,48,0.08);
+  border-radius: 8px;
+}
+.form-error {
+  grid-column: span 2;
+  color: #b94040;
+  font-size: 0.9rem;
+  padding: var(--space-s);
+  background: rgba(185,64,64,0.06);
+  border-radius: 8px;
+}
+
+@media (max-width: 860px) {
+  .contact__inner { grid-template-columns: 1fr; }
+  .contact__form { grid-template-columns: 1fr; }
+  .field--full, .contact__form button { grid-column: span 1; }
+}
+</style>
+
+<script>
+const form = document.getElementById('contact-form') as HTMLFormElement;
+const success = document.getElementById('cf-success') as HTMLParagraphElement;
+const error   = document.getElementById('cf-error')   as HTMLParagraphElement;
+
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  const data = Object.fromEntries(new FormData(form));
+  // Honeypot check (server also checks)
+  if (data['honeypot']) return;
+
+  const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+  btn.disabled = true;
+
+  try {
+    const endpoint = (window as any).__LEAD_ENDPOINT__ || '/api/lead';
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        brand: 'Renov Pro',
+        locale: data['locale'],
+        timestamp: new Date().toISOString(),
+        contact: { name: data['name'], phone: data['phone'], email: data['email'] },
+        project: { scope: [data['project']], timing: '' },
+        meta: { source: 'contact', referrer: document.referrer, userAgent: navigator.userAgent },
+      }),
+    });
+    if (!res.ok) throw new Error();
+    form.reset();
+    success.hidden = false;
+    error.hidden   = true;
+  } catch {
+    error.hidden   = false;
+    success.hidden = true;
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>

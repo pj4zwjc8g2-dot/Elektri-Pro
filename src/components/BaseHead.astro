@@ -1,0 +1,88 @@
+---
+import type { Locale } from '../lib/i18n';
+import { localePath } from '../lib/i18n';
+import '../styles/tokens.css';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  canonical?: string;
+  ogType?: string;
+}
+
+const {
+  locale,
+  title,
+  description,
+  canonical,
+  ogType = 'website',
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://renovpro.be';
+const canonicalUrl = canonical ?? `${siteUrl}${localePath(locale)}`;
+const nlUrl = `${siteUrl}${localePath('nl')}`;
+const frUrl = `${siteUrl}${localePath('fr')}`;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<link rel="alternate" hreflang="nl" href={nlUrl} />
+<link rel="alternate" hreflang="fr" href={frUrl} />
+<link rel="alternate" hreflang="x-default" href={nlUrl} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content={locale === 'nl' ? 'nl_BE' : 'fr_BE'} />
+<meta property="og:site_name" content="Renov Pro" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "Renov Pro",
+  "url": "https://renovpro.be",
+  "telephone": "[TODO: telefoonnummer toevoegen]",
+  "email": "info@renovpro.be",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "BE",
+    "addressRegion": "Brabant"
+  },
+  "areaServed": ["Vlaams-Brabant", "Brussel", "Waals-Brabant"],
+  "vatID": "[BTW BE 0000.000.000]",
+  "hasCredential": "[erkenningen toe te voegen]",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "08:00",
+    "closes": "17:00"
+  }
+}
+</script>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(
+  (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
+  { threshold: 0.12 }
+);
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>

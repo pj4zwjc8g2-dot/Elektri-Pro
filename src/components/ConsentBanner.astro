@@ -1,0 +1,87 @@
+---
+import type { Locale } from '../lib/i18n';
+import { t } from '../lib/i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const c = tr.consent;
+---
+
+<div class="consent-banner" id="consent-banner" hidden>
+  <div class="consent-banner__inner">
+    <p>{c.text}</p>
+    <div class="consent-banner__actions">
+      <button class="btn-ghost btn-ghost--sm" id="consent-decline">{c.decline}</button>
+      <button class="btn-primary btn-primary--sm" id="consent-accept">{c.accept}</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.consent-banner {
+  position: fixed;
+  bottom: var(--space-m);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: min(600px, calc(100vw - 2rem));
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(26,31,27,0.12);
+  padding: var(--space-m);
+}
+
+.consent-banner__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+}
+
+.consent-banner__inner p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex: 1;
+  min-width: 200px;
+}
+
+.consent-banner__actions {
+  display: flex;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+</style>
+
+<script define:vars={{ gtmId: import.meta.env.PUBLIC_GTM_ID }}>
+const CONSENT_KEY = 'rp_consent';
+const banner = document.getElementById('consent-banner');
+
+function loadGTM(id) {
+  if (!id) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtm.js?id=${id}`;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+}
+
+const stored = localStorage.getItem(CONSENT_KEY);
+if (stored === 'accepted') {
+  loadGTM(gtmId);
+} else if (!stored) {
+  banner.hidden = false;
+}
+
+document.getElementById('consent-accept')?.addEventListener('click', () => {
+  localStorage.setItem(CONSENT_KEY, 'accepted');
+  banner.hidden = true;
+  loadGTM(gtmId);
+});
+document.getElementById('consent-decline')?.addEventListener('click', () => {
+  localStorage.setItem(CONSENT_KEY, 'declined');
+  banner.hidden = true;
+});
+</script>

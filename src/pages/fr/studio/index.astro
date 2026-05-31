@@ -1,0 +1,88 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ConsentBanner from '../../../components/ConsentBanner.astro';
+import Studio from '../../../components/studio/Studio';
+import { t, localePath } from '../../../lib/i18n';
+
+// TODO: verify FR copy with native speaker before launch
+const locale = 'fr' as const;
+const tr = t(locale);
+const s = tr.studio;
+const leadEndpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT || '/api/lead';
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <BaseHead
+      locale={locale}
+      title={tr.meta.studioTitle}
+      description={tr.meta.studioDesc}
+      canonical={`${tr.meta.siteUrl}${localePath(locale, 'studio')}`}
+    />
+  </head>
+  <body>
+    <Header locale={locale} page="studio" />
+
+    <div class="studio-page">
+      <div class="studio-hero wrap">
+        <span class="studio-hero__tag">{s.pageTag}</span>
+        <div class="studio-hero__content">
+          <div>
+            <p class="studio-hero__overtitle">{s.heroTag}</p>
+            <h1>{s.heroTitle}</h1>
+            <p class="studio-hero__lead">{s.heroLead}</p>
+            <ul class="studio-hero__features">
+              <li>✓ {s.heroF1}</li>
+              <li>✓ {s.heroF2}</li>
+              <li>✓ {s.heroF3}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio-island wrap">
+        <Studio strings={s} locale={locale} leadEndpoint={leadEndpoint} client:visible />
+      </div>
+    </div>
+
+    <Footer locale={locale} />
+    <ConsentBanner locale={locale} />
+  </body>
+</html>
+
+<style>
+.studio-page { min-height: 100vh; }
+.studio-hero {
+  padding: var(--space-xl) 0 var(--space-l);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-xl);
+}
+.studio-hero__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: var(--space-m);
+  padding: 0.3rem 0.7rem;
+  background: rgba(169,130,79,0.1);
+  border-radius: 100px;
+}
+.studio-hero__overtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-xs);
+}
+.studio-hero__content h1 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: var(--space-s); }
+.studio-hero__lead { color: var(--muted); max-width: 52ch; line-height: 1.7; margin-bottom: var(--space-m); }
+.studio-hero__features { list-style: none; display: flex; gap: var(--space-m); flex-wrap: wrap; }
+.studio-hero__features li { font-size: 0.85rem; font-weight: 500; color: var(--forest); }
+.studio-island { padding-bottom: var(--space-2xl); }
+</style>

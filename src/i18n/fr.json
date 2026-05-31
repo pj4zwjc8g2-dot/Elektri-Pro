@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "siteUrl": "https://renovpro.be",
+    "siteName": "Renov Pro",
+    "homeTitle": "Renov Pro — Rénovation complète en Brabant flamand, Bruxelles & Brabant wallon",
+    "homeDesc": "De la toiture et façade à l'intérieur et l'extension — une équipe qui conçoit, coordonne et livre votre projet de rénovation de A à Z en Brabant et Bruxelles.",
+    "studioTitle": "Studio Projet — Calculez votre budget rénovation | Renov Pro",
+    "studioDesc": "Composez votre projet de rénovation et recevez immédiatement une fourchette de prix indicative, un délai et un devis personnalisé sans engagement."
+  },
+  "nav": {
+    "diensten": "Services",
+    "aanpak": "Approche",
+    "werkwijze": "Méthode",
+    "realisaties": "Réalisations",
+    "contact": "Contact",
+    "offerte": "Demander un devis"
+  },
+  "hero": {
+    "tag": "Rénovation complète · Brabant & Bruxelles",
+    "h1a": "Rénovation de A à Z,",
+    "h1b": "entre des mains expertes.",
+    "lead": "De la toiture et façade à l'intérieur et l'extension — une équipe qui conçoit, coordonne et livre votre projet complet.",
+    "cta1": "Demander votre devis",
+    "cta2": "Voir les réalisations",
+    "stat1n": "A→Z",
+    "stat1l": "Un interlocuteur",
+    "stat2n": "3",
+    "stat2l": "Régions actives",
+    "stat3n": "100%",
+    "stat3l": "Prix fixe convenu"
+  },
+  "regions": {
+    "label": "Actif en",
+    "since": "Depuis le premier jour",
+    "tagline": "Chantier sous contrôle",
+    "vlb": "Brabant flamand",
+    "bru": "Bruxelles / Brussel",
+    "wab": "Brabant wallon / Waals-Brabant"
+  },
+  "services": {
+    "tag": "Nos services",
+    "h2": "Tout sous un même toit — au sens propre.",
+    "intro": "Qu'il s'agisse d'une seule discipline ou d'une métamorphose complète : vous travaillez avec un partenaire qui maîtrise chaque métier et les coordonne.",
+    "dak": {
+      "n": "01",
+      "title": "Toiture & étanchéité",
+      "desc": "Rénovation, isolation et réparation de toitures inclinées et plates, avec attention à l'évacuation des eaux et à la durabilité.",
+      "chips": ["Isolation", "Gouttières", "Toits plats"]
+    },
+    "gevel": {
+      "n": "02",
+      "title": "Façade & enveloppe",
+      "desc": "Bardage, isolation par l'extérieur, jointoiement et menuiseries qui protègent et embellissent votre maison.",
+      "chips": ["Isolation façade", "Jointoiement", "Fenêtres"]
+    },
+    "interieur": {
+      "n": "03",
+      "title": "Intérieur & finitions",
+      "desc": "Rénovation intérieure complète : cloisonnement, sols, plâtrerie, cuisine et salle de bain, jusqu'au moindre détail.",
+      "chips": ["Salle de bain", "Sols", "Plâtrerie"]
+    },
+    "uitbreiding": {
+      "n": "04",
+      "title": "Extension & gros œuvre",
+      "desc": "Annexe, surélévation ou nouvel espace de vie — structurellement réfléchi, en collaboration avec architecte et bureau d'études.",
+      "chips": ["Annexe", "Gros œuvre", "Architecture"]
+    }
+  },
+  "why": {
+    "tag": "Pourquoi Renov Pro",
+    "h2": "La qualité commence par la coordination.",
+    "body": "La plupart des rénovations ne dérapent pas à cause d'un mauvais artisanat, mais d'une mauvaise coordination. Nous gardons l'ensemble du chantier en main, détectons les problèmes avant qu'ils coûtent du temps ou de l'argent, et vous tenons informé à chaque instant.",
+    "cta": "Planifier une rencontre"
+  },
+  "promises": {
+    "tag": "Notre promesse",
+    "h2": "Quatre certitudes.",
+    "items": [
+      { "n": "01", "title": "Un seul interlocuteur", "desc": "Pas d'entrepreneurs éparpillés. Un partenaire qui coordonne tout, du premier plan à la livraison." },
+      { "n": "02", "title": "Prix transparent", "desc": "Un devis clair et détaillé à l'avance. Pas de surprises après." },
+      { "n": "03", "title": "Savoir-faire & matériaux", "desc": "Des artisans expérimentés et des matériaux de qualité qui durent des années — finis dans le moindre détail." },
+      { "n": "04", "title": "Chantier sous contrôle", "desc": "Chef de chantier attitré, planning rigoureux et communication claire tout au long du projet." }
+    ]
+  },
+  "process": {
+    "tag": "Méthode",
+    "h2": "Quatre étapes, zéro surprise.",
+    "steps": [
+      { "n": "01", "title": "Rencontre & conseil", "desc": "Nous visitons votre habitation, écoutons vos souhaits et réfléchissons aux possibilités." },
+      { "n": "02", "title": "Conception & devis", "desc": "Vous recevez une proposition élaborée avec un prix clair, détaillé et un planning." },
+      { "n": "03", "title": "Exécution", "desc": "Un chef de chantier attitré dirige tous les artisans et vous tient régulièrement informé." },
+      { "n": "04", "title": "Livraison & suivi", "desc": "Nous livrons proprement, parcourons tout ensemble et restons disponibles pour la suite." }
+    ]
+  },
+  "gallery": {
+    "tag": "Réalisations",
+    "h2": "Un travail qui parle de lui-même.",
+    "intro": "Une sélection de nos projets."
+  },
+  "testimonial": {
+    "quote": "Du premier plan jusqu'à la livraison, nous avions un seul interlocuteur qui gérait tout à la perfection.",
+    "author": "Client satisfait, [localité]"
+  },
+  "contact": {
+    "tag": "Contact",
+    "h2": "Prêt pour votre projet ?",
+    "intro": "Dites-nous brièvement ce que vous avez en tête. Nous vous contactons rapidement pour un entretien sans engagement.",
+    "phone": "+32 (0)0 000 00 00",
+    "email": "info@renovpro.be",
+    "region": "Brabant flamand · Bruxelles · Brabant wallon",
+    "labelName": "Nom",
+    "labelPhone": "Téléphone",
+    "labelEmail": "E-mail",
+    "labelProject": "Type de projet",
+    "labelMessage": "Votre message",
+    "submit": "Envoyer la demande",
+    "projectTypes": ["Toiture & étanchéité", "Façade & enveloppe", "Intérieur & finitions", "Extension & gros œuvre", "Rénovation complète"],
+    "successTitle": "Demande reçue",
+    "successMsg": "Nous vous contacterons dans les 48h.",
+    "errorMsg": "Une erreur s'est produite. Réessayez ou envoyez un e-mail."
+  },
+  "footer": {
+    "tagline": "Rénovation complète de la toiture et façade à l'intérieur et l'extension. Un partenaire, de A à Z.",
+    "diensten": "Services",
+    "contact": "Contact",
+    "offerte": "Demander un devis",
+    "legal": "© Renov Pro · [TVA BE 0000.000.000]",
+    "legalSub": "Numéro d'entreprise & agréments à compléter",
+    "disclaimer": "Estimations indicatives basées sur les prix du marché belge 2025, TVA comprise. Prix définitif après visite sur place."
+  },
+  "consent": {
+    "text": "Nous utilisons Google Analytics pour améliorer l'utilisation de ce site. Aucune donnée n'est partagée avec des tiers.",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
+  "studio": {
+    "pageTag": "Estimation indicative — pas une offre contraignante",
+    "heroTag": "Renov Pro Studio Projet",
+    "heroTitle": "Concevez votre rénovation en 90 secondes.",
+    "heroLead": "Composez votre projet et voyez immédiatement votre fourchette de prix, délai et impact. Recevez ensuite un devis détaillé sur mesure — sans engagement.",
+    "heroF1": "Aperçu prix immédiat",
+    "heroF2": "Un seul interlocuteur",
+    "heroF3": "Sans obligation",
+    "step1tag": "Étape 1 — Quoi",
+    "step1h": "Que voulez-vous rénover ?",
+    "step1lead": "Choisissez un ou plusieurs éléments, ou optez pour la métamorphose complète.",
+    "modules": {
+      "totaal": { "label": "Rénovation complète", "desc": "Toiture, façade et intérieur en une approche intégrée." },
+      "dak": { "label": "Toiture", "desc": "Isolation, couverture & étanchéité" },
+      "gevel": { "label": "Façade", "desc": "Isolation extérieure & finitions" },
+      "interieur": { "label": "Intérieur", "desc": "Aménagement, finitions, cuisine & salle de bain" },
+      "uitbreiding": { "label": "Extension", "desc": "Annexe ou nouvel espace de vie" }
+    },
+    "step2tag": "Étape 2 — Dimensions",
+    "step2h": "Quelle est la superficie ?",
+    "step2lead": "Une valeur approximative suffit — pas besoin de mesurer exactement.",
+    "woonoppLabel": "Surface habitable",
+    "woonoppNote": "Nous en déduisons automatiquement les surfaces de toiture et façade.",
+    "uitbreidingoppLabel": "Surface de l'extension",
+    "step3tag": "Étape 3 — Niveau",
+    "step3h": "Quel niveau de finition ?",
+    "step3lead": "Du solide et durable au entièrement sur mesure.",
+    "levels": {
+      "essentieel": { "n": "Niveau 01", "label": "Essentiel", "desc": "Matériaux solides, finition nette et fonctionnelle." },
+      "comfort": { "n": "Niveau 02", "label": "Confort", "desc": "Matériaux haut de gamme, souci du détail et du confort." },
+      "exclusief": { "n": "Niveau 03", "label": "Exclusif", "desc": "Sur mesure, matériaux premium et finitions marquées." }
+    },
+    "step4tag": "Étape 4 — Région",
+    "step4h": "Où se situe le bien ?",
+    "step4lead": "Nous sommes actifs dans votre région et connaissons le contexte local.",
+    "regions": {
+      "vlb": "Brabant flamand",
+      "bru": "Bruxelles / Brussel",
+      "wab": "Brabant wallon / Waals-Brabant"
+    },
+    "step5tag": "Étape 5 — Timing",
+    "step5h": "Quand voulez-vous commencer ?",
+    "step5lead": "Ainsi nous alignons notre planning sur le vôtre.",
+    "timing": {
+      "asap": "Dès que possible",
+      "3m": "Dans les 3 mois",
+      "6m": "Dans 3 à 6 mois",
+      "later": "Je m'oriente encore"
+    },
+    "step6tag": "Votre plan de rénovation",
+    "step6h": "Voici ce que vous obtenez.",
+    "dockInvestering": "Investissement estimé",
+    "dockDoorlooptijd": "Durée",
+    "dockNiveau": "Finition",
+    "dockRegio": "Région",
+    "dockEmpty": "—",
+    "formTitle": "Recevez votre devis détaillé",
+    "formLead": "Nous analysons votre plan et vous envoyons un devis sur mesure dans les 48h.",
+    "formName": "Nom",
+    "formPhone": "Téléphone",
+    "formEmail": "E-mail",
+    "formAddress": "Adresse ou commune (optionnel)",
+    "formSubmit": "Recevoir mon devis",
+    "formFeatures": ["Sans engagement", "Réponse dans les 48h", "Un seul interlocuteur fixe"],
+    "successTitle": "Demande envoyée !",
+    "successMsg": "Nous analysons votre plan et vous envoyons un devis sur mesure dans les 48h.",
+    "errorMsg": "Une erreur s'est produite. Veuillez réessayer.",
+    "disclaimer": "Estimation indicative basée sur les prix du marché belge 2025, TVA comprise. Prix définitif après visite sur place.",
+    "prevBtn": "Précédent",
+    "nextBtn": "Suivant",
+    "startBtn": "Démarrer",
+    "backBtn": "Composer votre projet",
+    "weeks": "semaines",
+    "weekRange": "{low}–{high} semaines"
+  }
+}
