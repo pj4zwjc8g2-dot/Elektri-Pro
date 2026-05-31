@@ -54,31 +54,14 @@ const c = tr.consent;
 }
 </style>
 
-<script define:vars={{ gtmId: import.meta.env.PUBLIC_GTM_ID }}>
+<script>
 const CONSENT_KEY = 'rp_consent';
 const banner = document.getElementById('consent-banner');
-
-function loadGTM(id) {
-  if (!id) return;
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtm.js?id=${id}`;
-  document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
-}
-
 const stored = localStorage.getItem(CONSENT_KEY);
-if (stored === 'accepted') {
-  loadGTM(gtmId);
-} else if (!stored) {
-  banner.hidden = false;
-}
-
+if (!stored) banner.hidden = false;
 document.getElementById('consent-accept')?.addEventListener('click', () => {
   localStorage.setItem(CONSENT_KEY, 'accepted');
   banner.hidden = true;
-  loadGTM(gtmId);
 });
 document.getElementById('consent-decline')?.addEventListener('click', () => {
   localStorage.setItem(CONSENT_KEY, 'declined');

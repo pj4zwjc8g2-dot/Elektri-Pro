@@ -47,7 +47,6 @@ jobs:
       - run: pnpm build
         env:
           PUBLIC_SITE_URL: https://renovpro.be
-          PUBLIC_GTM_ID: ${{ secrets.GTM_ID }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:

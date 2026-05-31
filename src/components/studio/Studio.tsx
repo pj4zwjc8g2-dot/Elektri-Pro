@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import './Studio.css';
 import type { Module, Level, Region, PricingResult } from '../../lib/pricing';
 import { calculatePricing } from '../../lib/pricing';
@@ -76,26 +76,16 @@ export default function Studio({ strings: s, locale, leadEndpoint }: StudioProps
     }));
   }, [scope, woonopp, uitbreidingopp, niveau, regio]);
 
-  // Push GA4 events
-  const pushEvent = useCallback((name: string, params?: Record<string, unknown>) => {
-    try {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: name, ...params });
-    } catch { /* analytics must not block UX */ }
-  }, []);
-
   function toggleModule(mod: Module) {
     setScope(prev => prev.includes(mod) ? prev.filter(m => m !== mod) : [...prev, mod]);
   }
 
   function goStep(n: number) {
     setStep(n);
-    pushEvent('step_complete', { step_number: n, locale });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function handleStart() {
-    pushEvent('configurator_start', { locale });
     goStep(1);
   }
 
@@ -139,7 +129,6 @@ export default function Studio({ strings: s, locale, leadEndpoint }: StudioProps
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
-      pushEvent('lead_submit', { locale, niveau, regio, scope: scope.join(',') });
     } catch {
       setSubmitError(true);
     } finally {
