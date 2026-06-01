@@ -6,9 +6,9 @@ BUSINESS = {
     "name": "Elektri Pro",
     "phone_display": "+32 498 06 03 77",
     "phone_link": "+32498060377",
-    "email": "",
+    "email": "info@elektripro.be",
     "domain": "https://elektripro.be",
-    "vat": "",
+    "vat": "BE1000.009.127",
     "tagline": {
         "nl": "Erkend elektricien voor noodinterventies en alle elektriciteitswerken",
         "fr": "Électricien agréé pour les interventions d'urgence et tous les travaux d'électricité",
