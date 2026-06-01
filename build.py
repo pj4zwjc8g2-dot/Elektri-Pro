@@ -103,7 +103,7 @@ def footer(lang):
 <div class="col"><h4>{esc(u['ft_cnt'])}</h4><a href="tel:{B['phone_link']}">📞 {esc(B['phone_display'])}</a>
 {"<a href='mailto:" + esc(B['email']) + "'>✉ " + esc(B['email']) + "</a>" if B['email'] else ""}
 <p style="margin-top:8px">{esc(u['ft_area'])}</p></div>
-</div><div class="copy">© {YEAR} {esc(B['name'])}{" — " + esc(B['vat']) if B['vat'] else ""} — {esc(u['ft_rights'])}</div></footer>"""
+</div><div class="copy">© {YEAR} {esc(B['name'])}{"  t.a.v. Triple A Trading" if lang == "nl" else ""}{" — " + esc(B['vat']) if B['vat'] else ""} — {esc(u['ft_rights'])}</div></footer>"""
 
 # ── schema ────────────────────────────────────────────────────────────
 def schema_localbusiness(lang, area=None, page_url=None):
