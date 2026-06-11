@@ -846,12 +846,7 @@ CITY_KEURING = {
     },
 }
 
-# =====================================================================
-# TE VALIDEREN DOOR IZZEDDINE
 # Marktconforme Belgische prijsvorken (excl. btw).
-# Pas bedragen aan vóór livegang indien nodig.
-# Geen lokprijzen — realistische vorken inclusief vermelding excl. btw.
-# =====================================================================
 PRICES = {
     "uurtarief": {
         "label": {
