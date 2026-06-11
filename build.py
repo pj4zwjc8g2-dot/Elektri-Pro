@@ -108,6 +108,8 @@ def footer(lang):
 # ── schema ────────────────────────────────────────────────────────────
 def schema_localbusiness(lang, area=None, page_url=None):
     areas = [c["name"][lang] for c in CITIES] if not area else [area]
+    total_reviews = len(REVIEWS)
+    avg_rating    = sum(r.get("stars", 5) for r in REVIEWS) / total_reviews
     data  = {
         "@context": "https://schema.org",
         "@type":    "Electrician",
@@ -116,6 +118,24 @@ def schema_localbusiness(lang, area=None, page_url=None):
         "url":       page_url or B["domain"],
         "areaServed": areas,
         "slogan":    B["tagline"][lang],
+        "aggregateRating": {
+            "@type":       "AggregateRating",
+            "ratingValue": f"{avg_rating:.1f}",
+            "reviewCount": total_reviews,
+            "bestRating":  5,
+            "worstRating": 1,
+        },
+    }
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+def schema_service(lang, service_type, area, page_url):
+    data = {
+        "@context":   "https://schema.org",
+        "@type":      "Service",
+        "serviceType": service_type,
+        "provider": {"@type": "Electrician", "name": B["name"], "telephone": B["phone_link"]},
+        "areaServed": area,
+        "url":        page_url,
     }
     return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
 
@@ -324,12 +344,16 @@ def build_service(lang, skey, s):
              + faq_section + trust_grid(lang) + reviews_section(lang) + band(lang))
     canon = f"/{skey}/"
     keuring_subtitle = {"nl": "Installaties conform AREI", "fr": "Mise en conformité RGIE", "en": "AREI Compliance"}
+    keuring_svc_type = {"nl": "Elektriciteitskeuring", "fr": "Contrôle électrique", "en": "Electrical Inspection"}
     title = (f"{s['kw']} | {keuring_subtitle[lang]} | {B['name']}" if skey == "keuring"
              else f"{s['kw']} | {B['name']}")
+    page_url = f"{D}{pfx}/{skey}/"
+    extra_schema = (schema_service(lang, keuring_svc_type[lang], B["tagline"][lang], page_url)
+                    if skey == "keuring" else "")
     render(f"{OUT}{pfx}/{skey}/index.html",
            title,
            f"{s['intro']} {B['phone_display']}.",
-           f"{D}{pfx}/{skey}/", schema_localbusiness(lang), inner, lang, canon)
+           page_url, schema_localbusiness(lang) + extra_schema, inner, lang, canon)
 
 def build_service_city(lang, skey, s, c):
     u     = UI[lang]
@@ -365,15 +389,20 @@ def build_service_city(lang, skey, s, c):
             "fr": f"Contrôle électrique à {cname} ? Mise en conformité RGIE rapide et professionnelle. Appelez le {B['phone_display']}.",
             "en": f"Electrical inspection in {cname}? We prepare your installation for compliance or rectify violations from a negative report. Call {B['phone_display']}.",
         }
-        pg_title = f"{s['kw']} {cname} — {keuring_suf[lang]} | {B['name']}"
-        pg_desc  = keuring_desc[lang]
+        keuring_svc_type = {"nl": "Elektriciteitskeuring", "fr": "Contrôle électrique", "en": "Electrical Inspection"}
+        pg_title   = f"{s['kw']} {cname} — {keuring_suf[lang]} | {B['name']}"
+        pg_desc    = keuring_desc[lang]
+        page_url_c = f"{D}{pfx}{canon}"
+        extra_sc   = schema_service(lang, keuring_svc_type[lang], cname, page_url_c)
     else:
-        pg_title = f"{s['kw']} {cname} | {B['name']}"
-        pg_desc  = f"{s['kw']} {cname} ({c['province'][lang]}). {s['intro']} {B['phone_display']}."
+        pg_title   = f"{s['kw']} {cname} | {B['name']}"
+        pg_desc    = f"{s['kw']} {cname} ({c['province'][lang]}). {s['intro']} {B['phone_display']}."
+        page_url_c = f"{D}{pfx}{canon}"
+        extra_sc   = ""
     render(f"{OUT}{pfx}/{skey}/{c['slug']}/index.html",
            pg_title, pg_desc,
-           f"{D}{pfx}{canon}",
-           schema_localbusiness(lang, cname, f"{D}{pfx}{canon}"),
+           page_url_c,
+           schema_localbusiness(lang, cname, page_url_c) + extra_sc,
            inner, lang, canon)
 
 def build_sitemap():
