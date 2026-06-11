@@ -285,13 +285,13 @@ SERVICES = {
             "points": ["Oude smeltzekeringen vervangen door automaten","Differentieelschakelaars plaatsen of bijplaatsen","Verdeelbord uitbreiden voor extra kringen","Voorbereiding voor laadpaal of zonnepanelen","In orde brengen voor de keuring"],
         },
         "keuring": {
-            "label": "Keuring & conformiteit", "kw": "Elektrische keuring", "icon": "📋",
-            "intro": "Uw elektrische installatie klaarmaken voor de keuring, of de inbreuken uit een negatief keuringsverslag wegwerken.",
+            "label": "Keuring & conformiteit", "kw": "Elektriciteitskeuring", "icon": "📋",
+            "intro": "Uw elektrische installatie klaarmaken voor de elektriciteitskeuring, of de inbreuken uit een negatief keuringsverslag wegwerken.",
             "body": [
-                "Een elektrische keuring is verplicht bij de verkoop van een woning, bij een nieuwe installatie en periodiek voor oudere woningen. De keuring zelf wordt uitgevoerd door een erkend organisme zoals Vinçotte, BTV of AIB-Vinçotte. Wij zorgen ervoor dat uw installatie voldoet aan het AREI zodat ze door de keuring komt, of we werken de inbreuken weg uit een negatief keuringsverslag.",
-                "Een veelvoorkomende situatie: u staat op het punt te verkopen en het keuringsverslag vermeldt verschillende inbreuken die binnen achttien maanden moeten worden hersteld. Wij overlopen het verslag met u, bespreken welke werken nodig zijn en aan welke prijs, en voeren de herstellingen uit. Daarna kan een herkeuring volgen.",
+                "Een elektriciteitskeuring is verplicht bij de verkoop van een woning, bij een nieuwe installatie en periodiek voor oudere woningen. De keuring zelf wordt uitgevoerd door een erkend organisme zoals Vinçotte, BTV of AIB-Vinçotte. Wij zorgen ervoor dat uw installatie voldoet aan het AREI zodat ze door de elektriciteitskeuring komt, of we werken de inbreuken weg uit een negatief keuringsverslag.",
+                "Een veelvoorkomende situatie: u staat op het punt te verkopen en het keuringsverslag vermeldt inbreuken die binnen achttien maanden moeten worden hersteld voor de herkeuring. Wij overlopen het verslag met u, bespreken welke werken nodig zijn en voeren de aanpassingen uit — van aarding en differentieelbeveiliging tot verdeelbord — zodat uw installatie conform het AREI is en de herkeuring doorstaat.",
             ],
-            "points": ["Installatie voorbereiden voor verplichte keuring (verkoop, nieuwe installatie)","Inbreuken uit een negatief keuringsverslag wegwerken","Aarding en equipotentiale verbinding in orde brengen","Verdeelbord aanpassen aan de huidige AREI-normen","Begeleiding bij het organiseren van de herkeuring"],
+            "points": ["Installatie voorbereiden voor verplichte elektriciteitskeuring (verkoop, nieuwe installatie)","Inbreuken uit een negatief keuringsverslag wegwerken","Aarding en equipotentiale verbinding in orde brengen","Verdeelbord aanpassen aan de huidige AREI-normen","Begeleiding bij het organiseren van de herkeuring"],
         },
         "installatie": {
             "label": "Volledige elektrische installatie", "kw": "Elektrische installatie", "icon": "🏠",
@@ -324,12 +324,12 @@ SERVICES = {
         },
         "keuring": {
             "label": "Contrôle & conformité électrique", "kw": "Contrôle électrique", "icon": "📋",
-            "intro": "Préparer votre installation électrique pour le contrôle, ou rectifier les infractions d'un rapport de contrôle négatif.",
+            "intro": "Préparer votre installation électrique pour le contrôle électrique obligatoire, ou rectifier les infractions d'un rapport de contrôle négatif.",
             "body": [
-                "Un contrôle électrique est obligatoire lors de la vente d'un logement, pour une nouvelle installation et périodiquement pour les logements anciens. Le contrôle lui-même est effectué par un organisme agréé comme Vinçotte, BTV ou AIB-Vinçotte. Nous veillons à ce que votre installation soit conforme au RGIE pour qu'elle réussisse le contrôle, ou nous rectifions les infractions d'un rapport négatif.",
-                "Une situation courante : vous êtes sur le point de vendre et le rapport de contrôle mentionne plusieurs infractions à corriger dans les dix-huit mois. Nous passons en revue le rapport avec vous, discutons des travaux nécessaires et de leur coût, puis les réalisons. Une contre-visite peut ensuite avoir lieu.",
+                "Un contrôle électrique est obligatoire lors de la vente d'un logement, pour une nouvelle installation et périodiquement pour les logements anciens. Le contrôle lui-même est effectué par un organisme agréé comme Vinçotte, BTV ou AIB-Vinçotte. Nous veillons à ce que votre installation soit conforme au RGIE pour qu'elle réussisse le contrôle électrique, ou nous rectifions les infractions d'un rapport négatif.",
+                "Une situation courante : vous êtes sur le point de vendre et le rapport mentionne des infractions à corriger dans les dix-huit mois avant la contre-visite. Nous passons le rapport en revue avec vous, effectuons les travaux de mise en conformité électrique — mise à la terre, protection différentielle, tableau — et vous accompagnons pour l'organisation de la contre-visite.",
             ],
-            "points": ["Préparer l'installation pour le contrôle obligatoire (vente, nouvelle installation)","Rectifier les infractions d'un rapport de contrôle négatif","Mise en conformité de la mise à la terre et liaisons équipotentielles","Adapter le tableau aux normes RGIE actuelles","Accompagnement pour l'organisation de la contre-visite"],
+            "points": ["Préparer l'installation pour le contrôle électrique obligatoire (vente, nouvelle installation)","Rectifier les infractions d'un rapport de contrôle négatif","Mise en conformité de la mise à la terre et liaisons équipotentielles","Adapter le tableau aux normes RGIE actuelles","Accompagnement pour l'organisation de la contre-visite"],
         },
         "installatie": {
             "label": "Installation électrique complète", "kw": "Installation électrique", "icon": "🏠",

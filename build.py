@@ -308,8 +308,11 @@ def build_service(lang, skey, s):
 </div></section>"""
              + trust_grid(lang) + reviews_section(lang) + band(lang))
     canon = f"/{skey}/"
+    keuring_subtitle = {"nl": "Installaties conform AREI", "fr": "Mise en conformité RGIE", "en": "AREI Compliance"}
+    title = (f"{s['kw']} | {keuring_subtitle[lang]} | {B['name']}" if skey == "keuring"
+             else f"{s['kw']} | {B['name']}")
     render(f"{OUT}{pfx}/{skey}/index.html",
-           f"{s['kw']} | {B['name']}",
+           title,
            f"{s['intro']} {B['phone_display']}.",
            f"{D}{pfx}/{skey}/", schema_localbusiness(lang), inner, lang, canon)
 
@@ -339,9 +342,20 @@ def build_service_city(lang, skey, s, c):
 {nearby_block}
 </div></section>"""
               + trust_grid(lang) + reviews_section(lang) + band(lang, f"{s['kw']} — {cname}?"))
+    if skey == "keuring":
+        keuring_suf = {"nl": "Conform & klaar voor keuring", "fr": "Mise en conformité électrique", "en": "Electrical Compliance"}
+        keuring_desc = {
+            "nl": f"Elektriciteitskeuring in {cname}? Wij bereiden uw installatie voor op de keuring of werken inbreuken weg. AREI-conform. Bel {B['phone_display']}.",
+            "fr": f"Contrôle électrique à {cname} ? Mise en conformité RGIE rapide et professionnelle. Appelez le {B['phone_display']}.",
+            "en": f"Electrical inspection in {cname}? We prepare your installation for compliance or rectify violations from a negative report. Call {B['phone_display']}.",
+        }
+        pg_title = f"{s['kw']} {cname} — {keuring_suf[lang]} | {B['name']}"
+        pg_desc  = keuring_desc[lang]
+    else:
+        pg_title = f"{s['kw']} {cname} | {B['name']}"
+        pg_desc  = f"{s['kw']} {cname} ({c['province'][lang]}). {s['intro']} {B['phone_display']}."
     render(f"{OUT}{pfx}/{skey}/{c['slug']}/index.html",
-           f"{s['kw']} {cname} | {B['name']}",
-           f"{s['kw']} {cname} ({c['province'][lang]}). {s['intro']} {B['phone_display']}.",
+           pg_title, pg_desc,
            f"{D}{pfx}{canon}",
            schema_localbusiness(lang, cname, f"{D}{pfx}{canon}"),
            inner, lang, canon)
