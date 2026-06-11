@@ -438,6 +438,45 @@ FAQ = {
     ],
 }
 
+FAQ_KEURING = {
+    "nl": [
+        {"q": "Wat kost een elektriciteitskeuring?",
+         "a": "De keuring zelf wordt uitgevoerd door een erkend organisme (Vinçotte, BTV, AIB-Vinçotte) en kost doorgaans tussen €150 en €300 afhankelijk van de grootte van de woning. Wij voeren de voorbereidende werken uit zodat uw installatie door de keuring komt. De prijs van die werken hangt af van de vastgestelde inbreuken en bespreken we vooraf op basis van het keuringsverslag."},
+        {"q": "Is een elektriciteitskeuring verplicht bij de verkoop van een woning?",
+         "a": "Ja. In België is een conform keuringsattest verplicht bij elke overdracht van een woning. Heeft u een negatief keuringsverslag, dan kunt u de woning toch verkopen, maar de koper heeft recht op een herkeuring binnen achttien maanden. De inbreuken moeten voor die termijn zijn weggewerkt."},
+        {"q": "Wat als mijn installatie wordt afgekeurd bij de elektriciteitskeuring?",
+         "a": "Een negatief keuringsverslag betekent dat er inbreuken zijn vastgesteld, maar niet dat de woning onverkoopbaar is. U heeft achttien maanden om de inbreuken te laten wegwerken en een herkeuring aan te vragen. Wij overlopen het verslag punt voor punt, voeren de nodige herstellingen uit en begeleiden u bij de herkeuring."},
+        {"q": "Hoe lang duurt een elektriciteitskeuring?",
+         "a": "Een standaard keuring van een gezinswoning neemt doorgaans één tot twee uur in beslag. Grotere panden, woningen met meerdere verdeelborden of complexere installaties kunnen langer duren. De eigenlijke keuring wordt uitgevoerd door het keuringsorganisme; wij zorgen dat de installatie er klaar voor is."},
+        {"q": "Wat is het verschil tussen een elektriciteitskeuring en conformiteit?",
+         "a": "De keuring is de officiële controle door een erkend organisme: zij stellen vast of uw installatie voldoet aan het AREI. Conformiteit is de toestand waarbij de installatie effectief aan die normen voldoet. Onze rol is ervoor zorgen dat uw installatie conform is zodat ze de keuring doorstaat — of de inbreuken weg te werken na een negatieve keuring."},
+    ],
+    "fr": [
+        {"q": "Combien coûte un contrôle électrique ?",
+         "a": "Le contrôle lui-même est effectué par un organisme agréé (Vinçotte, BTV, AIB-Vinçotte) et coûte généralement entre 150 et 300 € selon la taille du logement. Nous effectuons les travaux préparatoires de mise en conformité électrique pour que votre installation réussisse le contrôle. Le coût de ces travaux dépend des infractions constatées et est discuté à l'avance sur base du rapport de contrôle."},
+        {"q": "Le contrôle électrique est-il obligatoire lors de la vente d'un logement ?",
+         "a": "Oui. En Belgique, une attestation de contrôle conforme est obligatoire lors de toute cession d'un logement. Si vous avez un rapport négatif, vous pouvez quand même vendre, mais l'acheteur a droit à une contre-visite dans les dix-huit mois. Les infractions doivent être corrigées avant ce délai."},
+        {"q": "Que se passe-t-il si mon installation est refusée lors du contrôle électrique ?",
+         "a": "Un rapport négatif signifie que des infractions ont été constatées, mais pas que le bien est invendable. Vous avez dix-huit mois pour faire corriger les infractions et demander une contre-visite. Nous passons le rapport en revue point par point, effectuons les réparations nécessaires et vous accompagnons lors de la contre-visite."},
+        {"q": "Combien de temps dure un contrôle électrique ?",
+         "a": "Un contrôle standard d'une maison unifamiliale prend généralement une à deux heures. Les propriétés plus grandes, avec plusieurs tableaux ou des installations complexes, peuvent prendre plus longtemps. Le contrôle proprement dit est effectué par l'organisme de contrôle ; nous veillons à ce que l'installation soit prête."},
+        {"q": "Quelle est la différence entre un contrôle électrique et la conformité ?",
+         "a": "Le contrôle est la vérification officielle par un organisme agréé : ils vérifient si votre installation est conforme au RGIE. La conformité est l'état dans lequel l'installation satisfait effectivement à ces normes. Notre rôle est de veiller à ce que votre installation soit conforme pour qu'elle réussisse le contrôle — ou de corriger les infractions après un rapport négatif."},
+    ],
+    "en": [
+        {"q": "How much does an electrical inspection cost?",
+         "a": "The inspection itself is carried out by an accredited body (Vinçotte, BTV, AIB-Vinçotte) and typically costs between €150 and €300 depending on the size of the property. We carry out the preparatory compliance work to ensure your installation passes the inspection. The cost of that work depends on the violations found and is agreed upfront based on the inspection report."},
+        {"q": "Is an electrical inspection mandatory when selling a property?",
+         "a": "Yes. In Belgium, a compliant inspection certificate is required for every property transfer. If you have a negative inspection report, you can still sell, but the buyer is entitled to a re-inspection within eighteen months. The violations must be corrected before that deadline."},
+        {"q": "What happens if my installation fails the electrical inspection?",
+         "a": "A negative inspection report means violations were found, but it does not make the property unsaleable. You have eighteen months to have the violations corrected and arrange a re-inspection. We go through the report point by point, carry out the necessary repairs and guide you through the re-inspection process."},
+        {"q": "How long does an electrical inspection take?",
+         "a": "A standard inspection of a family home typically takes one to two hours. Larger properties, those with multiple distribution panels or complex installations may take longer. The actual inspection is carried out by the inspection body; we ensure the installation is ready for it."},
+        {"q": "What is the difference between an electrical inspection and compliance?",
+         "a": "The inspection is the official check by an accredited body: they verify whether your installation meets the AREI/RGIE standards. Compliance is the state where the installation actually meets those standards. Our role is to ensure your installation is compliant so it passes the inspection — or to correct the violations after a negative report."},
+    ],
+}
+
 CITIES = [
     # --- Vlaams-Brabant (10) ---
     {"name": {"nl":"Leuven","fr":"Louvain","en":"Leuven"}, "slug":"leuven",

@@ -3,7 +3,7 @@
 #  build.py — Elektri Pro v4 (NL / FR / EN)
 # =====================================================================
 import os, shutil, html, datetime, json
-from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG
+from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG, FAQ_KEURING
 
 OUT   = "site"
 B     = BUSINESS
@@ -200,6 +200,20 @@ def band(lang, title=None, subtitle=None):
 <p>{s}</p>
 <a class="big-call" href="tel:{B['phone_link']}" data-call="band">📞 {esc(B['phone_display'])}</a></div></section>"""
 
+def faq_block(lang, items):
+    u = UI[lang]
+    rows = "".join(
+        f'<details class="faq-item"{" open" if i == 0 else ""}>'
+        f'<summary>{esc(q["q"])}</summary><p>{esc(q["a"])}</p></details>'
+        for i, q in enumerate(items)
+    )
+    titles = {"nl": "Veelgestelde vragen over de elektriciteitskeuring",
+              "fr": "Questions fréquentes sur le contrôle électrique",
+              "en": "Frequently asked questions about electrical inspection"}
+    return (f'<section class="section" id="faq"><div class="wrap">'
+            f'<h2 class="reveal">{esc(titles[lang])}</h2>'
+            f'<div class="faq-list reveal">{rows}</div></div></section>')
+
 # ── page builders ─────────────────────────────────────────────────────
 def build_home(lang):
     u   = UI[lang]
@@ -296,6 +310,7 @@ def build_service(lang, skey, s):
             f'<a class="citychip" href="{D}{pfx}/{skey}/{c["slug"]}/">{esc(s["kw"])} {esc(c["name"][lang])}</a>'
             for c in cs)
         pblocks += f'<div class="prov-block"><h3>{esc(prov)}</h3><div class="citygrid">{chips}</div></div>'
+    faq_section = faq_block(lang, FAQ_KEURING[lang]) + schema_faq(FAQ_KEURING[lang]) if skey == "keuring" else ""
     inner = (hero(lang, f'{esc(s["kw"])} — Brabant &amp; Brussel', s["intro"])
              + trust_strip(lang)
              + f"""<section class="section" id="info"><div class="wrap">
@@ -306,7 +321,7 @@ def build_service(lang, skey, s):
 <p class="sub reveal">{esc(u['sel_city'])}</p>
 {pblocks}
 </div></section>"""
-             + trust_grid(lang) + reviews_section(lang) + band(lang))
+             + faq_section + trust_grid(lang) + reviews_section(lang) + band(lang))
     canon = f"/{skey}/"
     keuring_subtitle = {"nl": "Installaties conform AREI", "fr": "Mise en conformité RGIE", "en": "AREI Compliance"}
     title = (f"{s['kw']} | {keuring_subtitle[lang]} | {B['name']}" if skey == "keuring"
@@ -333,6 +348,7 @@ def build_service_city(lang, skey, s, c):
 </div>"""
     lead   = f"{s['intro']} {c['province'][lang]}."
     canon  = f"/{skey}/{c['slug']}/"
+    city_faq = faq_block(lang, FAQ_KEURING[lang]) + schema_faq(FAQ_KEURING[lang]) if skey == "keuring" else ""
     inner  = (hero(lang, f'{esc(s["kw"])} {esc(cname)}', lead)
               + trust_strip(lang)
               + f"""<section class="section" id="info"><div class="wrap">
@@ -341,7 +357,7 @@ def build_service_city(lang, skey, s, c):
 <div class="checks reveal"><h3>{esc(u['why_call'])} {esc(cname)}</h3><ul>{pts}</ul></div>
 {nearby_block}
 </div></section>"""
-              + trust_grid(lang) + reviews_section(lang) + band(lang, f"{s['kw']} — {cname}?"))
+              + city_faq + trust_grid(lang) + reviews_section(lang) + band(lang, f"{s['kw']} — {cname}?"))
     if skey == "keuring":
         keuring_suf = {"nl": "Conform & klaar voor keuring", "fr": "Mise en conformité électrique", "en": "Electrical Compliance"}
         keuring_desc = {
