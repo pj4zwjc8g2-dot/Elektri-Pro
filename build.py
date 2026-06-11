@@ -3,7 +3,7 @@
 #  build.py — Elektri Pro v4 (NL / FR / EN)
 # =====================================================================
 import os, shutil, html, datetime, json
-from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG, FAQ_KEURING
+from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG, FAQ_KEURING, CITY_KEURING
 
 OUT   = "site"
 B     = BUSINESS
@@ -373,11 +373,12 @@ def build_service_city(lang, skey, s, c):
     lead   = f"{s['intro']} {c['province'][lang]}."
     canon  = f"/{skey}/{c['slug']}/"
     city_faq = faq_block(lang, FAQ_KEURING[lang]) + schema_faq(FAQ_KEURING[lang]) if skey == "keuring" else ""
+    localnote = CITY_KEURING.get(c["slug"], {}).get(lang, c["local"][lang]) if skey == "keuring" else c["local"][lang]
     inner  = (hero(lang, f'{esc(s["kw"])} {esc(cname)}', lead)
               + trust_strip(lang)
               + f"""<section class="section" id="info"><div class="wrap">
 <h2 class="reveal">{esc(s['kw'])} {esc(cname)}</h2>
-<div class="prose reveal"><p class="localnote">{esc(c['local'][lang])}</p>{body}</div>
+<div class="prose reveal"><p class="localnote">{esc(localnote)}</p>{body}</div>
 <div class="checks reveal"><h3>{esc(u['why_call'])} {esc(cname)}</h3><ul>{pts}</ul></div>
 {nearby_block}
 </div></section>"""
