@@ -234,6 +234,42 @@ def faq_block(lang, items):
             f'<h2 class="reveal">{esc(titles[lang])}</h2>'
             f'<div class="faq-list reveal">{rows}</div></div></section>')
 
+def crosslink_block(lang, skey, pfx, cname, slug):
+    PAIR = {"keuring": "zekeringkast", "zekeringkast": "keuring"}
+    if skey not in PAIR:
+        return ""
+    target = PAIR[skey]
+    target_url = f"{pfx}/{target}/{slug}/"
+    INTRO = {
+        "keuring": {
+            "nl": f"Na de keuring moet de zekeringkast soms worden vernieuwd of uitgebreid.",
+            "fr": f"Après le contrôle, le tableau électrique doit parfois être mis à jour.",
+            "en": f"After an inspection, the fuse box sometimes needs to be upgraded.",
+        },
+        "zekeringkast": {
+            "nl": f"Een nieuwe zekeringkast vereist vaak een elektriciteitskeuring.",
+            "fr": f"Un nouveau tableau nécessite souvent un contrôle électrique.",
+            "en": f"A new fuse box often requires an electrical inspection.",
+        },
+    }
+    ANCHOR = {
+        "keuring": {
+            "nl": f"Zekeringkast vervangen in {cname}",
+            "fr": f"Remplacement du tableau électrique à {cname}",
+            "en": f"Fuse box replacement in {cname}",
+        },
+        "zekeringkast": {
+            "nl": f"Elektriciteitskeuring in {cname}",
+            "fr": f"Contrôle électrique à {cname}",
+            "en": f"Electrical inspection in {cname}",
+        },
+    }
+    intro  = INTRO[skey][lang]
+    anchor = ANCHOR[skey][lang]
+    return (f'<div class="crosslink reveal">'
+            f'<p>{esc(intro)} <a href="{esc(target_url)}">{esc(anchor)}</a>.</p>'
+            f'</div>')
+
 # ── page builders ─────────────────────────────────────────────────────
 def build_home(lang):
     u   = UI[lang]
@@ -374,6 +410,7 @@ def build_service_city(lang, skey, s, c):
     canon  = f"/{skey}/{c['slug']}/"
     city_faq = faq_block(lang, FAQ_KEURING[lang]) + schema_faq(FAQ_KEURING[lang]) if skey == "keuring" else ""
     localnote = CITY_KEURING.get(c["slug"], {}).get(lang, c["local"][lang]) if skey == "keuring" else c["local"][lang]
+    xlink  = crosslink_block(lang, skey, pfx, cname, c["slug"])
     inner  = (hero(lang, f'{esc(s["kw"])} {esc(cname)}', lead)
               + trust_strip(lang)
               + f"""<section class="section" id="info"><div class="wrap">
@@ -381,6 +418,7 @@ def build_service_city(lang, skey, s, c):
 <div class="prose reveal"><p class="localnote">{esc(localnote)}</p>{body}</div>
 <div class="checks reveal"><h3>{esc(u['why_call'])} {esc(cname)}</h3><ul>{pts}</ul></div>
 {nearby_block}
+{xlink}
 </div></section>"""
               + city_faq + trust_grid(lang) + reviews_section(lang) + band(lang, f"{s['kw']} — {cname}?"))
     if skey == "keuring":
