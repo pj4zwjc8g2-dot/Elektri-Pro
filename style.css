@@ -195,3 +195,25 @@ footer .col a:hover{color:var(--accent)}
 
 .reveal{opacity:0;transform:translateY(18px);animation:rise .6s ease forwards}
 @keyframes rise{to{opacity:1;transform:none}}
+
+/* ===== Price page ===== */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ptable{width:100%;border-collapse:collapse;font-size:.95rem}
+.ptable th{background:var(--accent);color:#fff;font-family:'Sora';font-weight:700;padding:10px 14px;text-align:left;white-space:nowrap}
+.ptable td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ptable tr:last-child td{border-bottom:none}
+.ptable tr:nth-child(even) td{background:var(--paper-2)}
+.prange{font-family:'Sora';font-weight:700;color:var(--accent);white-space:nowrap}
+.pnote{color:var(--ink-soft);font-size:.88rem}
+.price-vat{font-size:.86rem;color:var(--ink-soft);margin-top:14px}
+.bg-light{background:var(--paper-2)}
+.ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+@media(max-width:860px){.ex-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ex-grid{grid-template-columns:1fr}}
+.ex-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.ex-card h3{font-size:1rem;margin-bottom:8px}
+.ex-card p{font-size:.9rem;color:var(--ink-soft);margin-bottom:6px}
+.ex-amount{font-family:'Sora';font-weight:700;font-size:1.1rem;color:var(--accent) !important}
+.tarieven-ref{margin-top:18px;font-size:.93rem}
+.tarieven-ref a{color:var(--accent);font-weight:600}
+.tarieven-ref a:hover{text-decoration:underline}

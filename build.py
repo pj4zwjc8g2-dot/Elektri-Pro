@@ -3,7 +3,7 @@
 #  build.py — Elektri Pro v4 (NL / FR / EN)
 # =====================================================================
 import os, shutil, html, datetime, json
-from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG, FAQ_KEURING, CITY_KEURING
+from data import BUSINESS, SERVICES, CITIES, REVIEWS, MENU, FAQ, TRUST_POINTS, UI, LANG_CONFIG, FAQ_KEURING, CITY_KEURING, PRICES, FAQ_PRICES, PRICE_EXAMPLES
 
 OUT   = "site"
 B     = BUSINESS
@@ -220,18 +220,18 @@ def band(lang, title=None, subtitle=None):
 <p>{s}</p>
 <a class="big-call" href="tel:{B['phone_link']}" data-call="band">📞 {esc(B['phone_display'])}</a></div></section>"""
 
-def faq_block(lang, items):
-    u = UI[lang]
+def faq_block(lang, items, title=None):
     rows = "".join(
         f'<details class="faq-item"{" open" if i == 0 else ""}>'
         f'<summary>{esc(q["q"])}</summary><p>{esc(q["a"])}</p></details>'
         for i, q in enumerate(items)
     )
-    titles = {"nl": "Veelgestelde vragen over de elektriciteitskeuring",
-              "fr": "Questions fréquentes sur le contrôle électrique",
-              "en": "Frequently asked questions about electrical inspection"}
+    if title is None:
+        title = {"nl": "Veelgestelde vragen over de elektriciteitskeuring",
+                 "fr": "Questions fréquentes sur la mise en conformité électrique",
+                 "en": "Frequently asked questions about electrical inspection"}[lang]
     return (f'<section class="section" id="faq"><div class="wrap">'
-            f'<h2 class="reveal">{esc(titles[lang])}</h2>'
+            f'<h2 class="reveal">{esc(title)}</h2>'
             f'<div class="faq-list reveal">{rows}</div></div></section>')
 
 def crosslink_block(lang, skey, pfx, cname, slug):
@@ -269,6 +269,78 @@ def crosslink_block(lang, skey, pfx, cname, slug):
     return (f'<div class="crosslink reveal">'
             f'<p>{esc(intro)} <a href="{esc(target_url)}">{esc(anchor)}</a>.</p>'
             f'</div>')
+
+def tarieven_link_block(lang, pfx):
+    u = UI[lang]
+    return (f'<p class="tarieven-ref reveal">'
+            f'<a href="{D}{pfx}/prijzen/">{esc(u["tarieven_link"])}</a></p>')
+
+def build_prijzen(lang):
+    u     = UI[lang]
+    pfx   = LANG_CONFIG[lang]["prefix"]
+    canon = "/prijzen/"
+
+    rows = ""
+    for p in PRICES.values():
+        low  = p["range"]["low"]
+        high = p["range"]["high"]
+        rows += (f'<tr><td>{esc(p["label"][lang])}</td>'
+                 f'<td class="prange">€ {low}–{high}</td>'
+                 f'<td class="pnote">{esc(p["note"][lang])}</td></tr>')
+    price_table = f"""<section class="section" id="tarieven"><div class="wrap">
+<h2 class="reveal">{esc(u['prijzen_table_title'])}</h2>
+<p class="sub reveal">{esc(u['prijzen_table_sub'])}</p>
+<div class="reveal table-wrap"><table class="ptable">
+<thead><tr><th>{esc(u['pth_type'])}</th><th>{esc(u['pth_price'])}</th><th>{esc(u['pth_note'])}</th></tr></thead>
+<tbody>{rows}</tbody>
+</table></div>
+<p class="price-vat reveal">{esc(u['price_vat_note'])}</p>
+</div></section>"""
+
+    factor_items = "".join(f"<li>{esc(f)}</li>" for f in u["prix_factors"])
+    factors = f"""<section class="section bg-light" id="factoren"><div class="wrap">
+<h2 class="reveal">{esc(u['prix_factors_title'])}</h2>
+<ul class="checks reveal">{factor_items}</ul>
+</div></section>"""
+
+    ex_cards = ""
+    for ex in PRICE_EXAMPLES[lang]:
+        ex_cards += (f'<div class="ex-card reveal">'
+                     f'<h3>{esc(ex["title"])}</h3>'
+                     f'<p>{esc(ex["desc"])}</p>'
+                     f'<p class="ex-amount">{esc(ex["amount"])}</p>'
+                     f'</div>')
+    examples = f"""<section class="section" id="voorbeelden"><div class="wrap">
+<h2 class="reveal">{esc(u['prix_examples_title'])}</h2>
+<div class="ex-grid">{ex_cards}</div>
+</div></section>"""
+
+    faq_sec = faq_block(lang, FAQ_PRICES[lang], title=u["faq_prix_title"])
+
+    slinks = "".join(
+        f'<a class="citychip" href="{D}{pfx}/{skey}/">{esc(s["label"])}</a>'
+        for skey, s in SERVICES[lang].items()
+    )
+    srv_sec = f"""<section class="section" id="diensten"><div class="wrap">
+<h2 class="reveal">{esc(u['prix_services_title'])}</h2>
+<div class="citygrid reveal">{slinks}</div>
+</div></section>"""
+
+    inner = (hero(lang, u["prijzen_h1"], u["prijzen_lead"], badge=u["prijzen_badge"])
+             + trust_strip(lang)
+             + price_table
+             + factors
+             + examples
+             + faq_sec
+             + srv_sec
+             + band(lang))
+
+    page_url = f"{D}{pfx}{canon}"
+    render(f"{OUT}{pfx}/prijzen/index.html",
+           u["prijzen_pg_title"], u["prijzen_pg_desc"],
+           page_url,
+           schema_localbusiness(lang, page_url=page_url) + schema_faq(FAQ_PRICES[lang]),
+           inner, lang, canon)
 
 # ── page builders ─────────────────────────────────────────────────────
 def build_home(lang):
@@ -367,6 +439,7 @@ def build_service(lang, skey, s):
             for c in cs)
         pblocks += f'<div class="prov-block"><h3>{esc(prov)}</h3><div class="citygrid">{chips}</div></div>'
     faq_section = faq_block(lang, FAQ_KEURING[lang]) + schema_faq(FAQ_KEURING[lang]) if skey == "keuring" else ""
+    tlink = tarieven_link_block(lang, pfx)
     inner = (hero(lang, f'{esc(s["kw"])} — Brabant &amp; Brussel', s["intro"])
              + trust_strip(lang)
              + f"""<section class="section" id="info"><div class="wrap">
@@ -376,11 +449,12 @@ def build_service(lang, skey, s):
 <h2 class="reveal" style="margin-top:54px">{esc(s['kw'])} {esc(u['per_city'])}</h2>
 <p class="sub reveal">{esc(u['sel_city'])}</p>
 {pblocks}
+{tlink}
 </div></section>"""
              + faq_section + trust_grid(lang) + reviews_section(lang) + band(lang))
     canon = f"/{skey}/"
-    keuring_subtitle = {"nl": "Installaties conform AREI", "fr": "Mise en conformité RGIE", "en": "AREI Compliance"}
-    keuring_svc_type = {"nl": "Elektriciteitskeuring", "fr": "Contrôle électrique", "en": "Electrical Inspection"}
+    keuring_subtitle = {"nl": "Installaties conform AREI", "fr": "Conformité RGIE — Électricien agréé", "en": "AREI Compliance"}
+    keuring_svc_type = {"nl": "Elektriciteitskeuring", "fr": "Mise en conformité électrique", "en": "Electrical Inspection"}
     title = (f"{s['kw']} | {keuring_subtitle[lang]} | {B['name']}" if skey == "keuring"
              else f"{s['kw']} | {B['name']}")
     page_url = f"{D}{pfx}/{skey}/"
@@ -411,6 +485,7 @@ def build_service_city(lang, skey, s, c):
     city_faq = faq_block(lang, FAQ_KEURING[lang]) + schema_faq(FAQ_KEURING[lang]) if skey == "keuring" else ""
     localnote = CITY_KEURING.get(c["slug"], {}).get(lang, c["local"][lang]) if skey == "keuring" else c["local"][lang]
     xlink  = crosslink_block(lang, skey, pfx, cname, c["slug"])
+    tlink  = tarieven_link_block(lang, pfx)
     inner  = (hero(lang, f'{esc(s["kw"])} {esc(cname)}', lead)
               + trust_strip(lang)
               + f"""<section class="section" id="info"><div class="wrap">
@@ -419,16 +494,17 @@ def build_service_city(lang, skey, s, c):
 <div class="checks reveal"><h3>{esc(u['why_call'])} {esc(cname)}</h3><ul>{pts}</ul></div>
 {nearby_block}
 {xlink}
+{tlink}
 </div></section>"""
               + city_faq + trust_grid(lang) + reviews_section(lang) + band(lang, f"{s['kw']} — {cname}?"))
     if skey == "keuring":
-        keuring_suf = {"nl": "Conform & klaar voor keuring", "fr": "Mise en conformité électrique", "en": "Electrical Compliance"}
+        keuring_suf = {"nl": "Conform & klaar voor keuring", "fr": "Électricien agréé RGIE", "en": "Electrical Compliance"}
         keuring_desc = {
             "nl": f"Elektriciteitskeuring in {cname}? Wij bereiden uw installatie voor op de keuring of werken inbreuken weg. AREI-conform. Bel {B['phone_display']}.",
-            "fr": f"Contrôle électrique à {cname} ? Mise en conformité RGIE rapide et professionnelle. Appelez le {B['phone_display']}.",
+            "fr": f"Mise en conformité électrique à {cname} — installation refusée ? RGIE rapide. Électricien agréé. Appelez le {B['phone_display']}.",
             "en": f"Electrical inspection in {cname}? We prepare your installation for compliance or rectify violations from a negative report. Call {B['phone_display']}.",
         }
-        keuring_svc_type = {"nl": "Elektriciteitskeuring", "fr": "Contrôle électrique", "en": "Electrical Inspection"}
+        keuring_svc_type = {"nl": "Elektriciteitskeuring", "fr": "Mise en conformité électrique", "en": "Electrical Inspection"}
         pg_title   = f"{s['kw']} {cname} — {keuring_suf[lang]} | {B['name']}"
         pg_desc    = keuring_desc[lang]
         page_url_c = f"{D}{pfx}{canon}"
@@ -446,7 +522,7 @@ def build_service_city(lang, skey, s, c):
 
 def build_sitemap():
     # Canonical paths (lang-neutral; NL prefix is empty so these are the NL URLs)
-    canon_paths = ["/", "/diensten/", "/faq/", "/contact/"]
+    canon_paths = ["/", "/diensten/", "/prijzen/", "/faq/", "/contact/"]
     for skey in SERVICES["nl"]:
         canon_paths.append(f"/{skey}/")
         for c in CITIES:
@@ -491,6 +567,7 @@ for lang in LANGS:
         os.makedirs(f"{OUT}{pfx}", exist_ok=True)
     build_home(lang);     total += 1
     build_diensten(lang); total += 1
+    build_prijzen(lang);  total += 1
     build_faq(lang);      total += 1
     build_contact(lang);  total += 1
     for skey, s in SERVICES[lang].items():

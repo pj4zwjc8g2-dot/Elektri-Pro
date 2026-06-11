@@ -37,18 +37,21 @@ MENU = {
     "nl": [
         {"label": "Home",     "url": "/"},
         {"label": "Diensten", "url": "/diensten/"},
+        {"label": "Prijzen",  "url": "/prijzen/"},
         {"label": "FAQ",      "url": "/faq/"},
         {"label": "Contact",  "url": "/contact/"},
     ],
     "fr": [
         {"label": "Accueil",  "url": "/"},
         {"label": "Services", "url": "/diensten/"},
+        {"label": "Tarifs",   "url": "/prijzen/"},
         {"label": "FAQ",      "url": "/faq/"},
         {"label": "Contact",  "url": "/contact/"},
     ],
     "en": [
         {"label": "Home",     "url": "/"},
         {"label": "Services", "url": "/diensten/"},
+        {"label": "Pricing",  "url": "/prijzen/"},
         {"label": "FAQ",      "url": "/faq/"},
         {"label": "Contact",  "url": "/contact/"},
     ],
@@ -113,6 +116,29 @@ UI = {
         "faq_pg_desc":    "Veelgestelde vragen over noodinterventies, zekeringkasten, prijzen en werkgebied van Elektri Pro. Bel +32 498 06 03 77.",
         "cnt_pg_title":   "Contact | Elektri Pro",
         "cnt_pg_desc":    "Neem contact op met Elektri Pro: bel +32 498 06 03 77 voor noodinterventies en elektriciteitswerken in Vlaams-Brabant, Brussel en Waals-Brabant.",
+        "prijzen_pg_title":    "Elektricien prijzen 2026 — Tarieven & prijsvoorbeelden | Elektri Pro",
+        "prijzen_pg_desc":     "Wat kost een elektricien in België? Eerlijke tarieven en prijsvoorbeelden van Elektri Pro: noodinterventies, zekeringkast, elektriciteitskeuring en meer. Excl. btw. Bel +32 498 06 03 77.",
+        "prijzen_badge":       "Transparante tarieven",
+        "prijzen_h1":          "Wat kost een elektricien in 2026?",
+        "prijzen_lead":        "Eerlijke tarieven, vooraf besproken — geen verrassingen. Realistische prijsvorken en voorbeelden uit de praktijk voor de meest gevraagde elektriciteitswerken in België.",
+        "prijzen_table_title": "Tarieven & prijsvorken",
+        "prijzen_table_sub":   "Marktconforme Belgische voorbeeldprijzen excl. btw. Exacte prijs na opname ter plaatse of telefonische inschatting.",
+        "pth_type":            "Werktype",
+        "pth_price":           "Prijsvork",
+        "pth_note":            "Toelichting",
+        "price_vat_note":      "Alle prijzen excl. btw (21 %). Bij renovatiewerken aan woningen ≥ 10 jaar geldt doorgaans 6 % btw.",
+        "prix_factors_title":  "Wat bepaalt de prijs van een elektricien?",
+        "prix_factors":        [
+            "Leeftijd en toestand van de bestaande installatie",
+            "Grootte van de woning en het aantal elektrische kringen",
+            "Materiaalkosten (type differentieel, kabelsectie, merk)",
+            "Bereikbaarheid: inbouw of opbouw, muren openen",
+            "Dringendheid: weekdag overdag vs. avond of weekend",
+        ],
+        "prix_examples_title": "Voorbeelden uit de praktijk",
+        "prix_services_title": "Onze diensten",
+        "faq_prix_title":      "Veelgestelde vragen over prijzen",
+        "tarieven_link":       "Bekijk onze tarieven →",
         "call_now":       "Bel nu",
     },
     "fr": {
@@ -167,12 +193,35 @@ UI = {
         "srv_lead":       "Elektri Pro propose des solutions professionnelles pour les interventions d'urgence et les tableaux électriques dans le Brabant flamand, Bruxelles et le Brabant wallon.",
         "srv_pg_title":   "Services | Elektri Pro",
         "srv_pg_desc":    "Découvrez les services d'Elektri Pro : interventions d'urgence et tableaux électriques dans le Brabant flamand, Bruxelles et le Brabant wallon.",
-        "home_title":     "Elektri Pro — Électricien & Urgences | Brabant flamand, Bruxelles, Brabant wallon",
-        "home_desc":      "Elektri Pro : électricien agréé pour les interventions d'urgence dans le Brabant flamand, Bruxelles et le Brabant wallon. Intervention rapide. Tél. +32 498 06 03 77.",
+        "home_title":     "Électricien agréé Bruxelles & Brabant — Dépannage électricité & Urgences | Elektri Pro",
+        "home_desc":      "Électricien agréé à Bruxelles et dans le Brabant : dépannage électricité, mise en conformité électrique et remplacement tableau. Intervention rapide. Tél. +32 498 06 03 77.",
         "faq_pg_title":   "FAQ — Questions fréquentes | Elektri Pro",
         "faq_pg_desc":    "Questions fréquentes sur les interventions d'urgence, tableaux électriques, prix et zone de travail d'Elektri Pro. Tél. +32 498 06 03 77.",
         "cnt_pg_title":   "Contact | Elektri Pro",
         "cnt_pg_desc":    "Contactez Elektri Pro : appelez le +32 498 06 03 77 pour des interventions d'urgence et travaux d'électricité dans le Brabant flamand, Bruxelles et le Brabant wallon.",
+        "prijzen_pg_title":    "Prix électricien 2026 — Tarifs & exemples | Elektri Pro",
+        "prijzen_pg_desc":     "Combien coûte un électricien en Belgique ? Tarifs honnêtes et exemples d'Elektri Pro : dépannage électricité, tableau électrique, mise en conformité. HTVA. Tél. +32 498 06 03 77.",
+        "prijzen_badge":       "Tarifs transparents",
+        "prijzen_h1":          "Combien coûte un électricien ?",
+        "prijzen_lead":        "Des tarifs honnêtes, discutés à l'avance — aucune mauvaise surprise. Fourchettes de prix réalistes et exemples concrets pour les travaux d'électricité les plus demandés en Belgique.",
+        "prijzen_table_title": "Tarifs & fourchettes de prix",
+        "prijzen_table_sub":   "Exemples de prix belges conformes au marché, HTVA. Prix exact après visite sur place ou estimation téléphonique.",
+        "pth_type":            "Type de travail",
+        "pth_price":           "Fourchette",
+        "pth_note":            "Précisions",
+        "price_vat_note":      "Tous les prix sont hors TVA (21 %). Pour les travaux de rénovation de logements ≥ 10 ans, un taux de 6 % s'applique généralement.",
+        "prix_factors_title":  "Qu'est-ce qui détermine le prix ?",
+        "prix_factors":        [
+            "L'âge et l'état de l'installation existante",
+            "La taille du logement et le nombre de circuits électriques",
+            "Les coûts en matériaux (type de différentiel, section de câble, marque)",
+            "L'accessibilité : encastré ou apparent, ouverture de murs",
+            "L'urgence : semaine en journée ou soirée/week-end",
+        ],
+        "prix_examples_title": "Exemples concrets",
+        "prix_services_title": "Nos services",
+        "faq_prix_title":      "Questions fréquentes sur les prix",
+        "tarieven_link":       "Voir nos tarifs →",
         "call_now":       "Appelez maintenant",
     },
     "en": {
@@ -233,6 +282,29 @@ UI = {
         "faq_pg_desc":    "Frequently asked questions about emergency interventions, fuse boxes, pricing and service area of Elektri Pro. Call +32 498 06 03 77.",
         "cnt_pg_title":   "Contact | Elektri Pro",
         "cnt_pg_desc":    "Contact Elektri Pro: call +32 498 06 03 77 for emergency interventions and electrical work in Flemish Brabant, Brussels and Walloon Brabant.",
+        "prijzen_pg_title":    "Electrician Prices 2026 — Rates & Examples | Elektri Pro",
+        "prijzen_pg_desc":     "How much does an electrician cost in Belgium? Honest rates and real examples from Elektri Pro: emergency call-outs, fuse box, electrical inspection and more. Excl. VAT. Call +32 498 06 03 77.",
+        "prijzen_badge":       "Transparent pricing",
+        "prijzen_h1":          "What does an electrician cost in 2026?",
+        "prijzen_lead":        "Honest prices, agreed upfront — no surprises. Realistic price ranges and practical examples for the most common electrical jobs in Belgium.",
+        "prijzen_table_title": "Rates & price ranges",
+        "prijzen_table_sub":   "Market-rate Belgian example prices excl. VAT. Exact price after on-site assessment or telephone estimate.",
+        "pth_type":            "Type of work",
+        "pth_price":           "Price range",
+        "pth_note":            "Notes",
+        "price_vat_note":      "All prices excl. VAT (21%). For renovation work on properties ≥ 10 years old, 6% VAT typically applies.",
+        "prix_factors_title":  "What determines an electrician's price?",
+        "prix_factors":        [
+            "Age and condition of the existing installation",
+            "Size of the property and number of electrical circuits",
+            "Material costs (type of RCD, cable cross-section, brand)",
+            "Accessibility: flush-mounted or surface, opening walls",
+            "Urgency: weekday daytime vs. evening or weekend",
+        ],
+        "prix_examples_title": "Real-life examples",
+        "prix_services_title": "Our services",
+        "faq_prix_title":      "Frequently asked questions about pricing",
+        "tarieven_link":       "View our rates →",
         "call_now":       "Call now",
     },
 }
@@ -305,11 +377,12 @@ SERVICES = {
     },
     "fr": {
         "noodelektricien": {
-            "label": "Interventions d'urgence", "kw": "Électricien d'urgence", "icon": "🚨",
-            "intro": "Panne de courant soudaine, court-circuit ou installation qui tombe en panne ? Elektri Pro intervient rapidement et résout le problème.",
+            "label": "Interventions d'urgence", "kw": "Dépannage électricité", "icon": "🚨",
+            "intro": "Panne de courant soudaine, court-circuit ou installation défaillante ? Elektri Pro assure le dépannage électricité rapidement, même le soir et le week-end.",
             "body": [
-                "Une panne électrique n'attend pas le bon moment. Un différentiel qui saute au milieu de la nuit, un court-circuit qui met votre tableau hors service, ou une prise qui brûle soudainement — ce sont des situations où vous avez rapidement besoin d'un professionnel qui sait ce qu'il fait.",
+                "Une panne électrique n'attend pas le bon moment. Un différentiel qui saute au milieu de la nuit, un court-circuit qui met votre tableau hors service, ou une prise qui brûle soudainement — ce sont des situations où vous avez rapidement besoin d'un professionnel agréé qui sait ce qu'il fait.",
                 "Nous recherchons la cause plutôt que de simplement supprimer le symptôme. Cela vous évite que le même problème se reproduise quelques jours plus tard. Le prix est discuté à l'avance, même lors d'une intervention urgente, afin que vous n'ayez jamais de mauvaises surprises.",
+                "Avant d'appeler, vérifiez si la panne de courant affecte aussi vos voisins ou votre rue : si oui, c'est une panne sur le réseau public — Sibelga à Bruxelles, Ores ou Fluvius en périphérie — et non votre installation privée. Si vous seul n'avez plus de courant, le problème est dans votre installation : c'est là qu'intervient Elektri Pro. Dépannage électricité sur place, diagnostic précis, réparation immédiate.",
             ],
             "points": ["Panne de courant et pannes générales","Court-circuit et fusibles grillés","Différentiel qui saute continuellement","Prises surchauffées ou endommagées","Tableau défectueux suite à un orage ou surtension"],
         },
@@ -323,11 +396,12 @@ SERVICES = {
             "points": ["Remplacement des anciens fusibles par des disjoncteurs automatiques","Placement ou ajout d'interrupteurs différentiels","Extension du tableau pour des circuits supplémentaires","Préparation pour borne de recharge ou panneaux solaires","Mise en conformité pour le contrôle électrique"],
         },
         "keuring": {
-            "label": "Contrôle & conformité électrique", "kw": "Contrôle électrique", "icon": "📋",
-            "intro": "Préparer votre installation électrique pour le contrôle électrique obligatoire, ou rectifier les infractions d'un rapport de contrôle négatif.",
+            "label": "Mise en conformité & contrôle électrique", "kw": "Mise en conformité électrique", "icon": "📋",
+            "intro": "Préparer votre installation pour le contrôle électrique obligatoire, ou corriger les infractions d'un rapport de contrôle négatif — mise en conformité électrique RGIE rapide et professionnelle.",
             "body": [
-                "Un contrôle électrique est obligatoire lors de la vente d'un logement, pour une nouvelle installation et périodiquement pour les logements anciens. Le contrôle lui-même est effectué par un organisme agréé comme Vinçotte, BTV ou AIB-Vinçotte. Nous veillons à ce que votre installation soit conforme au RGIE pour qu'elle réussisse le contrôle électrique, ou nous rectifions les infractions d'un rapport négatif.",
+                "Un contrôle électrique est obligatoire lors de la vente d'un logement, pour une nouvelle installation et périodiquement pour les logements anciens. Le contrôle lui-même est effectué par un organisme agréé comme Vinçotte, BTV ou AIB-Vinçotte. Nous veillons à ce que votre installation soit conforme au RGIE pour qu'elle réussisse le contrôle, ou nous rectifions les infractions d'un rapport négatif.",
                 "Une situation courante : vous êtes sur le point de vendre et le rapport mentionne des infractions à corriger dans les dix-huit mois avant la contre-visite. Nous passons le rapport en revue avec vous, effectuons les travaux de mise en conformité électrique — mise à la terre, protection différentielle, tableau — et vous accompagnons pour l'organisation de la contre-visite.",
+                "Installation refusée après contrôle ? Vous disposez de dix-huit mois pour corriger les infractions avant la contre-visite obligatoire. Ce délai est strictement encadré : passé ce terme, un nouveau contrôle complet est exigé. Elektri Pro est votre partenaire pour la mise en conformité électrique : nous analysons le rapport infraction par infraction, établissons un devis transparent, réalisons les travaux — mise à la terre, remplacement du tableau, correction des prises et circuits — et vous accompagnons jusqu'à l'obtention de l'attestation de conformité électrique.",
             ],
             "points": ["Préparer l'installation pour le contrôle électrique obligatoire (vente, nouvelle installation)","Rectifier les infractions d'un rapport de contrôle négatif","Mise en conformité de la mise à la terre et liaisons équipotentielles","Adapter le tableau aux normes RGIE actuelles","Accompagnement pour l'organisation de la contre-visite"],
         },
@@ -770,4 +844,210 @@ CITY_KEURING = {
         "fr": "Tubize se situe à la frontière du Brabant wallon et du Hainaut et a un passé industriel qui a marqué son parc immobilier. De nombreux biens sont des maisons ouvrières et des maisons mitoyennes datant des années 1920 aux années 1960 — construites à une époque où l'électricité était encore récente et les normes de sécurité minimales. Les installations électriques dans ce type de logements sont rarement conformes lors d'un contrôle électrique : absence de conducteur de terre, pas de protection différentielle, fusibles en porcelaine jamais remplacés et câblage ayant atteint la fin de sa durée de vie. Le long du corridor de la E429 se trouvent également des terrains industriels et des zones d'entreprises ; pour l'immobilier commercial, des exigences de contrôle supplémentaires s'appliquent. Nous intervenons dans toute la région de Tubize pour les particuliers et les entreprises. Notre approche : une analyse rapide du rapport de contrôle, un devis clair par infraction, exécution des travaux et accompagnement pour la contre-visite.",
         "en": "Tubize lies on the border of Walloon Brabant and Hainaut and has an industrial past that has left its mark on the housing stock. Many properties are workers' homes and terraced houses dating from the 1920s to the 1960s — built at a time when electricity was still a recent addition and safety standards were minimal. The electrical installations in this type of property are rarely compliant at an electrical inspection: no earth conductor, no RCD protection, porcelain fuses never replaced and wiring that has reached the end of its service life. Along the E429 corridor there are also industrial sites and business zones; for commercial property additional inspection requirements apply. We work throughout the Tubize region for both private clients and businesses. Our approach: a quick analysis of the inspection report, a clear quote per violation, execution of the work and guidance through the re-inspection. No work more than necessary — no work less than required.",
     },
+}
+
+# =====================================================================
+# TE VALIDEREN DOOR IZZEDDINE
+# Marktconforme Belgische prijsvorken (excl. btw).
+# Pas bedragen aan vóór livegang indien nodig.
+# Geen lokprijzen — realistische vorken inclusief vermelding excl. btw.
+# =====================================================================
+PRICES = {
+    "uurtarief": {
+        "label": {
+            "nl": "Uurtarief + voorrijkost",
+            "fr": "Tarif horaire + frais de déplacement",
+            "en": "Hourly rate + call-out fee",
+        },
+        "range": {"low": 65, "high": 95},
+        "note": {
+            "nl": "€65–95/u excl. btw. Voorrijkost: €25–40. Min. 1 u.",
+            "fr": "65–95 €/h HTVA. Frais de déplacement : 25–40 €. Min. 1 h.",
+            "en": "€65–95/hr excl. VAT. Call-out fee: €25–40. Min. 1 hr.",
+        },
+    },
+    "spoed_dag": {
+        "label": {
+            "nl": "Spoedinterventie — dag (ma–vr, 7–18 u)",
+            "fr": "Urgence — jour (lu–ve, 7h–18h)",
+            "en": "Emergency — daytime (Mon–Fri, 7am–6pm)",
+        },
+        "range": {"low": 95, "high": 130},
+        "note": {
+            "nl": "Per uur, min. 1 uur.",
+            "fr": "Par heure, min. 1 heure.",
+            "en": "Per hour, min. 1 hour.",
+        },
+    },
+    "spoed_avond": {
+        "label": {
+            "nl": "Spoedinterventie — avond/weekend/feestdag",
+            "fr": "Urgence — soir/week-end/jour férié",
+            "en": "Emergency — evening/weekend/public holiday",
+        },
+        "range": {"low": 130, "high": 180},
+        "note": {
+            "nl": "Na 18 u, weekends en feestdagen. Per uur, min. 1 uur.",
+            "fr": "Après 18h, week-ends et jours fériés. Par heure, min. 1 h.",
+            "en": "After 6pm, weekends and public holidays. Per hour, min. 1 hr.",
+        },
+    },
+    "keuring_klein": {
+        "label": {
+            "nl": "Conform maken voor keuring — kleine inbreuken",
+            "fr": "Mise en conformité électrique — infractions mineures",
+            "en": "Compliance work for inspection — minor violations",
+        },
+        "range": {"low": 150, "high": 400},
+        "note": {
+            "nl": "Aarding, differentieel, stopcontacten. Afhankelijk van het aantal inbreuken.",
+            "fr": "Mise à la terre, différentiel, prises. Selon le nombre d'infractions.",
+            "en": "Earthing, RCD, sockets. Depends on the number of violations.",
+        },
+    },
+    "keuring_groot": {
+        "label": {
+            "nl": "Conform maken voor keuring — grote inbreuken/herbekabeling",
+            "fr": "Mise en conformité électrique — infractions majeures/recâblage",
+            "en": "Compliance work — major violations/partial rewire",
+        },
+        "range": {"low": 500, "high": 1800},
+        "note": {
+            "nl": "Afhankelijk van de omvang. Offerte op maat na opname keuringsverslag.",
+            "fr": "Selon l'étendue. Devis sur mesure après examen du rapport.",
+            "en": "Depends on scope. Custom quote after reviewing the inspection report.",
+        },
+    },
+    "zekeringkast": {
+        "label": {
+            "nl": "Zekeringkast vervangen — gezinswoning",
+            "fr": "Remplacement tableau électrique — maison unifamiliale",
+            "en": "Fuse box replacement — family home",
+        },
+        "range": {"low": 600, "high": 1200},
+        "note": {
+            "nl": "Incl. automaten, differentieelschakelaars en labelling. Excl. eventuele bekabelingswerken.",
+            "fr": "Incl. disjoncteurs, différentiels et étiquetage. Hors travaux de câblage éventuels.",
+            "en": "Incl. circuit breakers, RCDs and labelling. Excl. any rewiring work.",
+        },
+    },
+    "stopcontact_licht": {
+        "label": {
+            "nl": "Stopcontact of lichtpunt bijplaatsen",
+            "fr": "Ajout d'une prise ou d'un point d'éclairage",
+            "en": "Adding a socket or lighting point",
+        },
+        "range": {"low": 80, "high": 200},
+        "note": {
+            "nl": "Afhankelijk van afstand tot kring en afwerking.",
+            "fr": "Selon la distance au circuit et la finition.",
+            "en": "Depending on distance to circuit and finish.",
+        },
+    },
+    "laadpaal": {
+        "label": {
+            "nl": "Laadpaal elektrische wagen installeren",
+            "fr": "Installation borne de recharge voiture électrique",
+            "en": "EV charging point installation",
+        },
+        "range": {"low": 250, "high": 600},
+        "note": {
+            "nl": "Excl. de laadpaal zelf. Incl. aansluiting en aanpassing zekeringkast indien nodig.",
+            "fr": "Hors borne elle-même. Incl. raccordement et adaptation tableau si nécessaire.",
+            "en": "Excl. the charger unit. Incl. connection and fuse box adaptation if needed.",
+        },
+    },
+}
+
+FAQ_PRICES = {
+    "nl": [
+        {"q": "Wat kost een elektricien per uur in België?",
+         "a": "Een erkend elektricien rekent in België doorgaans €65 tot €95 per uur (excl. btw), plus voorrijkosten van €25 tot €40. Voor spoedinterventies buiten de kantooruren loopt het tarief op tot €130–€180/u. De exacte prijs hangt af van de aard van het werk en de benodigde materialen. Wij bespreken altijd de totale kostprijs vooraf — ook telefonisch."},
+        {"q": "Wat kost een elektriciteitskeuring voorbereiden of de inbreuken wegwerken?",
+         "a": "Bij kleine inbreuken (aarding, differentieel, stopcontacten) rekent u op €150 tot €400 voor de conformiteitswerken. Grotere inbreuken of gedeeltelijke herbekabeling kan €500 tot €1.800 of meer kosten, afhankelijk van de omvang. De keuring zelf door een erkend organisme (Vinçotte, BTV, AIB-Vinçotte) kost €150–€300 extra. Wij bespreken het keuringsverslag punt voor punt en geven u een duidelijke offerte."},
+        {"q": "Wat kost een nieuwe zekeringkast?",
+         "a": "Een volledige vervanging van de zekeringkast bij een doorsnee gezinswoning kost doorgaans €600 tot €1.200 (excl. btw), inclusief automaten, differentieelschakelaars en nette labelling. Grotere panden of installaties met veel kringen liggen hoger. Exacte prijs na opname ter plaatse — wij komen gratis langs voor een inschatting."},
+        {"q": "Zijn de prijzen inclusief of exclusief btw?",
+         "a": "Alle vermelde prijzen zijn exclusief btw (21 %). Bij renovatiewerken aan woningen ouder dan 10 jaar geldt vaak een verlaagd btw-tarief van 6 % — wij verduidelijken dat bij de offerte. U ontvangt altijd een factuur met het correct toegepaste btw-tarief."},
+        {"q": "Geeft u een offerte op voorhand?",
+         "a": "Ja, altijd. Voor eenvoudige interventies geven we een richtprijs telefonisch; voor grotere werken komen we ter plaatse voor een gratis opname en offerte op maat. U beslist daarna zonder verplichtingen."},
+    ],
+    "fr": [
+        {"q": "Combien coûte un électricien à l'heure en Belgique ?",
+         "a": "Un électricien agréé en Belgique facture généralement entre 65 et 95 € de l'heure (HTVA), plus des frais de déplacement de 25 à 40 €. Pour les urgences en dehors des heures de bureau, le tarif monte à 130–180 €/h. Le prix exact dépend de la nature du travail et des matériaux nécessaires. Nous discutons toujours du coût total à l'avance — même par téléphone."},
+        {"q": "Quel est le prix d'une mise en conformité électrique ?",
+         "a": "Pour des infractions mineures (mise à la terre, différentiel, prises), comptez entre 150 et 400 € pour les travaux de mise en conformité électrique. Les infractions majeures ou le recâblage partiel peuvent coûter de 500 à 1 800 € ou plus selon l'étendue. Le contrôle lui-même (Vinçotte, BTV, AIB-Vinçotte) coûte 150–300 € en plus. Nous parcourons le rapport point par point et vous fournissons un devis clair."},
+        {"q": "Quel est le prix d'un nouveau tableau électrique ?",
+         "a": "Le remplacement complet du tableau électrique d'une maison unifamiliale standard coûte généralement entre 600 et 1 200 € (HTVA), incluant disjoncteurs, interrupteurs différentiels et étiquetage. Les grandes propriétés coûtent davantage. Prix exact après visite sur place — nous venons gratuitement pour une estimation."},
+        {"q": "Les prix sont-ils TTC ou HTVA ?",
+         "a": "Tous les prix indiqués sont hors TVA (21 %). Pour les travaux de rénovation de logements de plus de 10 ans, un taux réduit de 6 % s'applique souvent — nous le précisons dans le devis. Vous recevez toujours une facture avec le taux de TVA correctement appliqué."},
+        {"q": "Faites-vous un devis à l'avance ?",
+         "a": "Oui, toujours. Pour les interventions simples nous donnons une estimation par téléphone ; pour les travaux plus importants nous venons sur place gratuitement pour un relevé et un devis sur mesure. Vous décidez ensuite sans engagement."},
+    ],
+    "en": [
+        {"q": "How much does an electrician cost per hour in Belgium?",
+         "a": "A certified electrician in Belgium typically charges €65–€95 per hour (excl. VAT), plus a call-out fee of €25–€40. For emergency interventions outside office hours the rate rises to €130–€180/hr. The exact price depends on the nature of the work and any material costs. We always discuss the total cost upfront — even by phone."},
+        {"q": "How much does it cost to prepare for an electrical inspection or correct violations?",
+         "a": "For minor violations (earthing, RCD, sockets), expect to pay €150–€400 for the compliance work. Major violations or partial rewiring can cost €500–€1,800 or more depending on scope. The inspection itself (Vinçotte, BTV, AIB-Vinçotte) costs an additional €150–€300. We go through the inspection report point by point and give you a clear quote."},
+        {"q": "How much does a new fuse box cost?",
+         "a": "A complete fuse box replacement for a standard family home typically costs €600–€1,200 (excl. VAT), including circuit breakers, RCDs and labelling. Larger properties will be higher. Exact price after an on-site assessment — we visit free of charge for an estimate."},
+        {"q": "Are the prices inclusive or exclusive of VAT?",
+         "a": "All listed prices are exclusive of VAT (21%). For renovation work on properties more than 10 years old, a reduced rate of 6% often applies — we clarify this in the quote. You always receive an invoice with the correctly applied VAT rate."},
+        {"q": "Do you provide a quote in advance?",
+         "a": "Yes, always. For simple interventions we give a price estimate by phone; for larger work we visit on-site free of charge for an assessment and tailored quote. You then decide without obligation."},
+    ],
+}
+
+PRICE_EXAMPLES = {
+    "nl": [
+        {
+            "title": "Verkoop rijwoning (1975) — negatief keuringsverslag",
+            "desc": "Klant stond voor verkoop maar had een verslag met 6 inbreuken: geen differentieelbeveiliging per groep, slechte aarding, verouderde stopcontacten in de badkamer. Wij plaatsten een nieuwe differentieelgroep, legden een aardlus en vervingen de betrokken stopcontacten. Resultaat: herkeuring geslaagd binnen 3 weken.",
+            "amount": "€ 520 – 680",
+        },
+        {
+            "title": "Zekeringkast vervangen — appartement 3 slaapkamers",
+            "desc": "Oud bord met smeltzekeringen, geen ruimte voor extra kringen. Volledig nieuw verdeelbord met 8 automaten en 2 differentieelschakelaars, inclusief labelling en kringenschema. Klaar voor de keuring en voorbereiding op een laadpaal.",
+            "amount": "€ 750 – 950",
+        },
+        {
+            "title": "Spoedinterventie — differentieel springt af (zondag)",
+            "desc": "Het differentieel bleef afspringen na elk herstel. Oorzaak: beschadigde toestelkabel van de vaatwasser die lekstroom veroorzaakte. Defecte kabel vervangen en installatie gecontroleerd. Interventie afgerond binnen het uur.",
+            "amount": "€ 180 – 240",
+        },
+    ],
+    "fr": [
+        {
+            "title": "Vente maison mitoyenne (1975) — rapport de contrôle négatif",
+            "desc": "Client souhaitant vendre avec rapport mentionnant 6 infractions : absence de protection différentielle par circuit, mauvaise mise à la terre, prises vétustes en salle de bain. Pose d'un groupe différentiel, boucle de terre et remplacement des prises concernées. Résultat : contre-visite réussie en 3 semaines.",
+            "amount": "€ 520 – 680",
+        },
+        {
+            "title": "Remplacement tableau électrique — appartement 3 chambres",
+            "desc": "Ancien tableau à fusibles cartouches, sans place pour circuits supplémentaires. Nouveau tableau complet avec 8 disjoncteurs et 2 différentiels, étiquetage et schéma de circuits inclus. Prêt pour le contrôle et préparation borne de recharge.",
+            "amount": "€ 750 – 950",
+        },
+        {
+            "title": "Urgence — différentiel qui saute (dimanche)",
+            "desc": "Le différentiel continuait de sauter après chaque réarmement. Cause : câble endommagé du lave-vaisselle provoquant un courant de fuite. Câble remplacé, installation vérifiée. Intervention terminée en moins d'une heure.",
+            "amount": "€ 180 – 240",
+        },
+    ],
+    "en": [
+        {
+            "title": "Selling a terraced house (1975) — negative inspection report",
+            "desc": "Client needed a quick sale but had a report with 6 violations: no per-circuit RCD protection, poor earthing, outdated sockets in the bathroom. We installed a new RCD group, laid an earth loop and replaced the affected sockets. Result: re-inspection passed within 3 weeks.",
+            "amount": "€ 520 – 680",
+        },
+        {
+            "title": "Fuse box replacement — 3-bedroom apartment",
+            "desc": "Old cartridge fuse board with no room for additional circuits. Complete new panel with 8 circuit breakers and 2 RCDs, including labelling and circuit diagram. Ready for inspection and EV charger preparation.",
+            "amount": "€ 750 – 950",
+        },
+        {
+            "title": "Emergency call-out — RCD keeps tripping (Sunday)",
+            "desc": "RCD kept tripping after every reset. Cause: damaged appliance cable of the dishwasher causing leakage current. Faulty cable replaced; installation checked. Job completed within the hour.",
+            "amount": "€ 180 – 240",
+        },
+    ],
 }
