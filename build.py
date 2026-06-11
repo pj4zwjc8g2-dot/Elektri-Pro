@@ -19,7 +19,7 @@ def head(title, desc, canonical, schema, lang, canon_path):
     cfg   = LANG_CONFIG[lang]
     hrefl = ""
     for l, c in LANG_CONFIG.items():
-        hrefl += f'<link rel="alternate" hreflang="{c["lang_attr"]}" href="{D}{c["prefix"]}{canon_path}">\n'
+        hrefl += f'<link rel="alternate" hreflang="{c["hreflang"]}" href="{D}{c["prefix"]}{canon_path}">\n'
     hrefl += f'<link rel="alternate" hreflang="x-default" href="{D}{canon_path}">\n'
     return f"""<!DOCTYPE html>
 <html lang="{cfg['lang_attr']}">
@@ -347,18 +347,33 @@ def build_service_city(lang, skey, s, c):
            inner, lang, canon)
 
 def build_sitemap():
-    urls = []
+    # Canonical paths (lang-neutral; NL prefix is empty so these are the NL URLs)
+    canon_paths = ["/", "/diensten/", "/faq/", "/contact/"]
+    for skey in SERVICES["nl"]:
+        canon_paths.append(f"/{skey}/")
+        for c in CITIES:
+            canon_paths.append(f"/{skey}/{c['slug']}/")
+
+    def xhtml_alts(cp):
+        alts = ""
+        for l, c in LANG_CONFIG.items():
+            alts += f'<xhtml:link rel="alternate" hreflang="{c["hreflang"]}" href="{D}{c["prefix"]}{cp}"/>'
+        alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{D}{cp}"/>'
+        return alts
+
+    items = ""
     for lang, cfg in LANG_CONFIG.items():
         pfx = cfg["prefix"]
-        for path in ["/", "/diensten/", "/faq/", "/contact/"]:
-            urls.append(f"{D}{pfx}{path}")
-        for skey in SERVICES[lang]:
-            urls.append(f"{D}{pfx}/{skey}/")
-            for c in CITIES:
-                urls.append(f"{D}{pfx}/{skey}/{c['slug']}/")
-    items = "".join(f"<url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)
+        for cp in canon_paths:
+            items += f"<url><loc>{D}{pfx}{cp}</loc><lastmod>{TODAY}</lastmod>{xhtml_alts(cp)}</url>"
+
     with open(f"{OUT}/sitemap.xml", "w", encoding="utf-8") as f:
-        f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{items}</urlset>')
+        f.write(
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+            ' xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+            f"{items}</urlset>"
+        )
     with open(f"{OUT}/robots.txt", "w", encoding="utf-8") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {D}/sitemap.xml\n")
     host = D.replace("https://", "").replace("http://", "").strip("/")

@@ -17,9 +17,9 @@ BUSINESS = {
 }
 
 LANG_CONFIG = {
-    "nl": {"label": "NL", "prefix": "",    "locale": "nl_BE", "lang_attr": "nl"},
-    "fr": {"label": "FR", "prefix": "/fr", "locale": "fr_BE", "lang_attr": "fr"},
-    "en": {"label": "EN", "prefix": "/en", "locale": "en_GB", "lang_attr": "en"},
+    "nl": {"label": "NL", "prefix": "",    "locale": "nl_BE", "lang_attr": "nl", "hreflang": "nl-BE"},
+    "fr": {"label": "FR", "prefix": "/fr", "locale": "fr_BE", "lang_attr": "fr", "hreflang": "fr-BE"},
+    "en": {"label": "EN", "prefix": "/en", "locale": "en_GB", "lang_attr": "en", "hreflang": "en"},
 }
 
 REVIEWS = [
